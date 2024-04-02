@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Models\User;
 use Filament\Forms\Components\TextInput;
-use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
 use Miguilim\FilamentAutoPanel\AutoResource;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
@@ -69,13 +69,13 @@ class UserResource extends AutoResource
     {
         return [
             'table' => [
-                //
+                TextColumn::make('name')->html()
             ],
             'form' => [
-                TextInput::make('name')->required(),
+                // TextInput::make('name')->required(),
                 TextInput::make('email')->required()->email(),
                 TextInput::make('password')->required(),
-                // TinyEditor::make('email')->fileAttachmentsDisk('local')->fileAttachmentsVisibility('public')->fileAttachmentsDirectory('public'),
+                TinyEditor::make('name')->fileAttachmentsDisk('local')->fileAttachmentsVisibility('public')->fileAttachmentsDirectory('public'),
             ],
             'infolist' => [
                 //
