@@ -3,10 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Models\User;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Collection;
+use Miguilim\FilamentAutoPanel\AutoAction;
 use Miguilim\FilamentAutoPanel\AutoResource;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use Webbingbrasil\FilamentCopyActions\Forms\Actions\CopyAction;
+use Webbingbrasil\FilamentCopyActions\Tables\CopyableTextColumn;
 
 class UserResource extends AutoResource
 {
@@ -29,9 +34,7 @@ class UserResource extends AutoResource
 
     public static function getActions(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getRelations(): array
@@ -47,9 +50,7 @@ class UserResource extends AutoResource
             'list' => [
                 //
             ],
-            'view' => [
-                //
-            ],
+            'view' => [],
         ];
     }
 
@@ -69,13 +70,15 @@ class UserResource extends AutoResource
     {
         return [
             'table' => [
-                TextColumn::make('name')->html()
+                TextColumn::make('name')->wrap()->copyable()->html(),
+                TextColumn::make('email')->copyable()
+                    ->copyMessage('Email copied'),
             ],
             'form' => [
-                // TextInput::make('name')->required(),
+                TextInput::make('name')->required(),
                 TextInput::make('email')->required()->email(),
                 TextInput::make('password')->required(),
-                TinyEditor::make('name')->fileAttachmentsDisk('local')->fileAttachmentsVisibility('public')->fileAttachmentsDirectory('public'),
+                // TinyEditor::make('name')->fileAttachmentsDisk('local')->fileAttachmentsVisibility('public')->fileAttachmentsDirectory('public'),
             ],
             'infolist' => [
                 //
