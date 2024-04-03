@@ -14,12 +14,7 @@ class CreateMediaLibrary extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['user_id'] = auth()->id();
-        if (request()->hasFile('attachment')) {
-            $file = request()->file('attachment');
-            $data['filename'] = $file->getClientOriginalName();
-        }
-        $data['filename'] = 'testdoeng';
-        Log::info($data);
+        $data['filename'] = 0;
         return $data;
     }
 
