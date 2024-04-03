@@ -75,6 +75,8 @@ class UserResource extends AutoResource
                     ->copyMessage('Email copied'),
             ],
             'form' => [
+                TextInput::make('id')->hidden(),
+                TextInput::make('remember_token')->hidden(),
                 TextInput::make('name')->required(),
                 TextInput::make('email')->required()->email(),
                 TextInput::make('password')->required(),

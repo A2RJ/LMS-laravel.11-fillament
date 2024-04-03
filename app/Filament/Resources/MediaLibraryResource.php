@@ -19,6 +19,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Ramsey\Uuid\Uuid;
 
 class MediaLibraryResource extends Resource
 {
@@ -30,19 +32,19 @@ class MediaLibraryResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('filename')
-                    ->label('File')
+                FileUpload::make('attachment')->getUploadedFileNameForStorageUsing(
+                    fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                        ->prepend(Uuid::uuid4() . '--'),
+                )
                     ->required()
                     ->live()
-                    ->imagePreviewHeight('250')
                     ->loadingIndicatorPosition('left')
-                    ->panelAspectRatio('2:1')
                     ->panelLayout('integrated')
                     ->removeUploadedFileButtonPosition('right')
                     ->uploadButtonPosition('left')
                     ->uploadProgressIndicatorPosition('left')
                     ->columnSpanFull()
-                    ->maxSize(102400)
+                    ->maxSize(102400),
             ]);
     }
 
@@ -50,44 +52,25 @@ class MediaLibraryResource extends Resource
     {
         return $table
             ->columns([
-                Grid::make('filename')
+                Grid::make('attachment')
                     ->schema([
-                        TextColumn::make('filename')
-                            ->label('File')
+                        TextColumn::make('attachment')
                             ->formatStateUsing(function (string $state): HtmlString {
-                                // Mendapatkan ekstensi file
                                 $extension = pathinfo($state, PATHINFO_EXTENSION);
-
-                                // Jika ekstensi adalah gambar, tampilkan dengan tag img
                                 if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
-                                    return new HtmlString("<img src='/storage/$state' alt='media' style='max-height: 200px;' width='auto' height='200'>");
+                                    return new HtmlString("<img src='/storage/$state' alt='media' style='max-height: 200px; max-width: 200px;' width='auto' height='200'>");
                                 } elseif (in_array($extension, ['mp4', 'avi', 'mov'])) {
-                                    // Jika ekstensi adalah video, tampilkan dengan tag video
-                                    return new HtmlString("<video controls><source src='/storage/$state' type='video/mp4'></video>");
-                                } elseif (in_array($extension, ['xlsx', 'xls'])) {
-                                    // Jika ekstensi adalah Excel, tampilkan teks Excel
-                                    // Anda perlu mengonversi file Excel ke teks terlebih dahulu
-                                    $text = "Text from Excel";
-                                    return new HtmlString("<p style='font-family: Arial;'>$text</p>");
-                                } elseif (in_array($extension, ['doc', 'docx'])) {
-                                    // Jika ekstensi adalah Word, tampilkan teks Word
-                                    // Anda perlu mengonversi file Word ke teks terlebih dahulu
-                                    $text = "Text from Word";
-                                    return new HtmlString("<p style='font-family: Arial;'>$text</p>");
-                                } elseif ($extension === 'pdf') {
-                                    // Jika ekstensi adalah PDF, tampilkan teks PDF
-                                    // Anda perlu mengonversi PDF menjadi teks
-                                    $text = "Text from PDF";
-                                    return new HtmlString("<p style='font-family: Arial;'>$text</p>");
+                                    return new HtmlString("<video  width='400' controls='controls' preload='metadata'><source src='/storage/$state' type='video/mp4'></video>");
                                 } else {
-                                    // Jika bukan tipe yang dikenali, tampilkan pesan default
                                     return new HtmlString("<p>No preview available</p>");
                                 }
-                            })
-                            ->description(function (MediaLibrary $record): string {
-                                return $record->filename;
+                            }),
+                        TextColumn::make('filename')
+                            ->formatStateUsing(function (string $state, MediaLibrary $mediaLibrary): string {
+                                return substr($mediaLibrary->attachment, strpos($mediaLibrary->attachment, '--') + 2);
                             })
                             ->copyable()
+                            ->copyableState(fn(string $state, MediaLibrary $mediaLibrary): string => '/storage/' . $mediaLibrary->attachment)
                     ])
             ])
             ->contentGrid([
