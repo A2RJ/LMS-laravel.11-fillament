@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import 'vendor/awcodes/filament-tiptap-editor/resources/css/plugin.css';
+
+body {
+    color: red !important;
+} */

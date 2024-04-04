@@ -19,6 +19,8 @@ use Illuminate\Support\HtmlString;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use FilamentTiptapEditor\TiptapEditor;
+use FilamentTiptapEditor\Enums\TiptapOutput;
 
 class ClassRoomResource extends Resource
 {
@@ -42,13 +44,24 @@ class ClassRoomResource extends Resource
                     ->imagePreviewHeight('200px')
                     ->columnSpanFull()
             ->hiddenOn('view'),
-            TinyEditor::make('content')
-            ->profile('template')
-                    ->columnSpanFull()
-                    ->fileAttachmentsDisk('local')
-                    ->fileAttachmentsVisibility('public')
-                    ->fileAttachmentsDirectory('public')
-            ->visible(),
+            // TinyEditor::make('content')
+            // ->profile('template')
+            //         ->columnSpanFull()
+            //         ->fileAttachmentsDisk('local')
+            //         ->fileAttachmentsVisibility('public')
+            //         ->fileAttachmentsDirectory('public')
+            // ->visible(),
+            TiptapEditor::make('content')
+                // ->profile('default|simple|minimal|none|custom')
+                // ->tools([]) // individual tools to use in the editor, overwrites profile
+                // ->disk('string') // optional, defaults to config setting
+                // ->directory('string or Closure returning a string') // optional, defaults to config setting
+                // ->acceptedFileTypes(['array of file types']) // optional, defaults to config setting
+                // ->maxFileSize('integer in KB') // optional, defaults to config setting
+                ->output(TiptapOutput::Html) // optional, change the format for saved data, default is html
+                ->maxContentWidth('5xl')
+                ->required()
+                ->columnSpanFull()
             ]);
     }
 
@@ -117,11 +130,11 @@ class ClassRoomResource extends Resource
             ]);
     }
 
-    public static function infolist(Infolist $infolist): Infolist
-    {
-        return $infolist
-            ->schema([
-                Infolists\Components\TextEntry::make('content')->hiddenLabel()->columnSpanFull(),
-            ]);
-    }
+    // public static function infolist(Infolist $infolist): Infolist
+    // {
+    //     return $infolist
+    //         ->schema([
+    //             Infolists\Components\TextEntry::make('content')->hiddenLabel()->columnSpanFull(),
+    //         ]);
+    // }
 }
