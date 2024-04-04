@@ -22,6 +22,8 @@ class MediaLibraryResource extends Resource
 {
     protected static ?string $model = MediaLibrary::class;
 
+    protected static ?string $navigationGroup = 'Course';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form

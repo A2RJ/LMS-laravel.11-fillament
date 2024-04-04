@@ -23,6 +23,7 @@ class EditClassRoom extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
+        $data['thumbnail'] = '/storage/' . $data['thumbnail'];
         $data['content'] = preg_replace("/(\.\.\/)+storage/", "/storage", $data['content']);
         return $data;
     }

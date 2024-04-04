@@ -3,19 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Models\User;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Collection;
-use Miguilim\FilamentAutoPanel\AutoAction;
 use Miguilim\FilamentAutoPanel\AutoResource;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
-use Webbingbrasil\FilamentCopyActions\Forms\Actions\CopyAction;
-use Webbingbrasil\FilamentCopyActions\Tables\CopyableTextColumn;
 
 class UserResource extends AutoResource
 {
     protected static ?string $model = User::class;
+
+    protected static ?string $navigationGroup = 'Settings';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

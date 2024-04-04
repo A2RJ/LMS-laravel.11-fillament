@@ -15,11 +15,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
+use Filament\Pages\Page;
 
 class ClassRoomResource extends Resource
 {
     protected static ?string $model = ClassRoom::class;
 
+    protected static ?string $navigationGroup = 'Course';
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
 
     public static function form(Form $form): Form
@@ -32,14 +36,14 @@ class ClassRoomResource extends Resource
                 FileUpload::make('thumbnail')
                     ->required()
                     ->image()
-                    ->imageCropAspectRatio('1:1')
+                    ->imageCropAspectRatio('16:9')
                     ->imagePreviewHeight('200px')
                     ->columnSpanFull()
                     ->hiddenOn('edit'),
                 FileUpload::make('thumbnail')
                     ->nullable()
                     ->image()
-                    ->imageCropAspectRatio('1:1')
+                    ->imageCropAspectRatio('16:9')
                     ->imagePreviewHeight('200px')
                     ->columnSpanFull()
                     ->hiddenOn('create'),
@@ -62,7 +66,7 @@ class ClassRoomResource extends Resource
                     ->searchable(),
                 TextColumn::make('thumbnail')
                     ->formatStateUsing(function (string $state): HtmlString {
-                        return new HtmlString("<img src='$state' alt='media' style='max-height: 100px; max-width: 100px;' width='auto' height='200'>");
+                        return new HtmlString("<img src='/storage/$state' alt='media' style='max-height: 100px; max-width: 100px;' width='auto' height='200'>");
                     }),
                 TextColumn::make('deleted_at')
                     ->dateTime()
@@ -83,6 +87,7 @@ class ClassRoomResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -106,6 +111,7 @@ class ClassRoomResource extends Resource
             'index' => Pages\ListClassRooms::route('/'),
             'create' => Pages\CreateClassRoom::route('/create'),
             'edit' => Pages\EditClassRoom::route('/{record}/edit'),
+            'view' => Pages\ViewClassRoom::route('/{record}')
         ];
     }
 
@@ -114,6 +120,23 @@ class ClassRoomResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
+            ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\TextEntry::make('thumbnail')
+                    ->label('')
+                    ->alignCenter()
+                    ->columnSpanFull()
+                    ->formatStateUsing(function (string $state): HtmlString {
+                        return new HtmlString("<img src='/storage/$state' alt='media' >");
+                    }),
+                Infolists\Components\TextEntry::make('title')
+                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('content'),
             ]);
     }
 }
