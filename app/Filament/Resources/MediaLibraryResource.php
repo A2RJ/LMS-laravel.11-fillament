@@ -53,6 +53,13 @@ class MediaLibraryResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('filename')
+                    ->formatStateUsing(function (string $state, MediaLibrary $mediaLibrary): string {
+                        return $state == 0 ? substr($mediaLibrary->attachment, strpos($mediaLibrary->attachment, '--') + 2) : $state;
+                    })
+                    ->copyable()
+                    ->copyableState(fn(string $state, MediaLibrary $mediaLibrary): string => '/storage/' . $mediaLibrary->attachment)
+                    ->searchable(),
                 TextColumn::make('attachment')
                     ->formatStateUsing(function (string $state): HtmlString {
                         $extension = pathinfo($state, PATHINFO_EXTENSION);
@@ -64,13 +71,6 @@ class MediaLibraryResource extends Resource
                             return new HtmlString("<p>No preview available</p>");
                         }
                     }),
-                TextColumn::make('filename')
-                    ->formatStateUsing(function (string $state, MediaLibrary $mediaLibrary): string {
-                        return $state == 0 ? substr($mediaLibrary->attachment, strpos($mediaLibrary->attachment, '--') + 2) : $state;
-                    })
-                    ->copyable()
-                    ->copyableState(fn(string $state, MediaLibrary $mediaLibrary): string => '/storage/' . $mediaLibrary->attachment)
-                    ->searchable(),
             ])
             // ->contentGrid([
             //     'default' => 1,
