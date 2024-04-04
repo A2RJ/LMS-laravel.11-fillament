@@ -26,13 +26,13 @@ class ClassCard extends Page implements HasForms
     public function form(Form $form): Form
     {
         return $form->schema([
-            TinyEditor::make('content')
-                ->required()
-                ->columnSpanFull()
-                ->fileAttachmentsDisk('local')
-                ->fileAttachmentsVisibility('public')
-                ->fileAttachmentsDirectory('public')
-                ->visible()
+            // TinyEditor::make('content')
+            //     ->required()
+            //     ->columnSpanFull()
+            //     ->fileAttachmentsDisk('local')
+            //     ->fileAttachmentsVisibility('public')
+            //     ->fileAttachmentsDirectory('public')
+            //     ->visible()
 
         ]);
     }

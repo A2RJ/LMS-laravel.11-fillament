@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ClassRoomResource\Pages;
 use App\Models\ClassRoom;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -46,15 +47,12 @@ class ClassRoomResource extends Resource
                     ->imageCropAspectRatio('16:9')
                     ->imagePreviewHeight('200px')
                     ->columnSpanFull()
-                    ->hiddenOn('create'),
-                TinyEditor::make('content')
-                    ->required()
+                ->hiddenOn('create'), RichEditor::make('content')
                     ->columnSpanFull()
                     ->fileAttachmentsDisk('local')
                     ->fileAttachmentsVisibility('public')
                     ->fileAttachmentsDirectory('public')
-                    ->visible(),
-
+                ->visible()
             ]);
     }
 
@@ -127,16 +125,16 @@ class ClassRoomResource extends Resource
     {
         return $infolist
             ->schema([
-                Infolists\Components\TextEntry::make('thumbnail')
-                    ->label('')
-                    ->alignCenter()
-                    ->columnSpanFull()
-                    ->formatStateUsing(function (string $state): HtmlString {
-                        return new HtmlString("<img src='/storage/$state' alt='media' >");
-                    }),
-                Infolists\Components\TextEntry::make('title')
-                    ->columnSpanFull(),
-                Infolists\Components\TextEntry::make('content'),
+                // Infolists\Components\TextEntry::make('thumbnail')
+                //     ->label('')
+                //     ->alignCenter()
+                //     ->columnSpanFull()
+                //     ->formatStateUsing(function (string $state): HtmlString {
+                //         return new HtmlString("<img src='/storage/$state' alt='media' >");
+                //     }),
+                // Infolists\Components\TextEntry::make('title')
+                //     ->columnSpanFull(),
+                // Infolists\Components\TextEntry::make('content'),
             ]);
     }
 }

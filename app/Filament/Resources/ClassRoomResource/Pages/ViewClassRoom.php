@@ -9,7 +9,7 @@ use Filament\Resources\Pages\ViewRecord;
 class ViewClassRoom extends ViewRecord
 {
     protected static string $resource = ClassRoomResource::class;
-    protected static string $view = 'filament.pages.class-card';
+    // protected static string $view = 'filament.pages.class-card';
 
 
     protected function mutateFormDataBeforeFill(array $data): array
