@@ -80,7 +80,6 @@ class UserResource extends AutoResource
                 TextInput::make('name')->required(),
                 TextInput::make('email')->required()->email(),
                 TextInput::make('password')->required(),
-                // TinyEditor::make('name')->fileAttachmentsDisk('local')->fileAttachmentsVisibility('public')->fileAttachmentsDirectory('public'),
             ],
             'infolist' => [
                 //
