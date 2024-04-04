@@ -10,9 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('class_attachements', function (Blueprint $table) {
+        Schema::create('session_attachements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('session_id')
+            $table->foreignId('class_session_id')
                 ->references('id')
                 ->on('sessions')
                 ->cascadeOnUpdate()
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('class_attachements');
+        Schema::dropIfExists('session_attachements');
     }
 };
