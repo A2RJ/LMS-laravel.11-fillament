@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ClassRoomResource\Pages;
+use App\Forms\Components\CKEditor;
 use App\Models\ClassRoom;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
@@ -15,10 +16,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
-use Filament\Pages\Page;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class ClassRoomResource extends Resource
 {
@@ -33,26 +33,22 @@ class ClassRoomResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->required()
-                    ->columnSpanFull(),
+            ->columnSpanFull()
+            ->hiddenOn('view'),
                 FileUpload::make('thumbnail')
                     ->required()
                     ->image()
                     ->imageCropAspectRatio('16:9')
                     ->imagePreviewHeight('200px')
                     ->columnSpanFull()
-                    ->hiddenOn('edit'),
-                FileUpload::make('thumbnail')
-                    ->nullable()
-                    ->image()
-                    ->imageCropAspectRatio('16:9')
-                    ->imagePreviewHeight('200px')
-                    ->columnSpanFull()
-                ->hiddenOn('create'), RichEditor::make('content')
+            ->hiddenOn('view'),
+            TinyEditor::make('content')
+            ->profile('template')
                     ->columnSpanFull()
                     ->fileAttachmentsDisk('local')
                     ->fileAttachmentsVisibility('public')
                     ->fileAttachmentsDirectory('public')
-                ->visible()
+            ->visible(),
             ]);
     }
 
@@ -125,16 +121,7 @@ class ClassRoomResource extends Resource
     {
         return $infolist
             ->schema([
-                // Infolists\Components\TextEntry::make('thumbnail')
-                //     ->label('')
-                //     ->alignCenter()
-                //     ->columnSpanFull()
-                //     ->formatStateUsing(function (string $state): HtmlString {
-                //         return new HtmlString("<img src='/storage/$state' alt='media' >");
-                //     }),
-                // Infolists\Components\TextEntry::make('title')
-                //     ->columnSpanFull(),
-                // Infolists\Components\TextEntry::make('content'),
+                Infolists\Components\TextEntry::make('content')->hiddenLabel()->columnSpanFull(),
             ]);
     }
 }

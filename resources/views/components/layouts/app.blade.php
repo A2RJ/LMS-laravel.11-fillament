@@ -25,6 +25,10 @@
 
     @filamentScripts
     @vite('resources/js/app.js')
+
+    <script>
+        console.log("yeyyy");
+    </script>
 </body>
 
 </html>
