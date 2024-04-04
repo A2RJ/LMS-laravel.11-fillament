@@ -19,8 +19,4 @@ class MediaLibrary extends Model
     {
         $this->belongsTo(User::class);
     }
-
-    protected $hidden = [
-        'user_id',
-    ];
 }

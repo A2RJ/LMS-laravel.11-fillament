@@ -14,11 +14,14 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('title');
             $table->text('thumbnail');
             $table->string('progress');
             $table->text('content');
+            $table->softDeletesTz('deleted_at', precision: 0);
             $table->timestamps();
         });
     }

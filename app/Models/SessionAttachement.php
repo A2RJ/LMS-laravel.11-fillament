@@ -10,7 +10,7 @@ class SessionAttachement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'class_id',
+        'session_id',
         'attachment',
         'url'
     ];

@@ -14,9 +14,13 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')
                 ->references('id')
-                ->on('users');
-            $table->enum('answer_type', ['description', 'selected']);
-            $table->text('question');
+                ->on('users')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->string('title');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->softDeletesTz('deleted_at', precision: 0);
             $table->timestamps();
         });
     }

@@ -10,14 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('test_id')
                 ->references('id')
-                ->on('tests');
-            $table->boolean('is_true')->default(false);
-            $table->integer('score')->default(0);
-            $table->string('answer');
+                ->on('tests')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->enum('answer_type', ['description', 'selected']);
+            $table->text('question');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('questions');
     }
 };

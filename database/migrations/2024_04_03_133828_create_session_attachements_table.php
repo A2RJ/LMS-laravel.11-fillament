@@ -14,7 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('session_id')
                 ->references('id')
-                ->on('sessions');
+                ->on('sessions')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('attachment');
             $table->text('url');
             $table->timestamps();

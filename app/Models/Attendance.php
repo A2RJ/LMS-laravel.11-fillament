@@ -14,13 +14,13 @@ class Attendance extends Model
         'session_id',
     ];
 
-    public function session()
-    {
-        return $this->belongsTo(Session::class);
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function session()
+    {
+        return $this->belongsTo(Session::class);
     }
 }

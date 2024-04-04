@@ -12,9 +12,11 @@ return new class extends Migration {
     {
         Schema::create('class_attachements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('class_id')
+            $table->foreignId('class_room_id')
                 ->references('id')
-                ->on('classs');
+                ->on('classs')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('attachment');
             $table->text('url');
             $table->timestamps();

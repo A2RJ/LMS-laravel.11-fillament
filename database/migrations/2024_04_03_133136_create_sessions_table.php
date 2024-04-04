@@ -12,21 +12,26 @@ return new class extends Migration {
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')
+            $table->foreignId('class_room_id')
                 ->references('id')
-                ->on('users');
+                ->on('class_rooms')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->foreignId('pre_test_id')
                 ->nullable()
                 ->references('id')
-                ->on('tests');
+                ->on('tests')
+                ->nullOnDelete();
             $table->foreignId('post_test_id')
                 ->nullable()
                 ->references('id')
-                ->on('tests');
+                ->on('tests')
+                ->nullOnDelete();
             $table->string('title');
             $table->text('content');
             $table->dateTime('start');
             $table->dateTime('end');
+            $table->softDeletesTz('deleted_at', precision: 0);
             $table->timestamps();
         });
     }

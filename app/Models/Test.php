@@ -4,15 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Test extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
-        'question',
-        'answer_type'
+        'title',
+        'start',
+        'end'
     ];
 
     public function user()
@@ -20,9 +22,9 @@ class Test extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function answers()
+    public function question()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Question::class);
     }
 
     public function preTest()

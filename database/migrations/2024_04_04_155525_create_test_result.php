@@ -10,11 +10,21 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('test_results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('session_id')
                 ->references('id')
                 ->on('sessions')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('question_id')
+                ->references('id')
+                ->on('questions')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('answer_id')
+                ->references('id')
+                ->on('answers')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->foreignId('user_id')
@@ -22,6 +32,7 @@ return new class extends Migration {
                 ->on('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->text('answer');
             $table->timestamps();
         });
     }
@@ -31,6 +42,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('test_results');
     }
 };

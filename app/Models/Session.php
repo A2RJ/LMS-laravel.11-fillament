@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Session extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'user_id',
+        'class_room_id',
         'pre_test_id',
         'post_test_id',
         'title',
@@ -19,19 +20,19 @@ class Session extends Model
         'end'
     ];
 
-    public function user()
+    public function classRoom()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(ClassRoom::class);
     }
 
     public function preTest()
     {
-        return $this->belongsTo(Test::class);
+        return $this->belongsTo(Test::class, 'pre_test_id');
     }
 
     public function postTest()
     {
-        return $this->belongsTo(Test::class);
+        return $this->belongsTo(Test::class, 'post_test_id');
     }
 
     public function preTestResult()
