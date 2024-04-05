@@ -3,10 +3,9 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ClassRoomResource\Pages;
-use App\Forms\Components\CKEditor;
+use App\Infolists\Components\TinyDisplay;
 use App\Models\ClassRoom;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -20,8 +19,6 @@ use Filament\Infolists;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Infolist;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
-use FilamentTiptapEditor\TiptapEditor;
-use FilamentTiptapEditor\Enums\TiptapOutput;
 
 class ClassRoomResource extends Resource
 {
@@ -36,8 +33,7 @@ class ClassRoomResource extends Resource
             ->schema([
                 TextInput::make('title')
                     ->required()
-            ->columnSpanFull()
-            ->hiddenOn('view'),
+            ->columnSpanFull(),
                 FileUpload::make('thumbnail')
                     ->required()
                     ->image()
@@ -45,24 +41,12 @@ class ClassRoomResource extends Resource
                     ->imagePreviewHeight('200px')
                     ->columnSpanFull()
             ->hiddenOn('view'),
-            // TinyEditor::make('content')
-            // ->profile('template')
-            //         ->columnSpanFull()
-            //         ->fileAttachmentsDisk('local')
-            //         ->fileAttachmentsVisibility('public')
-            //         ->fileAttachmentsDirectory('public')
-            // ->visible(),
-            TiptapEditor::make('content')
-                // ->profile('default|simple|minimal|none|custom')
-                // ->tools([]) // individual tools to use in the editor, overwrites profile
-                // ->disk('string') // optional, defaults to config setting
-                // ->directory('string or Closure returning a string') // optional, defaults to config setting
-                // ->acceptedFileTypes(['array of file types']) // optional, defaults to config setting
-                // ->maxFileSize('integer in KB') // optional, defaults to config setting
-                ->output(TiptapOutput::Html) // optional, change the format for saved data, default is html
-                ->maxContentWidth('5xl')
-                ->required()
+            TinyEditor::make('content')
                 ->columnSpanFull()
+                ->fileAttachmentsDisk('local')
+                ->fileAttachmentsVisibility('public')
+                ->fileAttachmentsDirectory('public')
+                ->visible()
             ]);
     }
 
@@ -135,10 +119,11 @@ class ClassRoomResource extends Resource
     {
         return $infolist
             ->schema([
-                // Section::make()->schema([
-                // Infolists\Components\TextEntry::make('thumbnail')->hiddenLabel()->alignCenter()->columnSpanFull(),
-                // Infolists\Components\TextEntry::make('title')->hiddenLabel()->columnSpanFull(),
-                // ])
+                Section::make()->schema([
+                    Infolists\Components\TextEntry::make('thumbnail')->hiddenLabel()->alignCenter()->columnSpanFull(),
+                    Infolists\Components\TextEntry::make('title')->hiddenLabel()->columnSpanFull(),
+                    TinyDisplay::make('content')->hiddenLabel()->columnSpanFull()
+                ])
             ]);
     }
 }
