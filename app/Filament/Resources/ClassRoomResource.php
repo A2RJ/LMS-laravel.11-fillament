@@ -3,9 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ClassRoomResource\Pages;
+use App\Filament\Resources\ClassRoomResource\RelationManagers\SessionsRelationManager;
 use App\Infolists\Components\TinyDisplay;
 use App\Models\ClassRoom;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,7 +18,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
 use Filament\Infolists;
-use Filament\Infolists\Components\Section;
 use Filament\Infolists\Infolist;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
@@ -30,23 +31,22 @@ class ClassRoomResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                TextInput::make('title')
+            ->schema([Section::make()->schema([TextInput::make('title')
                     ->required()
-            ->columnSpanFull(),
+                    ->columnSpanFull(),
                 FileUpload::make('thumbnail')
                     ->required()
                     ->image()
                     ->imageCropAspectRatio('16:9')
                     ->imagePreviewHeight('200px')
+                    ->columnSpanFull(),
+                TinyEditor::make('content')
                     ->columnSpanFull()
-            ->hiddenOn('view'),
-            TinyEditor::make('content')
-                ->columnSpanFull()
-                ->fileAttachmentsDisk('local')
-                ->fileAttachmentsVisibility('public')
-                ->fileAttachmentsDirectory('public')
-                ->visible()
+                    ->fileAttachmentsDisk('local')
+                    ->fileAttachmentsVisibility('public')
+                    ->fileAttachmentsDirectory('public')
+                    ->visible()
+            ])
             ]);
     }
 
@@ -93,7 +93,7 @@ class ClassRoomResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            SessionsRelationManager::class
         ];
     }
 
@@ -118,12 +118,12 @@ class ClassRoomResource extends Resource
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
-            ->schema([
-                Section::make()->schema([
+            ->schema([Infolists\Components\Section::make()
+                ->schema([
                     Infolists\Components\TextEntry::make('thumbnail')->hiddenLabel()->alignCenter()->columnSpanFull(),
                     Infolists\Components\TextEntry::make('title')->hiddenLabel()->columnSpanFull(),
                     TinyDisplay::make('content')->hiddenLabel()->columnSpanFull()
-                ])
+                ]),
             ]);
     }
 }

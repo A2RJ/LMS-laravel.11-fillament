@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,9 +14,17 @@ class Test extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'content',
         'start',
         'end'
     ];
+
+    protected function content(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => preg_replace("/(\.\.\/)+storage/", "/storage", $value)
+        );
+    }
 
     public function user()
     {
