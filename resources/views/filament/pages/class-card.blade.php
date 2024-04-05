@@ -40,9 +40,8 @@
             font-weight: bold;
         }
     </style>
-    <!-- {{ $this->form->model->title}}
-    {{ $this->form->model->thumbnail}} -->
-    <div class="container break-words border rounded-sm p-4">
+    {{ $this->infolist }}
+    <div class="container break-words ">
         {!! tiptap_converter()->asHTML($this->form->model->content) !!}
     </div>
 </x-filament-panels::page>

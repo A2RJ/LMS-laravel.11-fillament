@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
 use Filament\Infolists;
+use Filament\Infolists\Components\Section;
 use Filament\Infolists\Infolist;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use FilamentTiptapEditor\TiptapEditor;
@@ -130,11 +131,14 @@ class ClassRoomResource extends Resource
             ]);
     }
 
-    // public static function infolist(Infolist $infolist): Infolist
-    // {
-    //     return $infolist
-    //         ->schema([
-    //             Infolists\Components\TextEntry::make('content')->hiddenLabel()->columnSpanFull(),
-    //         ]);
-    // }
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                // Section::make()->schema([
+                // Infolists\Components\TextEntry::make('thumbnail')->hiddenLabel()->alignCenter()->columnSpanFull(),
+                // Infolists\Components\TextEntry::make('title')->hiddenLabel()->columnSpanFull(),
+                // ])
+            ]);
+    }
 }
