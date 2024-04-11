@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TestResource\Pages;
 use App\Filament\Resources\TestResource\RelationManagers;
+use App\Filament\Resources\TestResource\RelationManagers\QuestionRelationManager;
 use App\Models\Test;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -51,6 +52,7 @@ class TestResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+            ->label('Test Name')
                     ->searchable()
                     ->wrap()
                     ->lineClamp(1),
@@ -92,7 +94,7 @@ class TestResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            QuestionRelationManager::class
         ];
     }
 

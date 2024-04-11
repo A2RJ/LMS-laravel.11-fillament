@@ -22,7 +22,7 @@ class MediaLibraryResource extends Resource
 {
     protected static ?string $model = MediaLibrary::class;
 
-    protected static ?string $navigationGroup = 'Course';
+    protected static ?string $navigationGroup = 'Settings';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
