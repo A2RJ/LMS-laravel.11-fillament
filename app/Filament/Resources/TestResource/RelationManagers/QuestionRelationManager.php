@@ -26,9 +26,12 @@ class QuestionRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('question')
+                TinyEditor::make('question')
                     ->required()
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->fileAttachmentsDisk('local')
+                    ->fileAttachmentsVisibility('public')
+                    ->fileAttachmentsDirectory('public'),
                 Forms\Components\Select::make('answer_type')
                     ->options([
                         'description' => 'Description',
@@ -84,7 +87,7 @@ class QuestionRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                Tables\Actions\CreateAction::make()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

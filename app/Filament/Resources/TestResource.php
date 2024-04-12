@@ -31,18 +31,22 @@ class TestResource extends Resource
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextArea::make('title')
+                            ->label('Test Name')
                             ->required()
                             ->columnSpanFull(),
                         TinyEditor::make('content')
+                            ->label('Description')
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('local')
                             ->fileAttachmentsVisibility('public')
                             ->fileAttachmentsDirectory('public')
                             ->visible(),
                         Forms\Components\DateTimePicker::make('start')
-                            ->required(),
+                            ->required()
+                            ->label('Start Time'),
                         Forms\Components\DateTimePicker::make('end')
-                            ->required(),
+                            ->required()
+                            ->label('End Time'),
                     ])->columns()
             ]);
     }
@@ -52,14 +56,16 @@ class TestResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-            ->label('Test Name')
+                    ->label('Test Name')
                     ->searchable()
                     ->wrap()
                     ->lineClamp(1),
                 Tables\Columns\TextColumn::make('start')
+                    ->label('Start Time')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('end')
+                    ->label('End Time')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('deleted_at')

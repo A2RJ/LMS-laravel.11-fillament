@@ -31,7 +31,7 @@ class MediaLibraryResource extends Resource
         return $form
             ->schema([
                 FileUpload::make('attachment')->getUploadedFileNameForStorageUsing(
-                    fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                    fn (TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
                         ->prepend(Uuid::uuid4() . '--'),
                 )
                     ->required()
@@ -60,7 +60,7 @@ class MediaLibraryResource extends Resource
                         return $state == 0 ? substr($mediaLibrary->attachment, strpos($mediaLibrary->attachment, '--') + 2) : $state;
                     })
                     ->copyable()
-                    ->copyableState(fn(string $state, MediaLibrary $mediaLibrary): string => '/storage/' . $mediaLibrary->attachment)
+                    ->copyableState(fn (string $state, MediaLibrary $mediaLibrary): string => '/storage/' . $mediaLibrary->attachment)
                     ->searchable(),
                 TextColumn::make('attachment')
                     ->formatStateUsing(function (string $state): HtmlString {
@@ -70,15 +70,10 @@ class MediaLibraryResource extends Resource
                         } elseif (in_array($extension, ['mp4', 'avi', 'mov'])) {
                             return new HtmlString("<video  width='400' controls='controls' preload='metadata'><source src='/storage/$state' type='video/mp4'></video>");
                         } else {
-                            return new HtmlString("<p>No preview available</p>");
+                            return new HtmlString("<p class='p-10'>No preview available</p>");
                         }
                     }),
             ])
-            // ->contentGrid([
-            //     'default' => 1,
-            //     'sm' => 3,
-            //     'xl' => 4,
-            // ])
             ->filters([
                 //
             ])
