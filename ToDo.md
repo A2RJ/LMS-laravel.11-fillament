@@ -71,5 +71,6 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - session has many attendance
 
 ## NOTES
+- https://filamentphp.com/docs/3.x/tables/summaries
 - (DaisyUi)[https://daisyui.com/]
 - (Referensi UI)[https://laracasts.com/series/build-advanced-components-for-filament]

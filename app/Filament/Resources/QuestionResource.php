@@ -1,33 +1,30 @@
 <?php
 
-namespace App\Filament\Resources\TestResource\RelationManagers;
+namespace App\Filament\Resources;
 
-use App\Filament\Resources\QuestionRelationManagerResource\RelationManagers\AnswersRelationManager;
-use App\Filament\Resources\QuestionResource;
-use App\Filament\Resources\TestResource;
+use App\Filament\Resources\QuestionResource\Pages;
 use App\Models\Question;
 use Filament\Forms;
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
-class QuestionRelationManager extends RelationManager
+class QuestionResource extends Resource
 {
-    protected static string $relationship = 'question';
+    protected static ?string $model = Question::class;
 
-    public function form(Form $form): Form
+    protected static bool $shouldRegisterNavigation = false;
+
+    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Hidden::make('test_id')
+                    ->default(request()->query('ownerRecord')),
                 TinyEditor::make('question')
                     ->required()
                     ->columnSpanFull()
@@ -42,10 +39,10 @@ class QuestionRelationManager extends RelationManager
                     ->required()
                     ->live()
                     ->columnSpanFull(),
-                Repeater::make('Answers')
+                Forms\Components\Repeater::make('Answers')
                     ->columnSpanFull()
                     ->relationship('answers')
-                    ->visible(fn (Get $get): bool => $get('answer_type') === 'selected')
+                    ->visible(fn (Forms\Get $get): bool => $get('answer_type') === 'selected')
                     ->schema([
                         TinyEditor::make('answer')
                             ->required()
@@ -78,35 +75,47 @@ class QuestionRelationManager extends RelationManager
             ]);
     }
 
-    public function table(Table $table): Table
+    public static function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('question')
             ->columns([
-                Tables\Columns\TextColumn::make('question')
-                    ->searchable()
-                    ->html()
-                    ->wrap()
-                    ->lineClamp(1),
+                Tables\Columns\TextColumn::make('answer_type')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
             ])
-            ->headerActions([
-                Tables\Actions\CreateAction::make()
-                    ->url(fn ($livewire) => QuestionResource::getUrl('create', ['ownerRecord' => $livewire->ownerRecord->getKey()]))
-                    ->successRedirectUrl(fn ($livewire) => TestResource::getUrl('edit', ['record' => $livewire->ownerRecord->getKey()])),
-            ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->url(fn (Question $question) => QuestionResource::getUrl('edit', ['record' => $question->id]))
-                    ->successRedirectUrl(fn ($livewire) => TestResource::getUrl('edit', ['record' => $livewire->ownerRecord->getKey()])),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListQuestions::route('/'),
+            'create' => Pages\CreateQuestion::route('/create'),
+            'edit' => Pages\EditQuestion::route('/{record}/edit'),
+        ];
     }
 }
