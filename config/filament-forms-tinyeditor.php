@@ -14,8 +14,11 @@ return [
 
         'default' => [
             'plugins' => 'advlist autoresize codesample directionality emoticons fullscreen hr image imagetools link lists media table toc wordcount',
-            'toolbar' => 'undo redo removeformat | formatselect fontsizeselect | bold italic | rtl ltr | alignjustify alignright aligncenter alignleft | numlist bullist | forecolor backcolor | blockquote table toc hr | image link media codesample emoticons | wordcount fullscreen',
+            'toolbar' => 'undo redo removeformat | formatselect fontsizeselect | bold italic | rtl ltr | alignjustify alignright aligncenter alignleft | bullist numlist outdent indent | forecolor backcolor | blockquote table toc hr | image link media codesample emoticons | wordcount fullscreen',
             'upload_directory' => null,
+            // 'toolbar_sticky' => true,
+            // 'toolbar_mode' => 'scrolling',
+            // 'toolbar_location' => 'bottom',
         ],
 
         'simple' => [

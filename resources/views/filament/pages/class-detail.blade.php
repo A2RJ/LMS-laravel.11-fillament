@@ -55,10 +55,11 @@
                     {{ $this->infolist }}
                 </p>
             </div>
-            <div class="col-span-12 lg:col-span-4 border-l-2 border-blue-100 pl-2 lg:sticky lg:top-0 lg:self-start custom-class-right-side">
+            <div class="col-span-12 lg:col-span-4 border-l-2 border-blue-100 pl-2 lg:sticky lg:top-0 lg:self-start overflow-y-auto max-h-[100vh] scrollbar-hide custom-class-right-side">
                 <p class="font-bold my-2">
                     Sessions
                 </p>
+                <a href="{{ route('') }}"></a>
                 <div class="flex flex-col gap-2">
                     @foreach ($this->form->model->sessions as $index => $session)
                     <div class="group">
@@ -86,12 +87,12 @@
                     @endforeach
                 </div>
                 <p class="font-bold my-2">
-                    Reviews
+                    Announcements:
                 </p>
-                <div class="flex flex-col gap-4">
-                    @foreach ($this->form->model->sessions as $session)
-                    <div class="w-1/4">
-                        <p>{{ $session->title }}</p>
+                <div class="flex flex-col gap-4 mb-32">
+                    @foreach (range(5, 1) as $announcement)
+                    <div class="p-4 bg-gray-200 rounded-lg">
+                        <p class="text-sm text-gray-700">Pengumuman ke-{{ $announcement }}</p>
                     </div>
                     @endforeach
                 </div>

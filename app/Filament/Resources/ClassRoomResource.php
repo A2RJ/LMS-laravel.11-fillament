@@ -74,6 +74,7 @@ class ClassRoomResource extends Resource
                     ->searchable(),
                 TextColumn::make('thumbnail')
                     ->sortable()
+                    ->toggleable()
                     ->formatStateUsing(function (string $state): HtmlString {
                         return new HtmlString("<img src='/storage/$state' alt='media' style='max-height: 100px; max-width: 100px;' width='auto' height='200'>");
                     }),
