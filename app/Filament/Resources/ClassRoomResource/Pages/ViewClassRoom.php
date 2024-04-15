@@ -12,7 +12,7 @@ use Filament\Actions\Action;
 
 class ViewClassRoom extends ViewRecord
 {
-    protected static ?string $title = 'Class Detail';
+    protected static ?string $title = 'Detail';
     protected static string $resource = ClassRoomResource::class;
     protected static string $view = 'filament.pages.class-detail';
 
