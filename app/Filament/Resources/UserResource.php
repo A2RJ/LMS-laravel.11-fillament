@@ -13,7 +13,7 @@ class UserResource extends AutoResource
 
     protected static ?string $navigationGroup = 'Settings';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     protected static array $enumDictionary = [];
 

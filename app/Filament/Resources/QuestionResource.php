@@ -23,54 +23,57 @@ class QuestionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Hidden::make('test_id')
-                    ->default(request()->query('ownerRecord')),
-                TinyEditor::make('question')
-                    ->required()
-                    ->columnSpanFull()
-                    ->fileAttachmentsDisk('local')
-                    ->fileAttachmentsVisibility('public')
-                    ->fileAttachmentsDirectory('public'),
-                Forms\Components\Select::make('answer_type')
-                    ->options([
-                        'description' => 'Description',
-                        'selected' => 'Choice',
-                    ])
-                    ->required()
-                    ->live()
-                    ->columnSpanFull(),
-                Forms\Components\Repeater::make('Answers')
-                    ->columnSpanFull()
-                    ->relationship('answers')
-                    ->visible(fn (Forms\Get $get): bool => $get('answer_type') === 'selected')
+                Forms\Components\Section::make()
                     ->schema([
-                        TinyEditor::make('answer')
+                        Forms\Components\Hidden::make('test_id')
+                            ->default(request()->query('ownerRecord')),
+                        TinyEditor::make('question')
                             ->required()
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('local')
                             ->fileAttachmentsVisibility('public')
                             ->fileAttachmentsDirectory('public'),
-                        Forms\Components\Grid::make([
-                            'default' => 2,
-                        ])
-                            ->schema([
-                                Forms\Components\Select::make('is_true')
-                                    ->label('Is Correct')
-                                    ->required()
-                                    ->options([
-                                        'true' => 'True',
-                                        'false' => 'False',
-                                    ]),
-                                Forms\Components\TextInput::make('score')
-                                    ->numeric()
-                                    ->label('Score')
-                                    ->nullable()
-                                    ->default(0),
+                        Forms\Components\Select::make('answer_type')
+                            ->options([
+                                'description' => 'Description',
+                                'selected' => 'Choice',
                             ])
+                            ->required()
+                            ->live()
+                            ->columnSpanFull(),
+                        Forms\Components\Repeater::make('Answers')
                             ->columnSpanFull()
-                            ->mutateRelationshipDataBeforeSaveUsing(function (array $data): array {
-                                return $data;
-                            })
+                            ->relationship('answers')
+                            ->visible(fn (Forms\Get $get): bool => $get('answer_type') === 'selected')
+                            ->schema([
+                                TinyEditor::make('answer')
+                                    ->required()
+                                    ->columnSpanFull()
+                                    ->fileAttachmentsDisk('local')
+                                    ->fileAttachmentsVisibility('public')
+                                    ->fileAttachmentsDirectory('public'),
+                                Forms\Components\Grid::make([
+                                    'default' => 2,
+                                ])
+                                    ->schema([
+                                        Forms\Components\Select::make('is_true')
+                                            ->label('Is Correct')
+                                            ->required()
+                                            ->options([
+                                                'true' => 'True',
+                                                'false' => 'False',
+                                            ]),
+                                        Forms\Components\TextInput::make('score')
+                                            ->numeric()
+                                            ->label('Score')
+                                            ->nullable()
+                                            ->default(0),
+                                    ])
+                                    ->columnSpanFull()
+                                    ->mutateRelationshipDataBeforeSaveUsing(function (array $data): array {
+                                        return $data;
+                                    })
+                            ])
                     ])
             ]);
     }

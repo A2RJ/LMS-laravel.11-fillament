@@ -1,16 +1,16 @@
-/* @import './night-owl.css'; */
+@import './night-owl.css';
 
 [wire\:key*="filament_tiptap_source"] {
     .fi-fo-component-ctn {
         height: 100%;
 
-        >div {
+        > div {
             height: 100%;
 
             .fi-fo-field-wrp {
                 height: 100%;
 
-                >div {
+                > div {
                     height: 100%;
                     grid-template-rows: auto 1fr;
 
@@ -50,49 +50,17 @@
 }
 
 .tiptap-prosemirror-wrapper {
-    &.prosemirror-w-sm {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.sm')) / 2));
-    }
-
-    &.prosemirror-w-md {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.md')) / 2));
-    }
-
-    &.prosemirror-w-lg {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.lg')) / 2));
-    }
-
-    &.prosemirror-w-xl {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.xl')) / 2));
-    }
-
-    &.prosemirror-w-2xl {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.2xl')) / 2));
-    }
-
-    &.prosemirror-w-3xl {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.3xl')) / 2));
-    }
-
-    &.prosemirror-w-4xl {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.4xl')) / 2));
-    }
-
-    &.prosemirror-w-5xl {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.5xl')) / 2));
-    }
-
-    &.prosemirror-w-6xl {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.6xl')) / 2));
-    }
-
-    &.prosemirror-w-7xl {
-        padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.7xl')) / 2));
-    }
-
-    &.prosemirror-w-none {
-        padding: 0 theme('padding.4');
-    }
+    &.prosemirror-w-sm { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.sm')) / 2)); }
+    &.prosemirror-w-md { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.md')) / 2)); }
+    &.prosemirror-w-lg { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.lg')) / 2)); }
+    &.prosemirror-w-xl { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.xl')) / 2)); }
+    &.prosemirror-w-2xl { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.2xl')) / 2)); }
+    &.prosemirror-w-3xl { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.3xl')) / 2)); }
+    &.prosemirror-w-4xl { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.4xl')) / 2)); }
+    &.prosemirror-w-5xl { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.5xl')) / 2)); }
+    &.prosemirror-w-6xl { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.6xl')) / 2)); }
+    &.prosemirror-w-7xl { padding: 0 max(theme('padding.4'), calc((100% - theme('maxWidth.7xl')) / 2)); }
+    &.prosemirror-w-none { padding: 0 theme('padding.4'); }
 }
 
 .tiptap-editor .ProseMirror {
@@ -201,16 +169,16 @@
         outline: none;
     }
 
-    >*+* {
+    > * + * {
         margin-block-start: 1rem;
     }
 
-    >*+h1,
-    >*+h2,
-    >*+h3,
-    >*+h4,
-    >*+h5,
-    >*+h6 {
+    > * + h1,
+    > * + h2,
+    > * + h3,
+    > * + h4,
+    > * + h5,
+    > * + h6 {
         margin-block-start: 2rem;
     }
 
@@ -307,7 +275,6 @@
     a[id] {
         color: theme('colors.black');
         text-decoration: none;
-
         &::before {
             content: '# ';
             color: theme("colors.gray.500");
@@ -371,8 +338,8 @@
         background-clip: padding-box
     }
 
-    table td>*,
-    table th>* {
+    table td > *,
+    table th > * {
         margin-bottom: 0;
     }
 
@@ -453,7 +420,7 @@
             padding: 0.5rem;
             border-radius: theme("borderRadius.DEFAULT");
 
-            >*+* {
+            > * + * {
                 margin-block-start: 1rem;
             }
         }
@@ -625,7 +592,7 @@
             padding: 0.5rem;
             height: auto;
 
-            >*+* {
+            > * + * {
                 margin-block-start: 1rem;
             }
         }

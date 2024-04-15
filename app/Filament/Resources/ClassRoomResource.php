@@ -26,27 +26,29 @@ class ClassRoomResource extends Resource
     protected static ?string $model = ClassRoom::class;
 
     protected static ?string $navigationGroup = 'Course';
-    protected static ?string $navigationIcon = 'heroicon-o-building-library';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([Section::make()->schema([TextInput::make('title')
-                    ->required()
-                    ->columnSpanFull(),
-                FileUpload::make('thumbnail')
-                    ->required()
-                    ->image()
-                    ->imageCropAspectRatio('16:9')
-                    ->imagePreviewHeight('200px')
-                    ->columnSpanFull(),
-                TinyEditor::make('content')
-                    ->columnSpanFull()
-                    ->fileAttachmentsDisk('local')
-                    ->fileAttachmentsVisibility('public')
-                    ->fileAttachmentsDirectory('public')
-                    ->visible()
-            ])
+            ->schema([
+                Section::make()->schema([
+                    TextInput::make('title')
+                        ->required()
+                        ->columnSpanFull(),
+                    FileUpload::make('thumbnail')
+                        ->required()
+                        ->image()
+                        ->imageCropAspectRatio('16:9')
+                        ->imagePreviewHeight('200px')
+                        ->columnSpanFull(),
+                    TinyEditor::make('content')
+                        ->columnSpanFull()
+                        ->fileAttachmentsDisk('local')
+                        ->fileAttachmentsVisibility('public')
+                        ->fileAttachmentsDirectory('public')
+                        ->visible()
+                ])
             ]);
     }
 
@@ -55,8 +57,10 @@ class ClassRoomResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('thumbnail')
+                    ->sortable()
                     ->formatStateUsing(function (string $state): HtmlString {
                         return new HtmlString("<img src='/storage/$state' alt='media' style='max-height: 100px; max-width: 100px;' width='auto' height='200'>");
                     }),
@@ -118,12 +122,13 @@ class ClassRoomResource extends Resource
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
-            ->schema([Infolists\Components\Section::make()
-                ->schema([
-                    Infolists\Components\TextEntry::make('thumbnail')->hiddenLabel()->alignCenter()->columnSpanFull(),
-                    Infolists\Components\TextEntry::make('title')->hiddenLabel()->columnSpanFull(),
-                    TinyDisplay::make('content')->hiddenLabel()->columnSpanFull()
-                ]),
+            ->schema([
+                Infolists\Components\Section::make()
+                    ->schema([
+                        Infolists\Components\TextEntry::make('thumbnail')->hiddenLabel()->alignCenter()->columnSpanFull(),
+                        Infolists\Components\TextEntry::make('title')->hiddenLabel()->columnSpanFull(),
+                        TinyDisplay::make('content')->hiddenLabel()->columnSpanFull()
+                    ]),
             ]);
     }
 }

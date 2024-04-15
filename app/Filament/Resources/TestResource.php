@@ -22,7 +22,7 @@ class TestResource extends Resource
     protected static ?string $navigationLabel = 'Quiz';
     protected static ?string $pluralModelLabel = 'Quiz';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
 
     public static function form(Form $form): Form
     {
@@ -110,6 +110,7 @@ class TestResource extends Resource
             'index' => Pages\ListTests::route('/'),
             'create' => Pages\CreateTest::route('/create'),
             'edit' => Pages\EditTest::route('/{record}/edit'),
+
         ];
     }
 

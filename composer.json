@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.9",
         "miguilim/filament-auto-panel": "^2.0",
         "mohamedsabil83/filament-forms-tinyeditor": "^2.3",
+        "rawilk/profile-filament-plugin": "^0.3.3",
         "webbingbrasil/filament-copyactions": "^3.0"
     },
     "require-dev": {
