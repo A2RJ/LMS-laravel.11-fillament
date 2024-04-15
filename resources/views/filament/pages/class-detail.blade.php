@@ -1,19 +1,32 @@
 <x-filament-panels::page>
     <div>
-        @vite('resources/css/app.css')
-
         <div class="grid grid-cols-12 gap-4">
-            <div class="col-span-8">1</div>
-            <div class="col-span-4">2</div>
-        </div>
-        <div class="grid grid-cols-3 gap-4">
-            <div class="...">01</div>
-            <div class="...">02</div>
-            <div class="...">03</div>
-            <div class="col-span-2 ...">04</div>
-            <div class="...">05</div>
-            <div class="...">06</div>
-            <div class="col-span-2 ...">07</div>
+            <div class="col-span-12 lg:col-span-8">
+                <p class="text-2xl font-bold">
+                    {{ $this->form->model->title }}
+                </p>
+
+                <div class="">
+                    <div class="w-full bg-center bg-cover rounded-md my-4" style="background-image: url('/storage/{{ $this->form->model->thumbnail }}'); height: 40vh;">
+                    </div>
+                </div>
+
+                <p class="">
+                    {{ $this->infolist }}
+                </p>
+            </div>
+            <div class="col-span-12 lg:col-span-4">
+                <p class="font-bold my-2">
+                    Sessions
+                </p>
+                <div class="flex flex-col gap-4">
+                    @foreach ($this->form->model->sessions as $session)
+                    <div class="w-1/4">
+                        <p>{{ $session->title }}</p>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </x-filament-panels::page>
