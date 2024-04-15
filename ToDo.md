@@ -74,3 +74,34 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - https://filamentphp.com/docs/3.x/tables/summaries
 - (DaisyUi)[https://daisyui.com/]
 - (Referensi UI)[https://laracasts.com/series/build-advanced-components-for-filament]
+https://freefrontend.com/tailwind-hero-sections/
+https://tailwindui.com/components/marketing/sections/heroes
+
+
+
+        <!-- <div class="">
+            <p class="text-2xl font-bold">
+                {{ $this->form->model->title }}
+            </p>
+
+            <div class="">
+                <div class="w-full bg-center bg-cover rounded-md my-4" style="background-image: url('/storage/{{ $this->form->model->thumbnail }}'); height: 40vh;">
+                </div>
+            </div>
+
+            <p class="">
+                {{ $this->form->model->title }}
+            </p>
+        </div>
+        <div class="">
+            <p class="text-2xl font-bold my-2">
+                Sessions
+            </p>
+            <div class="flex flex-col gap-4">
+                @foreach ($this->form->model->sessions as $session)
+                <div class="w-1/4">
+                    <p>{{ $session->title }}</p>
+                </div>
+                @endforeach
+            </div>
+        </div> -->

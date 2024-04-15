@@ -23,6 +23,8 @@ use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class ClassRoomResource extends Resource
 {
+    protected static ?string $navigationLabel = 'Class';
+    protected static ?string $pluralModelLabel = 'Class';
     protected static ?string $model = ClassRoom::class;
 
     protected static ?string $navigationGroup = 'Course';
@@ -34,15 +36,24 @@ class ClassRoomResource extends Resource
             ->schema([
                 Section::make()->schema([
                     TextInput::make('title')
+                        ->label('Class Name')
                         ->required()
                         ->columnSpanFull(),
                     FileUpload::make('thumbnail')
+                        ->hiddenOn('edit')
                         ->required()
                         ->image()
                         ->imageCropAspectRatio('16:9')
+                        ->columnSpanFull(),
+                    FileUpload::make('thumbnail')
+                        ->hiddenOn('create')
+                        ->nullable()
+                        ->image()
+                        ->imageCropAspectRatio('1:1')
                         ->imagePreviewHeight('200px')
                         ->columnSpanFull(),
                     TinyEditor::make('content')
+                        ->required()
                         ->columnSpanFull()
                         ->fileAttachmentsDisk('local')
                         ->fileAttachmentsVisibility('public')
@@ -57,6 +68,7 @@ class ClassRoomResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('title')
+                    ->label('Class Name')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('thumbnail')
@@ -81,9 +93,9 @@ class ClassRoomResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -123,12 +135,9 @@ class ClassRoomResource extends Resource
     {
         return $infolist
             ->schema([
-                Infolists\Components\Section::make()
-                    ->schema([
-                        Infolists\Components\TextEntry::make('thumbnail')->hiddenLabel()->alignCenter()->columnSpanFull(),
-                        Infolists\Components\TextEntry::make('title')->hiddenLabel()->columnSpanFull(),
-                        TinyDisplay::make('content')->hiddenLabel()->columnSpanFull()
-                    ]),
+                TinyDisplay::make('content')
+                    ->hiddenLabel()
+                    ->columnSpanFull()
             ]);
     }
 }

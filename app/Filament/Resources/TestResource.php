@@ -14,6 +14,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 
 class TestResource extends Resource
 {
@@ -85,6 +87,7 @@ class TestResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -110,7 +113,7 @@ class TestResource extends Resource
             'index' => Pages\ListTests::route('/'),
             'create' => Pages\CreateTest::route('/create'),
             'edit' => Pages\EditTest::route('/{record}/edit'),
-
+            'view' => Pages\ViewQuiz::route('/{record}')
         ];
     }
 
@@ -119,6 +122,22 @@ class TestResource extends Resource
         return parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
+            ]);
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\TextEntry::make('title')
+                    ->label('')
+                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('content')
+                    ->label('')
+                    ->html()
+                    ->columnSpanFull(),
+                Infolists\Components\TextEntry::make('start'),
+                Infolists\Components\TextEntry::make('end'),
             ]);
     }
 }

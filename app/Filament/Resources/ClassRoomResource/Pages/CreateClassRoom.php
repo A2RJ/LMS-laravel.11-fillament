@@ -8,6 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateClassRoom extends CreateRecord
 {
+    protected static ?string $title = 'Create Class';
+
     protected static string $resource = ClassRoomResource::class;
     protected function mutateFormDataBeforeCreate(array $data): array
     {

@@ -14,6 +14,8 @@ use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class SessionsRelationManager extends RelationManager
 {
+
+    protected static ?string $title = 'Sessions';
     protected static string $relationship = 'sessions';
 
     public function form(Form $form): Form

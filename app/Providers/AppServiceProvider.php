@@ -21,8 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        FilamentAsset::register([
-            Css::make('tiptap', __DIR__ . '/../../vendor/awcodes/filament-tiptap-editor/resources/css/plugin.css'),
-        ]);
+        FilamentAsset::register([]);
     }
 }

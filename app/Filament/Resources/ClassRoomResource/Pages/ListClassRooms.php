@@ -8,6 +8,8 @@ use Filament\Resources\Pages\ListRecords;
 
 class ListClassRooms extends ListRecords
 {
+    protected static ?string $title = 'Class List';
+
     protected static string $resource = ClassRoomResource::class;
 
     protected function getHeaderActions(): array
