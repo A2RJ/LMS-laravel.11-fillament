@@ -70,6 +70,10 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - session have forum
 - session has many attendance
 
+## TODO
+- [ ] view page sesi
+- [ ] view page quiz
+
 ## NOTES
 - https://filamentphp.com/docs/3.x/tables/summaries
 - (DaisyUi)[https://daisyui.com/]
