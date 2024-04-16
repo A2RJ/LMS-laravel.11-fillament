@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\ClassRoomResource\RelationManagers;
 
+use App\Filament\Resources\SessionResource;
+use App\Models\Session;
 use App\Models\Test;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -72,7 +74,8 @@ class SessionsRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn (Session $session) => SessionResource::getUrl('view', ['record' => $session->id])),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

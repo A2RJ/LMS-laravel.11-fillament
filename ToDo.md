@@ -71,8 +71,9 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - session has many attendance
 
 ## TODO
-- [ ] sessions resource
-- [ ] quiz resource
+- [ ] lessons view
+- [ ] quiz view
+- [ ] question view
 
 ## NOTES
 - https://filamentphp.com/docs/3.x/tables/summaries

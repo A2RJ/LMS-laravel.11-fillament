@@ -98,6 +98,8 @@ class QuestionRelationManager extends RelationManager
                     ->successRedirectUrl(fn ($livewire) => TestResource::getUrl('edit', ['record' => $livewire->ownerRecord->getKey()])),
             ])
             ->actions([
+                Tables\Actions\ViewAction::make()
+                    ->url(fn (Question $question) => QuestionResource::getUrl('view', ['record' => $question->id])),
                 Tables\Actions\EditAction::make()
                     ->url(fn (Question $question) => QuestionResource::getUrl('edit', ['record' => $question->id]))
                     ->successRedirectUrl(fn ($livewire) => TestResource::getUrl('edit', ['record' => $livewire->ownerRecord->getKey()])),

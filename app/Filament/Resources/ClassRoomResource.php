@@ -23,11 +23,11 @@ use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class ClassRoomResource extends Resource
 {
-    protected static ?string $navigationLabel = 'Class';
-    protected static ?string $pluralModelLabel = 'Class';
+    // protected static ?string $navigationLabel = 'Class';
+    // protected static ?string $pluralModelLabel = 'Class';
     protected static ?string $model = ClassRoom::class;
 
-    protected static ?string $navigationGroup = 'Course';
+    protected static ?string $navigationGroup = 'Courses';
     // protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 

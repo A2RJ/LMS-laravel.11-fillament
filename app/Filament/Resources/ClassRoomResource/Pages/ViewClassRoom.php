@@ -16,6 +16,12 @@ class ViewClassRoom extends ViewRecord
     protected static string $resource = ClassRoomResource::class;
     protected static string $view = 'filament.pages.class-detail';
 
+
+    public function getHeading(): string
+    {
+        // return '';
+        return request('title') ?? 'Preview';
+    }
     protected function getHeaderActions(): array
     {
         return [

@@ -20,8 +20,8 @@ use Filament\Infolists\Infolist;
 class TestResource extends Resource
 {
     protected static ?string $model = Test::class;
-    protected static ?string $navigationGroup = 'Course';
-    protected static ?string $navigationLabel = 'Quiz';
+    protected static ?string $navigationGroup = 'Courses';
+    protected static ?string $navigationLabel = 'Quizzes';
     protected static ?string $pluralModelLabel = 'Quiz';
 
     protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
@@ -33,7 +33,7 @@ class TestResource extends Resource
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextArea::make('title')
-                            ->label('Test Name')
+                            ->label('Quiz Name')
                             ->required()
                             ->columnSpanFull(),
                         TinyEditor::make('content')
@@ -58,7 +58,7 @@ class TestResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->label('Test Name')
+                    ->label('Quiz Name')
                     ->searchable()
                     ->wrap()
                     ->lineClamp(1),
