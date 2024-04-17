@@ -121,7 +121,8 @@ class ClassRoomResource extends Resource
             'index' => Pages\ListClassRooms::route('/'),
             'create' => Pages\CreateClassRoom::route('/create'),
             'edit' => Pages\EditClassRoom::route('/{record}/edit'),
-            'view' => Pages\ViewClassRoom::route('/{record}')
+            'view' => Pages\ViewClassRoom::route('/{record}'),
+            'lesson' => Pages\Lesson::route('/{record}/lesson/{lesson}')
         ];
     }
 

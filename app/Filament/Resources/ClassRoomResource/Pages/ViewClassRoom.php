@@ -4,18 +4,23 @@ namespace App\Filament\Resources\ClassRoomResource\Pages;
 
 use App\Filament\Resources\ClassRoomResource;
 use App\Models\ClassRoom;
-use Filament\Actions;
-use Filament\Resources\Pages\EditRecord;
-use Filament\Resources\Pages\ViewRecord;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Filament\Actions\Action;
+use Filament\Resources\Pages\Concerns\InteractsWithRecord;
+use Filament\Resources\Pages\Page;
 
-class ViewClassRoom extends ViewRecord
+class ViewClassRoom extends Page
 {
-    protected static ?string $title = 'Detail';
+    use InteractsWithRecord;
     protected static string $resource = ClassRoomResource::class;
-    protected static string $view = 'filament.pages.class-detail';
 
+    protected static string $view = 'filament.resources.class-room-resource.pages.view-class-room';
+    protected static ?string $title = 'Detail';
+
+    public function mount(int | string $record): void
+    {
+        $this->record = $this->resolveRecord($record);
+        $this->lesson = 'apa';
+    }
 
     public function getHeading(): string
     {

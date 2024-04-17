@@ -1,9 +1,9 @@
 <x-filament-panels::page>
-    <div>
+    <div class="bg-white p-4 rounded-md border">
         <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12 lg:col-span-8">
                 <p class="text-3xl font-bold">
-                    {{ $this->form->model->title }}
+                    {{ $this->getRecord()->title }}
                 </p>
 
                 <div class="flex justify-start items-center gap-1 mt-2">
@@ -11,7 +11,7 @@
                         5
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                     </svg>
-                    <p class="text-sm font-bold text-blue-500">{{ $this->form->model->user->name }}</p>
+                    <p class="text-sm font-bold text-blue-500">{{ $this->getRecord()->user->name }}</p>
                 </div>
 
                 <div class="flex justify-between flex-col mt-2 lg:flex-row font-normal text-slate-600 text-xs lg:text-sm">
@@ -27,7 +27,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
                         </svg>
-                        <b>12</b>
+                        <b>{{ $this->getRecord()->sessions->count() + 1 }}</b>
                         <p> Lessons</p>
                     </div>
                     <div class="flex items-center gap-1">
@@ -47,21 +47,37 @@
                 </div>
 
                 <div class="">
-                    <div class="w-full bg-center bg-cover rounded-md my-4" style="background-image: url('/storage/{{ $this->form->model->thumbnail }}'); height: 40vh;">
+                    <div class="w-full bg-center bg-cover rounded-md my-4" style="background-image: url('/storage/{{ $this->getRecord()->thumbnail }}'); height: 40vh;">
                     </div>
                 </div>
 
                 <p class="">
-                    {{ $this->infolist }}
+                    <x-tinyview :view="$this->getRecord()->content"></x-tinyview>
                 </p>
             </div>
-            <div class="col-span-12 lg:col-span-4 border-l-2 border-blue-100 pl-2 lg:sticky lg:top-0 lg:self-start overflow-y-auto max-h-[100vh] scrollbar-hide custom-class-right-side">
+            <div class=" col-span-12 lg:col-span-4 border-l-2 border-blue-100 pl-2 lg:sticky lg:top-0 lg:self-start overflow-y-auto max-h-[100vh] scrollbar-hide custom-class-right-side">
                 <p class="font-bold my-2">
                     Sessions
                 </p>
                 <div class="flex flex-col gap-2">
-                    @foreach ($this->form->model->sessions as $index => $session)
-                    <a href="{{ route('filament.admin.resources.sessions.session-with-test', $session->id) }}?title={{$session->title}}">
+                    <a href="{{ route('filament.admin.resources.class-rooms.view', ['record' => $this->getRecord()->id]) }}">
+                        <div class="group">
+                            <div class="flex items-center justify-between gap-1 rounded-md border border-slate-500 p-2 cursor-pointer hover:border-blue-500 group-hover:bg-blue-500 {{ !request('lesson') ? 'bg-blue-500 text-white':'' }}">
+                                <div class="flex gap-1 items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-hover:text-white">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+                                    </svg>
+                                    <p class="group-hover:text-white font-normal text-sm">Introduction</p>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 {{ !request('lesson') ? 'text-white':'text-orange-500' }}">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                    @foreach ($this->getRecord()->sessions as $index => $session)
+                    <a href="{{ route('filament.admin.resources.class-rooms.lesson', ['record' => $this->getRecord()->id, 'lesson' => $session->id]) }}">
                         <div class="group">
                             <div class="flex items-center justify-between gap-1 rounded-md border border-slate-500 p-2 cursor-pointer hover:border-blue-500 group-hover:bg-blue-500">
                                 <div class="flex gap-1 items-center">
