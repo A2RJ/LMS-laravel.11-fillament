@@ -138,7 +138,8 @@ class SessionResource extends Resource
             'index' => Pages\ListSessions::route('/'),
             'create' => Pages\CreateSession::route('/create'),
             'edit' => Pages\EditSession::route('/{record}/edit'),
-            'view' => Pages\ViewSession::route('/{record}')
+            'view' => Pages\ViewSession::route('/{record}'),
+            'session-with-test' => Pages\SessionWithTest::route('/{record}/start')
         ];
     }
 }

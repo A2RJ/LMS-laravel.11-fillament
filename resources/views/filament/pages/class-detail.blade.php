@@ -61,7 +61,7 @@
                 </p>
                 <div class="flex flex-col gap-2">
                     @foreach ($this->form->model->sessions as $index => $session)
-                    <a href="{{ route('filament.admin.resources.sessions.view', $session->id) }}?title={{$session->title}}">
+                    <a href="{{ route('filament.admin.resources.sessions.session-with-test', $session->id) }}?title={{$session->title}}">
                         <div class="group">
                             <div class="flex items-center justify-between gap-1 rounded-md border border-slate-500 p-2 cursor-pointer hover:border-blue-500 group-hover:bg-blue-500">
                                 <div class="flex gap-1 items-center">
