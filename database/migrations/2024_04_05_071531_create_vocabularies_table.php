@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('sumbawa');
             $table->string('indonesia');
             $table->string('inggris');
+            $table->text('detail');
             $table->timestamps();
         });
     }

@@ -1,4 +1,5 @@
 import preset from './vendor/filament/support/tailwind.config.preset'
+const plugin = require('tailwindcss/plugin')
 
 export default {
     presets: [preset],
@@ -8,4 +9,17 @@ export default {
         './resources/views/filament/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
     ],
+    plugins: [
+        plugin(({ addVariant, e }) => {
+            addVariant('svg-checked', ({ modifySelectors, separator }) => {
+                modifySelectors(
+                    ({ className }) => {
+                        const eClassName = e(`svg-checked${separator}${className}`); // escape class
+                        const yourSelector = 'input[type="radio"]'; // your input selector. Could be any
+                        return `${yourSelector}:checked ~ label .${eClassName}`; // ~ - CSS selector for siblings, specifically targeting label then svg
+                    }
+                )
+            })
+        })
+    ]
 }

@@ -113,7 +113,8 @@ class TestResource extends Resource
             'index' => Pages\ListTests::route('/'),
             'create' => Pages\CreateTest::route('/create'),
             'edit' => Pages\EditTest::route('/{record}/edit'),
-            'view' => Pages\ViewQuiz::route('/{record}')
+            'view' => Pages\TestPage::route('/{record}'),
+            // 'test-page' => Pages\TestPage::route('/{record}/test')
         ];
     }
 

@@ -71,9 +71,10 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - session has many attendance
 
 ## TODO
+- [ ] quiz view ubah opsi jawaban menjadi {!!  !!} dan gunakan grid untuk menjaga svg tetap di kanan 
 - [ ] lessons view
-- [ ] quiz view
 - [ ] question view
+- [ ] tambah final test pada class
 
 ## NOTES
 - https://filamentphp.com/docs/3.x/tables/summaries
@@ -81,3 +82,15 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - (Referensi UI)[https://laracasts.com/series/build-advanced-components-for-filament]
 https://freefrontend.com/tailwind-hero-sections/
 https://tailwindui.com/components/marketing/sections/heroes
+
+https://laraveldaily.com/post/filament-edit-only-single-record-custom-page
+https://v2.filamentphp.com/tricks/use-custom-view-for-table-content
+sistem penilaian
+https://quizizz.com/admin/quiz/5a898abf8b1677002295d755/web-design
+https://github.com/tailwindlabs/tailwindcss-aspect-ratio
+
+<ul>
+    @foreach ($question->answers as $answer)
+    <li>{!! $answer->answer !!}</li>
+    @endforeach
+</ul>

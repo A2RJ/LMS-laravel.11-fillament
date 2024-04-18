@@ -19,7 +19,6 @@ class ViewClassRoom extends Page
     public function mount(int | string $record): void
     {
         $this->record = $this->resolveRecord($record);
-        $this->lesson = 'apa';
     }
 
     public function getHeading(): string

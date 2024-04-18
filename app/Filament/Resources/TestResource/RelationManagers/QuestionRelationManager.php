@@ -22,7 +22,7 @@ use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class QuestionRelationManager extends RelationManager
 {
-    protected static string $relationship = 'question';
+    protected static string $relationship = 'questions';
 
     public function form(Form $form): Form
     {
