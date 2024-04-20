@@ -7,7 +7,6 @@ use App\Filament\Resources\ClassRoomResource\RelationManagers\SessionsRelationMa
 use App\Forms\Components\TinyFileManager;
 use App\Infolists\Components\TinyDisplay;
 use App\Models\ClassRoom;
-use App\View\Components\TinyWithMngr;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;

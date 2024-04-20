@@ -13,14 +13,17 @@ return [
     'profiles' => [
 
         'default' => [
-            'plugins' => 'advlist autoresize codesample directionality emoticons fullscreen hr image imagetools link lists media table toc wordcount',
+            'plugins' => 'file-manager advlist autoresize codesample directionality emoticons fullscreen hr image imagetools link lists media table toc wordcount',
             'toolbar' => 'fullscreen undo redo removeformat | formatselect fontsizeselect | bold italic | rtl ltr | alignjustify alignright aligncenter alignleft | bullist numlist outdent indent | forecolor backcolor | blockquote table toc hr | image link media codesample emoticons | wordcount',
             'upload_directory' => null,
             'Flmngr' => [
                 'apiKey' => "NXyzC2Un",
                 'urlFileManager' => 'http://127.0.0.1:8000/file',
                 'urlFiles' => 'http://127.0.0.1:8000/storage',
-            ]
+            ],
+            'external_plugins' => [
+                'pluginId' => '/js/app/tinymce_5.10.7/tinymce/tinymce/plugins/file-manager/plugin.min.js'
+            ],
             // 'toolbar_sticky' => true,
             // 'toolbar_mode' => 'scrolling',
             // 'toolbar_location' => 'bottom',
