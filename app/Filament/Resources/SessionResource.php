@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SessionResource\Pages;
 use App\Filament\Resources\SessionResource\RelationManagers;
+use App\Forms\Components\TinyFileManager;
 use App\Models\ClassRoom;
 use App\Models\Session;
 use App\Models\Test;
@@ -14,7 +15,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class SessionResource extends Resource
 {
@@ -45,7 +45,7 @@ class SessionResource extends Resource
                             ->required()
                             ->columnSpanFull()
                             ->maxLength(255),
-                        TinyEditor::make('content')
+                        TinyFileManager::make('content')
                             ->required()
                             ->columnSpanFull(),
                         Forms\Components\DatePicker::make('start')

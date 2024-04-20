@@ -5,6 +5,7 @@ namespace App\Filament\Resources\TestResource\RelationManagers;
 use App\Filament\Resources\QuestionRelationManagerResource\RelationManagers\AnswersRelationManager;
 use App\Filament\Resources\QuestionResource;
 use App\Filament\Resources\TestResource;
+use App\Forms\Components\TinyFileManager;
 use App\Models\Question;
 use Filament\Forms;
 use Filament\Forms\Components\Fieldset;
@@ -18,7 +19,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class QuestionRelationManager extends RelationManager
 {
@@ -28,7 +28,7 @@ class QuestionRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                TinyEditor::make('question')
+                TinyFileManager::make('question')
                     ->required()
                     ->columnSpanFull()
                     ->fileAttachmentsDisk('local')
@@ -47,7 +47,7 @@ class QuestionRelationManager extends RelationManager
                     ->relationship('answers')
                     ->visible(fn (Get $get): bool => $get('answer_type') === 'selected')
                     ->schema([
-                        TinyEditor::make('answer')
+                        TinyFileManager::make('answer')
                             ->required()
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('local')

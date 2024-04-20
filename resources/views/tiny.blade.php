@@ -9,8 +9,7 @@
 
 <body>
     <div>
-        <script src="/js/app/tinymce_5.10.7/tinymce/js/tinymce/tinymce.min.js"></script>
-        <script src="/flmngr/plugins/file-manager/plugin.js"></script>
+        <script src="/js/tinymce6/tinymce/js/tinymce/tinymce.min.js"></script>
 
         <textarea id="editor">
         <p><img style="display: block; margin-left: auto; margin-right: auto;" title="Tiny Logo" src="https://www.tiny.cloud/docs/images/logos/android-chrome-256x256.png" alt="TinyMCE Logo" width="128" height="128"></p>

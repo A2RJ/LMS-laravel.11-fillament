@@ -3,13 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\QuestionResource\Pages;
+use App\Forms\Components\TinyFileManager;
 use App\Models\Question;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class QuestionResource extends Resource
 {
@@ -27,7 +27,7 @@ class QuestionResource extends Resource
                     ->schema([
                         Forms\Components\Hidden::make('test_id')
                             ->default(request()->query('ownerRecord')),
-                        TinyEditor::make('question')
+                        TinyFileManager::make('question')
                             ->required()
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('local')
@@ -46,7 +46,7 @@ class QuestionResource extends Resource
                             ->relationship('answers')
                             ->visible(fn (Forms\Get $get): bool => $get('answer_type') === 'selected')
                             ->schema([
-                                TinyEditor::make('answer')
+                                TinyFileManager::make('answer')
                                     ->required()
                                     ->columnSpanFull()
                                     ->fileAttachmentsDisk('local')

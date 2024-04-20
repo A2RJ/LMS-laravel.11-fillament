@@ -92,10 +92,10 @@ sistem penilaian
 https://quizizz.com/admin/quiz/5a898abf8b1677002295d755/web-design
 https://github.com/tailwindlabs/tailwindcss-aspect-ratio
 https://www.ut.ac.id/tutorial-online/
-https://elearning.ut.ac.id/mod/page/view.php?id=216
+https://elearning.ut.ac.id/mod/page/view.php?id=216  
 
-<ul>
-    @foreach ($question->answers as $answer)
-    <li>{!! $answer->answer !!}</li>
-    @endforeach
-</ul>
+<form wire:submit.prevent="submit">
+    <x-filament::button type="submit" class="mt-4">
+        Save
+    </x-filament::button>
+</form>

@@ -1,5 +1,5 @@
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
-    <script src="/js/app/tinymce_5.10.7/tinymce.min.js"></script>
+    <script src="/js/tinymce6/tinymce.min.js"></script>
 
     <div x-data="{ state: $wire.$entangle('{{ $getStatePath() }}'), initialized: false }" x-init="(() => {
             $nextTick(() => {
@@ -9,13 +9,10 @@
                     plugins: [
                         'file-manager', 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
                         'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                        'insertdatetime', 'media', 'table', 'wordcount'
+                        'insertdatetime', 'media', 'table', 'wordcount', 'n1ed'
                     ],
-                    toolbar: 'fullscreen undo redo | blocks | ' +
-                        'bold italic backcolor | alignleft aligncenter ' +
-                        'alignright alignjustify | bullist numlist outdent indent | ' +
-                        'removeformat | help',
-                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+                    toolbar: 'fullscreen undo redo spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline alignleft aligncenter alignright alignjustify | forecolor backcolor lineheight checklist bullist numlist indent outdent link removeformat',
+                    content_style: 'body { font-family:Times New Roman,Arial,sans-serif; font-size:16px }',
                     Flmngr: {
                         apiKey: 'NXyzC2Un',
                         urlFileManager: 'http://127.0.0.1:8000/file',
@@ -90,7 +87,7 @@
                     });
                 });
             }
-        })" wire:ignore>
+        })" wire:ignore class="rounded-md">
         <div>
             <textarea id="editor" x-model="state" ref="editor"></textarea>
         </div>

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class TinyWithMngr extends Component
+class TinyEditorBlade extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class TinyWithMngr extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.tiny-with-mngr');
+        return view('components.tiny-editor-blade');
     }
 }

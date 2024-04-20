@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\TestResource\Pages;
 use App\Filament\Resources\TestResource\RelationManagers;
 use App\Filament\Resources\TestResource\RelationManagers\QuestionRelationManager;
+use App\Forms\Components\TinyFileManager;
 use App\Models\Test;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,7 +14,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 
@@ -36,7 +36,7 @@ class TestResource extends Resource
                             ->label('Quiz Name')
                             ->required()
                             ->columnSpanFull(),
-                        TinyEditor::make('content')
+                        TinyFileManager::make('content')
                             ->label('Description')
                             ->columnSpanFull()
                             ->fileAttachmentsDisk('local')
