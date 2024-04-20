@@ -59,6 +59,7 @@ class AdminPanelProvider extends PanelProvider
                 ProfileFilamentPlugin::make()
             ])
             ->viteTheme('resources/css/app.css')
+            ->topNavigation(false)
             ->spa();
     }
 }

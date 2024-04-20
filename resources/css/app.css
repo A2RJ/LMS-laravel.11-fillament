@@ -14,3 +14,11 @@
     scrollbar-width: none;
     /* Firefox */
 }
+
+.fi-layout {
+    @apply !bg-gray-50 dark:!bg-gray-950;
+}
+
+.fi-sidebar-nav{
+    @apply !bg-white dark:!bg-gray-950 border-t;
+}
