@@ -9,7 +9,7 @@
 
 <body>
     <div>
-        <script src="https://cdn.jsdelivr.net/npm/tinymce@5.10.7/tinymce.min.js"></script>
+        <script src="/js/app/tinymce_5.10.7/tinymce/js/tinymce/tinymce.min.js"></script>
         <script src="/flmngr/plugins/file-manager/plugin.js"></script>
 
         <textarea id="editor">

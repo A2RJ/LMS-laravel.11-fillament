@@ -4,8 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ClassRoomResource\Pages;
 use App\Filament\Resources\ClassRoomResource\RelationManagers\SessionsRelationManager;
+use App\Forms\Components\TinyFileManager;
 use App\Infolists\Components\TinyDisplay;
 use App\Models\ClassRoom;
+use App\View\Components\TinyWithMngr;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
@@ -19,12 +21,12 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\HtmlString;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use Filament\Notifications\Notification;
 
 class ClassRoomResource extends Resource
 {
-    protected static ?string $navigationLabel = 'Courses';
-    protected static ?string $pluralModelLabel = 'Courses';
+    protected static ?string $navigationLabel = 'Cources';
+    protected static ?string $pluralModelLabel = 'Cources';
     protected static ?string $model = ClassRoom::class;
 
     protected static ?string $navigationGroup = 'Courses';
@@ -53,13 +55,15 @@ class ClassRoomResource extends Resource
                         ->imageCropAspectRatio('1:1')
                         ->imagePreviewHeight('200px')
                         ->columnSpanFull(),
-                    TinyEditor::make('content')
+                    TinyFileManager::make('content')
                         ->required()
-                        ->columnSpanFull()
-                        ->fileAttachmentsDisk('local')
-                        ->fileAttachmentsVisibility('public')
-                        ->fileAttachmentsDirectory('public')
-                        ->visible()
+                    // TinyEditor::make('content')
+                    //     ->required()
+                    //     ->columnSpanFull()
+                    //     ->fileAttachmentsDisk('local')
+                    //     ->fileAttachmentsVisibility('public')
+                    //     ->fileAttachmentsDirectory('public')
+                    //     ->visible()
                 ])
             ]);
     }

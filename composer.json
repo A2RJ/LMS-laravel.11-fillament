@@ -8,16 +8,13 @@
         "php": "^8.2",
         "awcodes/overlook": "^2.2",
         "aymanalhattami/filament-slim-scrollbar": "^2.0",
-        "bostjanob/filament-file-manager": "^0.1.0",
         "edsdk/flmngr-server-php": "^1.6",
         "filament/filament": "^3.2",
         "flowframe/laravel-trend": "^0.2.0",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "miguilim/filament-auto-panel": "^2.0",
-        "mohamedsabil83/filament-forms-tinyeditor": "^2.3",
-        "rawilk/profile-filament-plugin": "^0.3.3",
-        "webbingbrasil/filament-copyactions": "^3.0"
+        "rawilk/profile-filament-plugin": "^0.3.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

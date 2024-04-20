@@ -60,6 +60,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->viteTheme('resources/css/app.css')
             ->topNavigation(false)
-            ->spa();
+            ->spa(false);
     }
 }
