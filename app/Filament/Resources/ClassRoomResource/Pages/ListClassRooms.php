@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ClassRoomResource\Pages;
 
 use App\Filament\Resources\ClassRoomResource;
+use App\Filament\Resources\ClassRoomResource\Widgets\CoursesChart;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
@@ -23,6 +24,13 @@ class ListClassRooms extends ListRecords
                         ->title('User registered')
                         ->body('The user has been created successfully.'),
                 ),
+        ];
+    }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            CoursesChart::class
         ];
     }
 }

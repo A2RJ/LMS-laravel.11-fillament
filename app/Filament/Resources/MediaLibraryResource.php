@@ -10,6 +10,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\FontWeight;
 use Filament\Tables;
 use Filament\Tables\Columns\Layout\Grid;
 use Filament\Tables\Columns\TextColumn;
@@ -17,6 +18,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Ramsey\Uuid\Uuid;
+use Webbingbrasil\FilamentCopyActions\Tables\Actions\CopyAction;
 
 class MediaLibraryResource extends Resource
 {
@@ -57,29 +59,56 @@ class MediaLibraryResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('filename')
-                    ->formatStateUsing(function (string $state, MediaLibrary $mediaLibrary): string {
-                        return $state == 0 ? substr($mediaLibrary->attachment, strpos($mediaLibrary->attachment, '--') + 2) : $state;
-                    })
-                    ->copyable()
-                    ->copyableState(fn (string $state, MediaLibrary $mediaLibrary): string => '/storage/' . $mediaLibrary->attachment)
-                    ->searchable(),
-                TextColumn::make('attachment')
-                    ->formatStateUsing(function (string $state): HtmlString {
-                        $extension = pathinfo($state, PATHINFO_EXTENSION);
-                        if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
-                            return new HtmlString("<img src='/storage/$state' alt='media' style='max-height: 100px; max-width: 100px;' width='auto' height='200'>");
-                        } elseif (in_array($extension, ['mp4', 'avi', 'mov'])) {
-                            return new HtmlString("<video  width='400' controls='controls' preload='metadata'><source src='/storage/$state' type='video/mp4'></video>");
-                        } else {
-                            return new HtmlString("<p class='p-10'>No preview available</p>");
-                        }
-                    }),
+                Tables\Columns\Layout\Stack::make([
+                    TextColumn::make('attachment')
+                        ->formatStateUsing(function (string $state): HtmlString {
+                            $extension = pathinfo($state, PATHINFO_EXTENSION);
+                            if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif'])) {
+                                return new HtmlString("<img src='/storage/$state' alt='media' style='max-height: 150px; max-width: 150px;' width='auto' height='200'>");
+                            } elseif (in_array($extension, ['mp4', 'avi', 'mov'])) {
+                                return new HtmlString("<video  width='400' controls='controls' preload='metadata'><source src='/storage/$state' type='video/mp4'></video>");
+                            } else {
+                                return new HtmlString("<p class='p-10'>No preview available</p>");
+                            }
+                        })->alignCenter(),
+                    TextColumn::make('filename')
+                        ->formatStateUsing(function (string $state, MediaLibrary $mediaLibrary): string {
+                            return $state == 0 ? substr($mediaLibrary->attachment, strpos($mediaLibrary->attachment, '--') + 2) : $state;
+                        })
+                        ->copyable()
+                        ->copyableState(fn (string $state, MediaLibrary $mediaLibrary): string => '/storage/' . $mediaLibrary->attachment)
+                        ->searchable()
+                        ->color('gray')
+                        ->limit(30),
+                    // ]),
+                ])->space(3),
+                Tables\Columns\Layout\Panel::make([
+                    Tables\Columns\Layout\Split::make([
+                        Tables\Columns\ColorColumn::make('color')
+                            ->grow(false),
+                        Tables\Columns\TextColumn::make('description')
+                            ->color('gray'),
+                    ]),
+                ])->collapsible(),
+            ])
+            ->filters([
+                //
+            ])
+            ->contentGrid([
+                'md' => 2,
+                'xl' => 3,
+            ])
+            ->paginated([
+                18,
+                36,
+                72,
+                'all',
             ])
             ->filters([
                 //
             ])
             ->actions([
+                CopyAction::make()->copyable(fn ($record) => $record->filename),
                 Tables\Actions\Action::make('attachment')
                     ->label('Preview')
                     ->icon('heroicon-m-information-circle')

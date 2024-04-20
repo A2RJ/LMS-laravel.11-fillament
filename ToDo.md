@@ -69,10 +69,10 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - session has many attachement (title, source tinggal pilih media library)
 - session have forum
 - session has many attendance
+## DONE
+- quiz view ubah opsi jawaban menjadi {!!  !!} dan gunakan grid untuk menjaga svg tetap di kanan 
 
 ## TODO
-- [ ] buat alur dengan 
-- [ ] quiz view ubah opsi jawaban menjadi {!!  !!} dan gunakan grid untuk menjaga svg tetap di kanan 
 - [ ] lessons view
 - [ ] question view
 - [ ] tambah final test pada class
