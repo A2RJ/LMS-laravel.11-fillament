@@ -1,4 +1,5 @@
 <div>
+    <script src="/js/tinymce_5.10.7/tinymce.min.js"></script>
     <textarea id="editor"></textarea>
 
     <script>

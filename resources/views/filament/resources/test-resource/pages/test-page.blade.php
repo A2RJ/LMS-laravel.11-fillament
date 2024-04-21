@@ -76,11 +76,34 @@
                         <p>No answer</p>
                     </div>
                     @else
-                    <div class="grid grid-cols-2 gap-2">
+                    @php
+                    $options = ['A', 'B', 'C', 'D'];
+                    @endphp
+                    <div class="grid grid-rows-1 gap-2">
                         @foreach ($question->answers as $indexAnswer => $answer)
+                        <div class="row-span-1 flex items-start justify-start py-1 max-w-[80%]">
+                            <input id=" question{{ $index }}{{ $indexAnswer }}" type="radio" value="{{ $answer->answer }}" name="question{{ $index }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-0 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="question{{ $index }}{{ $indexAnswer }}" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 flex gap-1">{{ $options[$indexAnswer] }}. {!! $answer->answer !!}</label>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
+                    @else
+                    <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                    @endif
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+
+    <!-- <div class="flex items-center ps-4 border border-gray-200 rounded dark:border-gray-700">
+                            <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="bordered-radio-1" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default radio</label>
+                        </div>
                         <div class="">
-                            <input type="radio" id="answer1{{ $index }}{{ $indexAnswer }}" name="hosting{{ $index }}" value="answer1" class="hidden peer" required />
-                            <label for="answer1{{ $index }}{{ $indexAnswer }}" class="inline-flex items-center justify-between w-full p-4 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <input type="radio" id="answer1{{ $index }}{{ $indexAnswer }}" name="hosting{{ $index }}" value="answer1" class="peer" required />
+                            <label for="answer1{{ $index }}{{ $indexAnswer }}" class="inline-flex items-center justify-between w-full p-4 text-gray-500 bg-white  rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <div class="block">
                                     <div class="w-full">{!! $answer->answer !!}</div>
                                 </div>
@@ -89,15 +112,10 @@
                                 </svg>
                             </label>
                         </div>
-                        @endforeach
-                    </div>
-                    @endif
-                    @else
-                    <x-tiny-editor-blade></x-tiny-editor-blade>
-                    @endif
-                </li>
-                @endforeach
-            </ul>
-        </div>
-    </div>
+                    <div class="w-full">
+                            <div class=" ps-4 border border-gray-200 rounded dark:border-gray-700">
+                                
+                                
+                            </div>
+                        </div> -->
 </x-filament-panels::page>

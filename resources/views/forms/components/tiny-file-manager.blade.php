@@ -13,7 +13,10 @@
                         'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
                         'insertdatetime', 'media', 'table', 'wordcount', 'youtube', 'emoticons'
                     ],
-                    toolbar: 'fullscreen undo redo spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline alignleft aligncenter alignright alignjustify | forecolor backcolor lineheight checklist bullist numlist indent outdent link removeformat youtube file-manager image',
+                    ui: {
+                        useAutoToolbar: false
+                    },
+                    toolbar: 'fullscreen undo redo spellcheckdialog formatpainter | Upload Flmngr blocks fontfamily fontsize | bold italic underline alignleft aligncenter alignright alignjustify | forecolor backcolor lineheight checklist bullist numlist indent outdent link removeformat youtube file-manager image',
                     content_style: 'body { font-family:Times New Roman,Arial,sans-serif; font-size:16px }',
                     media_live_embeds: true,
                     init_instance_callback: function (editor) {

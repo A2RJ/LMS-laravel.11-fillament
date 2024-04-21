@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\TestResource\Pages;
 
 use App\Filament\Resources\TestResource;
+use App\Models\Test;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
 use Filament\Actions;
@@ -14,10 +15,10 @@ class TestPage extends Page
 
     protected static string $view = 'filament.resources.test-resource.pages.test-page';
 
-    public function getHeading(): string
-    {
-        return '';
-    }
+    // public function getHeading(): string
+    // {
+    //     return '';
+    // }
 
     public function mount(int | string $record): void
     {
@@ -27,7 +28,8 @@ class TestPage extends Page
     protected function getHeaderActions(): array
     {
         return [
-            Actions\EditAction::make(),
+            Actions\EditAction::make()
+                ->url(fn (Test $test) => TestResource::getUrl('edit', ['record' => $test->id])),
         ];
     }
 
