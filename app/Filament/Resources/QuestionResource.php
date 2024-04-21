@@ -3,9 +3,11 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\QuestionResource\Pages;
+use App\Filament\Resources\QuestionResource\RelationManagers\AnswerRelationManager;
 use App\Forms\Components\TinyFileManager;
 use App\Models\Question;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -41,9 +43,10 @@ class QuestionResource extends Resource
                         Forms\Components\Repeater::make('Answers')
                             ->columnSpanFull()
                             ->relationship('answers')
+                            ->live()
                             ->visible(fn (Forms\Get $get): bool => $get('answer_type') === 'selected')
                             ->schema([
-                                TinyFileManager::make('answer')
+                                RichEditor::make('answer')
                                     ->required()
                                     ->columnSpanFull(),
                                 Forms\Components\Grid::make([
@@ -103,7 +106,7 @@ class QuestionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // AnswerRelationManager::class
         ];
     }
 

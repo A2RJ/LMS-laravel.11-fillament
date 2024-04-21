@@ -39,36 +39,36 @@ class QuestionRelationManager extends RelationManager
                     ->required()
                     ->live()
                     ->columnSpanFull(),
-                Repeater::make('Answers')
-                    ->columnSpanFull()
-                    ->relationship('answers')
-                    ->visible(fn (Get $get): bool => $get('answer_type') === 'selected')
-                    ->schema([
-                        TinyFileManager::make('answer')
-                            ->required()
-                            ->columnSpanFull(),
-                        Forms\Components\Grid::make([
-                            'default' => 2,
-                        ])
-                            ->schema([
-                                Forms\Components\Select::make('is_true')
-                                    ->label('Is Correct')
-                                    ->required()
-                                    ->options([
-                                        'true' => 'True',
-                                        'false' => 'False',
-                                    ]),
-                                Forms\Components\TextInput::make('score')
-                                    ->numeric()
-                                    ->label('Score')
-                                    ->nullable()
-                                    ->default(0),
-                            ])
-                            ->columnSpanFull()
-                            ->mutateRelationshipDataBeforeSaveUsing(function (array $data): array {
-                                return $data;
-                            })
-                    ])
+                // Repeater::make('Answers')
+                //     ->columnSpanFull()
+                //     ->relationship('answers')
+                //     ->visible(fn (Get $get): bool => $get('answer_type') === 'selected')
+                //     ->schema([
+                //         TinyFileManager::make('answer')
+                //             ->required()
+                //             ->columnSpanFull(),
+                //         Forms\Components\Grid::make([
+                //             'default' => 2,
+                //         ])
+                //             ->schema([
+                //                 Forms\Components\Select::make('is_true')
+                //                     ->label('Is Correct')
+                //                     ->required()
+                //                     ->options([
+                //                         'true' => 'True',
+                //                         'false' => 'False',
+                //                     ]),
+                //                 Forms\Components\TextInput::make('score')
+                //                     ->numeric()
+                //                     ->label('Score')
+                //                     ->nullable()
+                //                     ->default(0),
+                //             ])
+                //             ->columnSpanFull()
+                //             ->mutateRelationshipDataBeforeSaveUsing(function (array $data): array {
+                //                 return $data;
+                //             })
+                //     ])
             ]);
     }
 
