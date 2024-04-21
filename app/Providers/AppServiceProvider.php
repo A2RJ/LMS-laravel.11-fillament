@@ -22,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        FilamentAsset::register([]);
+        FilamentAsset::register([
+            Js::make('custom-script', asset('js/tinymce_5.10.7/tinymce.min.js')),
+            Js::make('custom-script', asset('js/tinymce_5.10.7/custom-tiny.js')),
+        ]);
     }
 }

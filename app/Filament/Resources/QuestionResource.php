@@ -29,10 +29,7 @@ class QuestionResource extends Resource
                             ->default(request()->query('ownerRecord')),
                         TinyFileManager::make('question')
                             ->required()
-                            ->columnSpanFull()
-                            ->fileAttachmentsDisk('local')
-                            ->fileAttachmentsVisibility('public')
-                            ->fileAttachmentsDirectory('public'),
+                            ->columnSpanFull(),
                         Forms\Components\Select::make('answer_type')
                             ->options([
                                 'description' => 'Description',
@@ -48,10 +45,7 @@ class QuestionResource extends Resource
                             ->schema([
                                 TinyFileManager::make('answer')
                                     ->required()
-                                    ->columnSpanFull()
-                                    ->fileAttachmentsDisk('local')
-                                    ->fileAttachmentsVisibility('public')
-                                    ->fileAttachmentsDirectory('public'),
+                                    ->columnSpanFull(),
                                 Forms\Components\Grid::make([
                                     'default' => 2,
                                 ])

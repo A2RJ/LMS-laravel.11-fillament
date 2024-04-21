@@ -54,6 +54,11 @@
         }
     </style>
     <div class="custom-tiny">
-        {!! $view !!}
+        @php
+        $view = preg_replace_callback('/<iframe[^>]+>/', function($matches) {
+            return str_replace('<iframe ', ' <iframe sandbox="" ', $matches[0]);
+             }, $view);
+        @endphp
+        {!! $view !!} 
     </div>
 </div>

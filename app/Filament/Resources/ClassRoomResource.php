@@ -56,13 +56,7 @@ class ClassRoomResource extends Resource
                         ->columnSpanFull(),
                     TinyFileManager::make('content')
                         ->required()
-                    // TinyEditor::make('content')
-                    //     ->required()
-                    //     ->columnSpanFull()
-                    //     ->fileAttachmentsDisk('local')
-                    //     ->fileAttachmentsVisibility('public')
-                    //     ->fileAttachmentsDirectory('public')
-                    //     ->visible()
+                        ->columnSpanFull()
                 ])
             ]);
     }

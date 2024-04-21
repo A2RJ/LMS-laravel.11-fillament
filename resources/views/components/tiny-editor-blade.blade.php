@@ -1,6 +1,4 @@
 <div>
-    <script src="/js/tinymce6/tinymce.min.js"></script>
-
     <textarea id="editor"></textarea>
 
     <script>
@@ -8,8 +6,9 @@
         tinymce.init({
             selector: '#editor',
             height: 400,
+            deprecation_warnings: false,
             plugins: [
-                'file-manager', 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                'file-manager', 'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
                 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
                 'insertdatetime', 'media', 'table', 'wordcount'
             ],

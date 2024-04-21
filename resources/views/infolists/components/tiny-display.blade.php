@@ -53,7 +53,10 @@
             /* Ganti dengan warna yang diinginkan */
         }
     </style>
-    <div class="custom-tiny">
-        {!! $getState() !!}
-    </div>
+    <div class="custom-tiny">@php
+        $view = preg_replace_callback('/<iframe[^>]+>/', function($matches) {
+            return str_replace('<iframe ', ' <iframe sandbox="" ', $matches[0]);
+             }, $getState());
+        @endphp
+        {!! $view !!}  </div>
 </x-dynamic-component>

@@ -1,18 +1,22 @@
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
-    <script src="/js/tinymce6/tinymce.min.js"></script>
-
     <div x-data="{ state: $wire.$entangle('{{ $getStatePath() }}'), initialized: false }" x-init="(() => {
             $nextTick(() => {
                     tinymce.createEditor('editor',{
                     selector: '#editor',
                     height: 600,
+                    deprecation_warnings: false,
+                    toolbar_sticky: true,
+                    toolbar_sticky_offset: 64,
+                    object_resizing: true,
                     plugins: [
-                        'file-manager', 'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                        'file-manager', 'image', 'imagetools', 'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
                         'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                        'insertdatetime', 'media', 'table', 'wordcount', 'n1ed'
+                        'insertdatetime', 'media', 'table', 'wordcount', 'youtube'
                     ],
-                    toolbar: 'fullscreen undo redo spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline alignleft aligncenter alignright alignjustify | forecolor backcolor lineheight checklist bullist numlist indent outdent link removeformat',
+                    toolbar: 'fullscreen undo redo spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline alignleft aligncenter alignright alignjustify | forecolor backcolor lineheight checklist bullist numlist indent outdent link removeformat youtube',
                     content_style: 'body { font-family:Times New Roman,Arial,sans-serif; font-size:16px }',
+                    media_live_embeds: true,
+                    
                     Flmngr: {
                         apiKey: 'NXyzC2Un',
                         urlFileManager: 'http://127.0.0.1:8000/file',

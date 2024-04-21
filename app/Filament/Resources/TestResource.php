@@ -38,11 +38,7 @@ class TestResource extends Resource
                             ->columnSpanFull(),
                         TinyFileManager::make('content')
                             ->label('Description')
-                            ->columnSpanFull()
-                            ->fileAttachmentsDisk('local')
-                            ->fileAttachmentsVisibility('public')
-                            ->fileAttachmentsDirectory('public')
-                            ->visible(),
+                            ->columnSpanFull(),
                         Forms\Components\DateTimePicker::make('start')
                             ->required()
                             ->label('Start Time'),

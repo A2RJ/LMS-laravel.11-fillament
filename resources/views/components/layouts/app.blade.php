@@ -20,14 +20,13 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="antialiased ckckckc">
+<body class="antialiased">
     {{ $slot }}
 
     @filamentScripts
     @vite('resources/js/app.js')
-
     <script>
-        console.log("yeyyy");
+        console.log('ckckckckkcck');
     </script>
 </body>
 
