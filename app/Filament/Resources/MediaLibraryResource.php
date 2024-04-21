@@ -40,13 +40,8 @@ class MediaLibraryResource extends Resource
                 )
                     ->required()
                     ->live()
-                    ->loadingIndicatorPosition('left')
-                    ->panelLayout('integrated')
-                    ->removeUploadedFileButtonPosition('right')
-                    ->uploadButtonPosition('left')
-                    ->uploadProgressIndicatorPosition('left')
                     ->columnSpanFull()
-                    ->maxSize(102400)
+                    ->maxSize(10 * 1024)
                     ->hiddenOn('edit'),
                 TextInput::make('filename')
                     ->required()
@@ -80,16 +75,7 @@ class MediaLibraryResource extends Resource
                         ->searchable()
                         ->color('gray')
                         ->limit(30),
-                    // ]),
                 ])->space(3),
-                Tables\Columns\Layout\Panel::make([
-                    Tables\Columns\Layout\Split::make([
-                        Tables\Columns\ColorColumn::make('color')
-                            ->grow(false),
-                        Tables\Columns\TextColumn::make('description')
-                            ->color('gray'),
-                    ]),
-                ])->collapsible(),
             ])
             ->filters([
                 //
@@ -108,7 +94,7 @@ class MediaLibraryResource extends Resource
                 //
             ])
             ->actions([
-                CopyAction::make()->copyable(fn ($record) => $record->filename),
+                CopyAction::make()->copyable(fn ($record) => $record->filename == 0 ? '/storage/' . $record->attachment : $record->filename),
                 Tables\Actions\Action::make('attachment')
                     ->label('Preview')
                     ->icon('heroicon-m-information-circle')

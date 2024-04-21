@@ -15,4 +15,10 @@ class ViewSession extends ViewRecord
         // return '';
         return request('title') ?? 'View Lesson';
     }
+    protected function getHeaderActions(): array
+    {
+        return [
+            Actions\EditAction::make(),
+        ];
+    }
 }

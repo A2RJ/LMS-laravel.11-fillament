@@ -54,10 +54,15 @@
         }
     </style>
     <div class="custom-tiny">
+        <!-- <iframe src="http://127.0.0.1:8000/storage/716c4383-6f60-41f2-9a35-9f22c232b2e5--SKRPSI%20-%20Revisi%20pak.Eri.pdf" width="600" height="700"></iframe> -->
         @php
         $view = preg_replace_callback('/<iframe[^>]+>/', function($matches) {
+            if (strpos($matches[0], 'youtube') === false) {
             return str_replace('<iframe ', ' <iframe sandbox="" ', $matches[0]);
-             }, $view);
+            } else {
+                return $matches[0];
+            }
+        }, $view);
         @endphp
         {!! $view !!} 
     </div>

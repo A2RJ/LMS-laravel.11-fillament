@@ -11,12 +11,23 @@
                     plugins: [
                         'file-manager', 'image', 'imagetools', 'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
                         'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                        'insertdatetime', 'media', 'table', 'wordcount', 'youtube'
+                        'insertdatetime', 'media', 'table', 'wordcount', 'youtube', 'emoticons'
                     ],
-                    toolbar: 'fullscreen undo redo spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline alignleft aligncenter alignright alignjustify | forecolor backcolor lineheight checklist bullist numlist indent outdent link removeformat youtube',
+                    toolbar: 'fullscreen undo redo spellcheckdialog formatpainter | blocks fontfamily fontsize | bold italic underline alignleft aligncenter alignright alignjustify | forecolor backcolor lineheight checklist bullist numlist indent outdent link removeformat youtube file-manager image',
                     content_style: 'body { font-family:Times New Roman,Arial,sans-serif; font-size:16px }',
                     media_live_embeds: true,
-                    
+                    init_instance_callback: function (editor) {
+                        editor.on('BeforeSetContent', function (e) {
+                            // console.log('before - ', e.content);
+
+                            if (e.content.indexOf('video ') > 0) {
+                                if (e.content.indexOf('.pdf') > 0) {
+                                     
+                                }
+
+                            }
+                        });
+                    },
                     Flmngr: {
                         apiKey: 'NXyzC2Un',
                         urlFileManager: 'http://127.0.0.1:8000/file',

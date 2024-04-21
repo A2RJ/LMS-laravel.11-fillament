@@ -87,6 +87,9 @@ https://tailwindui.com/components/marketing/sections/heroes
 
 https://laraveldaily.com/post/filament-edit-only-single-record-custom-page
 https://v2.filamentphp.com/tricks/use-custom-view-for-table-content[]
+https://filamentphp.com/plugins/rupadana-announce
+https://filamentphp.com/plugins/lara-zeus-accordion
+https://filamentphp.com/plugins/jaocero-activity-timeline
 
 sistem penilaian
 https://quizizz.com/admin/quiz/5a898abf8b1677002295d755/web-design
