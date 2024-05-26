@@ -40,4 +40,9 @@ class ClassRoom extends Model
     {
         return $this->hasMany(Session::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
