@@ -16,6 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class VocabularyResource extends Resource
 {
     protected static ?string $model = Vocabulary::class;
+
+    protected static bool $shouldRegisterNavigation = false;
     protected static ?string $navigationGroup = 'Courses';
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';

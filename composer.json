@@ -11,6 +11,7 @@
         "filament/filament": "^3.2",
         "flowframe/laravel-trend": "^0.2.0",
         "laravel/framework": "^11.0",
+        "laravel/socialite": "*",
         "laravel/tinker": "^2.9",
         "miguilim/filament-auto-panel": "^2.0",
         "rawilk/profile-filament-plugin": "^0.3.3",

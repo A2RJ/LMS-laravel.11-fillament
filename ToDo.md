@@ -73,12 +73,11 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - quiz view ubah opsi jawaban menjadi {!!  !!} dan gunakan grid untuk menjaga svg tetap di kanan 
 
 ## TODO
-- [ ] lessons view
-- [ ] question view
+- [ ] tambah tabel review tugas sehingga bisa dinilai oleh guru
 - [ ] tambah final test pada class
-- [ ] https://www.youtube.com/watch?v=_rQBLE4ineA
 
 ## NOTES
+- https://www.youtube.com/watch?v=_rQBLE4ineA
 - https://filamentphp.com/docs/3.x/tables/summaries
 - (DaisyUi)[https://daisyui.com/]
 - (Referensi UI)[https://laracasts.com/series/build-advanced-components-for-filament]

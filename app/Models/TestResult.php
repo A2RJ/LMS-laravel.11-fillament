@@ -15,6 +15,8 @@ class TestResult extends Model
         'question_id',
         'answer_id',
         'answer',
+        'score',
+        'notes'
     ];
 
     public function user()
