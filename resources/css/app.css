@@ -45,9 +45,9 @@
 }
 
 .fi-layout {
-    @apply !bg-gray-50 dark:!bg-gray-950;
+    @layer !bg-gray-50 dark: !bg-gray-950;
 }
 
-.fi-sidebar-nav{
-    @apply !bg-white dark:!bg-gray-950 border-t dark:border-t-gray-900;
+.fi-sidebar-nav {
+    @layer !bg-white dark: !bg-gray-950 border-t dark:border-t-gray-900;
 }

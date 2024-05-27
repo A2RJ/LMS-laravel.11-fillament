@@ -77,6 +77,8 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - [ ] tambah final test pada class
 
 ## NOTES
+- https://componentland.com/component/technique-2
+- https://componentland.com/component/multivendor-webshop-homepage-2
 - https://www.youtube.com/watch?v=_rQBLE4ineA
 - https://filamentphp.com/docs/3.x/tables/summaries
 - (DaisyUi)[https://daisyui.com/]
