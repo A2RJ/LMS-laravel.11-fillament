@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
-    Route::get('/redirect', 'redirectToProvider');
-    Route::get('/callback', 'handleProviderCallback');
-    Route::get('/login', 'login');
-    Route::get('/register', 'register');
+    Route::get('/redirect', 'redirectToProvider')->name('login.google');
+    Route::get('/callback', 'handleProviderCallback')->name('callback.google');
+    Route::get('/login', 'login')->name('login');
+    Route::get('/register', 'register')->name('register');
 });
 
 Route::post('file', function () {
