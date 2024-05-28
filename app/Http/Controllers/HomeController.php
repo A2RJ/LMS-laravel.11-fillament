@@ -18,7 +18,7 @@ class HomeController extends Controller
 
     public function categoryId($id)
     {
-        return;
+        return view('categoryId');
     }
 
     public function classId(ClassRoom $classRoom)

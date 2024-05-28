@@ -13,6 +13,10 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/register', 'register')->name('register');
 });
 
+Route::controller(HomeController::class)->group(function () {
+    Route::get('category/{category}', 'categoryId')->name('category.id');
+});
+
 Route::post('file', function () {
     \EdSDK\FlmngrServer\FlmngrServer::flmngrRequest(
         array(
