@@ -53,8 +53,8 @@
 }
 
 @layer utilities {
-  .bg-custom-gradient {
-    @apply bg-gradient-to-r;
-    background-image: linear-gradient(90deg, #f6f5f5 0%, #43c2e5 50%, #f6f5f5 100%);
-  }
+    .bg-custom-gradient {
+        @apply bg-gradient-to-r;
+        background-image: linear-gradient(90deg, #ffffff 0%, #43c2e5 50%, #ffffff 100%);
+    }
 }

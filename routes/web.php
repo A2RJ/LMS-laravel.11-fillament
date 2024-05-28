@@ -15,6 +15,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('category/{category}', 'categoryId')->name('category.id');
+    Route::get('class/{class}', 'classId')->name('class.id');
 });
 
 Route::post('file', function () {

@@ -2,10 +2,10 @@
 
 @section('content')
 <!-- Hero section -->
-<div>
+<div class="bg-white pt-4">
     <div class="grid grid-cols-2">
-        <div class="flex flex-col justify-center items-start">
-            <p class="mb-4">Kini, belajar <br> <span class="whitespace-nowrap text-[#43c2e5] text-6xl uppercase font-bold">budaya Samawa</span> <br> lebih mudah dan menyenangkan. Jelajahi materi pembelajaran daring yang interaktif dan menarik.</p>
+        <div class="flex flex-col justify-center items-start p-8">
+            <p class="mb-4">Kini, belajar <br> <span class="whitespace-nowrap text-[#43c2e5] text-4xl uppercase font-bold">budaya Samawa</span> <br> lebih mudah dengan materi pembelajaran daring yang interaktif dan menarik.</p>
             <div class="flex -space-x-3 mt-4 justify-center items-center">
                 <img class="h-10 w-10 rounded-full ring ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=256&h=256&q=80" />
                 <img class="h-10 w-10 rounded-full ring ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" />
@@ -15,11 +15,11 @@
                 <p class="pl-3">Pelajar telah bergabung</p>
             </div>
         </div>
-        <div>
-            <img class="h-8/12 lg:h-[50vh] max-w-lg rounded-lg object-cover" src="{{ asset('/hero.png') }}" />
+        <div class="pl-20">
+            <img class="h-8/12 lg:h-72 max-w-lg rounded-lg object-cover" src="{{ asset('/hero.png') }}" />
         </div>
+        <div class="col-span-2 h-6 bg-[#43c2e5]"></div>
     </div>
-    <div class="w-full h-6 bg-custom-gradient"></div>
 </div>
 
 <!-- categories -->
@@ -27,7 +27,7 @@
     <h1 class="text-2xl font-bold flex items-center gap-1">Categories</h1>
 
     <div class="grid grid-cols-5 gap-4 mt-4">
-        <div class="bg-white group h-full p-3 overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
             <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
             <div class="py-1">
                 <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
@@ -46,11 +46,15 @@
                     </p>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Detail</a>
+                    <a href="{{ route('category.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Detail
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full p-3 overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
             <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
             <div class="py-1">
                 <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
@@ -69,11 +73,15 @@
                     </p>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Detail</a>
+                    <a href="{{ route('category.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Detail
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full p-3 overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
             <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
             <div class="py-1">
                 <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
@@ -92,11 +100,15 @@
                     </p>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Detail</a>
+                    <a href="{{ route('category.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Detail
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full p-3 overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
             <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
             <div class="py-1">
                 <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
@@ -115,11 +127,15 @@
                     </p>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Detail</a>
+                    <a href="{{ route('category.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Detail
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full p-3 overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
             <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
             <div class="py-1">
                 <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
@@ -138,7 +154,11 @@
                     </p>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Detail</a>
+                    <a href="{{ route('category.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Detail
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -180,7 +200,7 @@
     </div>
 
     <div class="grid grid-cols-4 gap-4">
-        <div class="bg-white group h-full overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
             <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
             <h2 class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">Sakeco</h2>
             <div class="py-1 px-6 pb-6">
@@ -208,11 +228,15 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Mulai belajar
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
             <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48" src="{{ asset('/pantun.webp') }}" alt="blog" />
             <h2 class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">Sakeco</h2>
             <div class="py-1 px-6 pb-6">
@@ -240,11 +264,15 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Mulai belajar
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
             <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
             <h2 class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">Sakeco</h2>
             <div class="py-1 px-6 pb-6">
@@ -272,11 +300,15 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Mulai belajar
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
             <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48" src="{{ asset('/pantun.webp') }}" alt="blog" />
             <h2 class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">Sakeco</h2>
             <div class="py-1 px-6 pb-6">
@@ -304,11 +336,15 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Mulai belajar
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
             <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48" src="{{ asset('/rebana.jpg') }}" alt="blog" />
             <h2 class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">Sakeco</h2>
             <div class="py-1 px-6 pb-6">
@@ -336,11 +372,15 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Mulai belajar
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
             <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48" src="{{ asset('/rebana.jpg') }}" alt="blog" />
             <h2 class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">Sakeco</h2>
             <div class="py-1 px-6 pb-6">
@@ -368,11 +408,15 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Mulai belajar
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
             <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48" src="{{ asset('/pantun.webp') }}" alt="blog" />
             <h2 class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">Sakeco</h2>
             <div class="py-1 px-6 pb-6">
@@ -400,11 +444,15 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Mulai belajar
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="bg-white group h-full overflow-hidden rounded-lg border border-slate-300">
+        <div class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
             <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
             <h2 class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">Sakeco</h2>
             <div class="py-1 px-6 pb-6">
@@ -432,21 +480,26 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}">
+                        <button class="px-3 py-1 border border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Mulai belajar
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="mt-10 flex justify-center">
-        <a class="inline-flex cursor-pointer rounded-full bg-blue-500 py-2 px-5 text-lg text-white" href="#">
-            <span>Lebih banyak</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+        <a class="group inline-flex cursor-pointer rounded-full py-2 px-5 text-lg bg-blue-500 text-white hover:bg-white border border-transparent hover:border-blue-500" href="#">
+            <span class="group-hover:text-blue-500">Lebih banyak</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:text-blue-500" width="32" height="32" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z" />
             </svg>
         </a>
     </div>
 </div>
+
 
 <div class="relative mx-auto w-full py-16 px-5 font-sans text-gray-800 sm:px-20 md:max-w-screen-lg lg:py-24">
     <h2 class="mb-5 text-center font-sans text-4xl sm:text-5xl font-bold">Frequently asked Questions</h2>
@@ -521,7 +574,45 @@
         </li>
     </ul>
     <div class="mt-10 flex justify-center">
-        <a class="inline-flex cursor-pointer rounded-full bg-blue-500 py-2 px-5 text-lg text-white" href="#">Still have questions?</a>
+        <a class="inline-flex cursor-pointer rounded-full bg-blue-500 py-2 px-5 text-lg text-white border hover:border-blue-500 hover:text-blue-500 hover:bg-white" href="#">Still have questions?</a>
+    </div>
+</div>
+
+<div class="mx-auto max-w-screen-lg px-8 pt-10 pb-16 text-gray-700 md:pb-20">
+    <div class="flex flex-wrap">
+        <div class="w-full max-w-full flex-shrink-0 lg:mt-2 lg:w-1/3 lg:flex-none">
+            <h2 class="mb-3 text-xs font-bold uppercase tracking-wide text-gray-500 xl:text-base">Our Partners</h2>
+            <h3 class="mb-3 font-bold text-gray-800 sm:text-2xl xl:text-4xl">Trusted by over 300+ partners</h3>
+            <p class="">We bring solutions to make life easier to learn sumbawanese culcture.</p>
+        </div>
+        <div class="w-full max-w-full py-10 lg:w-2/3 lg:flex-none lg:px-8 lg:py-0">
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                <div class="w-32">
+                    <img src="/rebana.jpg" alt="" class="" />
+                </div>
+                <div class="w-32">
+                    <img src="/rebana.jpg" alt="" class="" />
+                </div>
+                <div class="w-32">
+                    <img src="/rebana.jpg" alt="" class="" />
+                </div>
+                <div class="w-32">
+                    <img src="/rebana.jpg" alt="" class="" />
+                </div>
+                <div class="w-32">
+                    <img src="/rebana.jpg" alt="" class="" />
+                </div>
+                <div class="w-32">
+                    <img src="/rebana.jpg" alt="" class="" />
+                </div>
+                <div class="w-32">
+                    <img src="/rebana.jpg" alt="" class="" />
+                </div>
+                <div class="w-32">
+                    <img src="/rebana.jpg" alt="" class="" />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

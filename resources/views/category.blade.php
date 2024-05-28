@@ -75,7 +75,7 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
                 </div>
             </div>
         </div>
@@ -177,12 +177,11 @@
                     </div>
                 </div>
                 <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
+                    <a href="{{ route('class.id', 12) }}" class="border border-[#43c2e5] px-5 py-1 rounded-lg  font-semibold text-[#43c2e5] transition duration-100 hover:text-blue-600 active:text-blue-700">Mulai belajar</a>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div class="flex justify-end mt-3 mb-6">
         <a href="">

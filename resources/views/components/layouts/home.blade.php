@@ -10,10 +10,10 @@
 </head>
 
 <body class="bg-[#f6f5f5]">
-    <div class="sticky top-0 z-40 w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800">
+    <div class="sticky top-0 z-40 w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 shadow">
         <div x-data="{ open: false }" class="flex flex-col container mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:py-4">
             <div class="flex flex-row items-center justify-between">
-                <a href="#" class="flex items-center whitespace-nowrap text-2xl font-black" title="Samawa Daring">
+                <a href="/" class="flex items-center whitespace-nowrap text-2xl font-black" title="Samawa Daring">
                     <span class="mr-2 w-8">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                             <g fill="none">
@@ -35,7 +35,7 @@
                 </button>
             </div>
             <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pl-6 pb-4 md:pb-0 hidden md:flex md:justify-start md:flex-row">
-                <a class="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="#">Home</a>
+                <a href="/" class="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Home</a>
                 <div @click.away="open = false" class="relative" x-data="{ open: false }">
                     <button @click="open = !open" class="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
                         <span>Categories</span>
@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <div class="container m-auto p-2">
+    <div class="container m-auto">
         @yield('content')
     </div>
 

@@ -18,12 +18,12 @@ class HomeController extends Controller
 
     public function categoryId($id)
     {
-        return view('categoryId');
+        return view('category');
     }
 
-    public function classId(ClassRoom $classRoom)
+    public function classId($classRoom)
     {
-        return $classRoom;
+        return view('class');
     }
 
     public function sessionId(Session $session)
