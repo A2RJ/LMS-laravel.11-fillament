@@ -77,6 +77,7 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - [ ] tambah final test pada class
 
 ## NOTES
+- https://tailwindui.com/components/application-ui/forms/form-layouts
 - https://componentland.com/component/avatars-2
 - https://componentland.com/component/technique-2
 - https://componentland.com/component/multivendor-webshop-homepage-2

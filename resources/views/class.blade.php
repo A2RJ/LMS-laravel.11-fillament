@@ -36,13 +36,9 @@
         <div class="rounded-lg border border-slate-300 bg-white py-2 px-3">
             <nav class="flex flex-wrap gap-4">
                 <a href="#" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"> Introduction </a>
-
                 <a href="#" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-gray-600 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"> Session 1 </a>
-
                 <a href="#" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-gray-600 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"> Session 2 </a>
-
                 <a href="#" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-gray-600 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"> Session 3 </a>
-
                 <a href="#" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-gray-600 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"> Session 4 </a>
             </nav>
         </div>
@@ -102,22 +98,21 @@
         <div class="col-span-2 pl-1">
             <div class="p-2 border border-slate-300 rounded-lg space-y-2 bg-white w-full mt-2">
                 <p class="text-slate-900 font-bold text-sm">Test list:</p>
-                <div class="group flex justify-between items-center border p-2 border-slate-400 rounded-md transition-colors duration-150 hover:border-blue-500 hover:bg-blue-100 hover:cursor-pointer">
+                <a href="{{ route('test.id', 12) }}" class="group flex justify-between items-center border p-2 border-slate-400 rounded-md transition-colors duration-150 hover:border-blue-500 hover:bg-blue-100 hover:cursor-pointer">
                     <p class="text-slate-800 text-sm group-hover:text-blue-500 transition-colors duration-150">Pre Test</p>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800 group-hover:text-blue-500 transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M12 17q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17m-6 5q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h7V6q0-2.075 1.463-3.537T18 1q1.875 0 3.263 1.213T22.925 5.2q.05.325-.225.563T22 6t-.7-.175t-.4-.575q-.275-.95-1.062-1.6T18 3q-1.25 0-2.125.875T15 6v2h3q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22z" />
                     </svg>
-                </div>
+                </a>
 
-                <div class="group flex justify-between items-center border p-2 border-slate-400 rounded-md transition-colors duration-150 hover:border-blue-500 hover:bg-blue-100 hover:cursor-pointer">
+                <a href="{{ route('test.id', 12) }}" class="group flex justify-between items-center border p-2 border-slate-400 rounded-md transition-colors duration-150 hover:border-blue-500 hover:bg-blue-100 hover:cursor-pointer">
                     <p class="text-slate-800 text-sm group-hover:text-blue-500 transition-colors duration-150">Post Test</p>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800 group-hover:text-blue-500 transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
                     </svg>
-                </div>
+                </a>
             </div>
         </div>
     </div>
-
 </div>
 @endsection

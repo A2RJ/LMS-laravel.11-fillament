@@ -1,7 +1,7 @@
 @extends('components.layouts.home')
 
 @section('content')
-<div class="mx-auto flex flex-col space-x-6 rounded-2xl bg-white p-6 md:flex-row md:items-start">
+<div class="mx-auto flex flex-col mt-4 space-x-6 rounded-2xl bg-white p-6 md:flex-row md:items-start">
     <div class="shrink-0">
         <!-- <img class="rounded-2xl" src="https://images.unsplash.com/photo-1663287695452-bf59337d8746?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHw%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="" /> -->
         <img class="lg:h-60 lg:w-72 transform rounded-lg object-cover transition duration-500 ease-in-out group-hover:scale-105" src="{{ asset('/balawas.webp') }}" />

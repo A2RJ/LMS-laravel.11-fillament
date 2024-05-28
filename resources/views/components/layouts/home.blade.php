@@ -70,7 +70,7 @@
         <div class="mx-auto grid max-w-screen-xl gap-y-8 gap-x-12 px-4 py-10 sm:px-20 md:grid-cols-2 xl:grid-cols-4 xl:px-10">
             <div class="max-w-sm">
                 <div class="mb-6 flex h-10 items-center space-x-2">
-                    <img class="h-full object-contain" src="/images/logo-circle.png" alt="" />
+                    <!-- <img class="h-full object-contain" src="/images/logo-circle.png" alt="" /> -->
                     <span class="text-lg font-medium">SAMADA</span>
                 </div>
                 <div class="text-gray-500">Samawa Daring</div>
