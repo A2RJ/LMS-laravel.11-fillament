@@ -72,9 +72,8 @@
         </form>
 
         <!-- Action Section -->
-        <div class="mt-6 flex justify-start space-x-4">
+        <div class="mt-6 flex justify-end space-x-4">
             <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="prev-btn">Prev</button>
-            <button class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600" id="skip-btn">Skip</button>
             <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="next-btn">Next</button>
         </div>
     </div>
@@ -128,6 +127,7 @@
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                         <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto" id="save">Save</button>
+                        <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" id="cancel-save">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -152,6 +152,7 @@
 
             const modalSave = document.getElementById('modal-save');
             const save = document.getElementById('save');
+            const cancelSave = document.getElementById('cancel-save');
 
             const openModalSave = () => {
                 modalSave.classList.remove('hidden');
@@ -163,11 +164,15 @@
                 form.submit();
             };
             save.addEventListener('click', saveAction);
+            const cancelModalSave = () => {
+                modalSave.classList.add('hidden');
+                modalSave.classList.remove('flex');
+            };
+            cancelSave.addEventListener('click', cancelModalSave);
 
             const questions = document.querySelectorAll('.question');
             const buttons = document.querySelectorAll('.pagination-btn');
             let currentQuestionIndex = 0;
-            const skippedQuestions = new Set();
             const answeredQuestions = new Set();
 
             const showQuestion = (index) => {
@@ -178,14 +183,12 @@
 
             const updateButtons = () => {
                 buttons.forEach((button, idx) => {
-                    button.classList.remove('bg-blue-500', 'bg-yellow-500', 'bg-green-500', 'text-white');
+                    button.classList.remove('bg-blue-500', 'bg-green-500', 'text-white');
                     button.classList.add('bg-gray-200', 'text-gray-700');
 
                     if (idx === currentQuestionIndex) {
                         button.classList.remove('bg-gray-200', 'bg-white');
                         button.classList.add('bg-blue-500', 'text-white');
-                    } else if (skippedQuestions.has(idx)) {
-                        button.classList.add('bg-yellow-500', 'text-white');
                     } else if (answeredQuestions.has(idx)) {
                         button.classList.add('bg-green-500', 'text-white');
                     }
@@ -219,31 +222,29 @@
                 }
             });
 
-            document.getElementById('skip-btn').addEventListener('click', () => {
-                skippedQuestions.add(currentQuestionIndex);
-                if (currentQuestionIndex < questions.length - 1) {
-                    currentQuestionIndex++;
-                } else {
-                    currentQuestionIndex = 0;
-                }
-                showQuestion(currentQuestionIndex);
-                updateButtons();
-            });
-
-
             document.getElementById('next-btn').addEventListener('click', () => {
-                answeredQuestions.add(currentQuestionIndex);
-                skippedQuestions.delete(currentQuestionIndex);
+                const radios = document.querySelectorAll('.question')[currentQuestionIndex].querySelectorAll('input[type="radio"]');
+                let answered = false;
+                for (let i = 0; i < radios.length; i++) {
+                    if (radios[i].checked) {
+                        answered = true;
+                        break;
+                    }
+                }
+
+                if (answered) {
+                    answeredQuestions.add(currentQuestionIndex);
+                }
+
                 if (currentQuestionIndex < questions.length - 1) {
                     currentQuestionIndex++;
                     showQuestion(currentQuestionIndex);
                     updateButtons();
                 } else {
-                    if (skippedQuestions.size !== 0) {
-                        openModal()
-                    } else {
-                        openModalSave()
-                    }
+                    openModal()
+                }
+                if (answeredQuestions.size === questions.length) {
+                    openModalSave();
                 }
             });
 
@@ -251,6 +252,7 @@
             updateButtons();
         });
     </script>
+
 </div>
 
 @endsection
