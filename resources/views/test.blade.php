@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Breadcrumb -->
-<nav class="max-w-screen-lg mx-auto flex mt-4 px-5 py-3 text-slate-700 border border-slate-200 rounded-lg bg-white dark:bg-slate-800 dark:border-slate-700" aria-label="Breadcrumb">
+<nav class="max-w-screen-lg mx-auto flex py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li class="inline-flex items-center">
             <a href="#" class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-400 dark:hover:text-white">
@@ -39,8 +39,22 @@
     </ol>
 </nav>
 
-<div class="mt-4 max-w-screen-lg min-h-[60vh] mx-auto">
-    <div class="container mx-auto bg-white p-6 rounded-lg shadow-md">
+<div class="max-w-screen-lg min-h-[60vh] mx-auto">
+    <div class="flex justify-start items-center gap-2 mt-2 mb-4">
+        <div>
+            <a href="#" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
+                    <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                </svg>
+            </a>
+        </div>
+        <div>
+            <h1 class="text-2xl font-bold">Kelas sakeco untuk pemula</h1>
+            <small class="text-sm font-medium text-slate-500">Pre test session 2: Lorem ipsum dolor sit amet consectetur.</small>
+        </div>
+    </div>
+
+    <div class=" bg-white p-6 rounded-lg shadow-md">
         <!-- Section Nomor Soal -->
         <div class="mb-6">
             <nav class="grid grid-cols-12" aria-label="Pagination">
@@ -57,7 +71,7 @@
             @csrf
             @foreach ($questions as $index => $question)
             <div class="question" data-index="{{ $index }}" style="display: none;">
-                <h2 class="text-xl font-semibold mb-4">Soal Nomor {{ $index + 1 }}</h2>
+                <h2 class="text-xl font-semibold mb-4">Question number {{ $index + 1 }}</h2>
                 <p class="mb-4">{{ $question['question'] }}</p>
                 <div class="mb-4">
                     @foreach ($question['options'] as $option)
