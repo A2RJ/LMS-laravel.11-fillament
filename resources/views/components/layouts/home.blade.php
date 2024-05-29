@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS Samawa</title>
+    <title>SAMADA</title>
     @vite('resources/css/app.css')
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
@@ -14,8 +14,8 @@
         <div x-data="{ open: false }" class="flex flex-col container mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:py-4">
             <div class="flex flex-row items-center justify-between">
                 <a href="/" class="flex items-center whitespace-nowrap text-2xl font-black" title="Samawa Daring">
-                    <span class="mr-2 w-8">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                    <span class="mr-2 9">
+                        <sv9 xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                             <g fill="none">
                                 <circle cx="16" cy="16" r="16" fill="#008CE7" />
                                 <g fill="#FFF">
@@ -23,7 +23,7 @@
                                     <path d="M15.807 15.798c.237-.985.312-1.38.312-1.38H8.673c-1.904 0-2.176 1.24-2.357 1.99c-.237.981-.312 1.381-.312 1.381h7.447c1.903 0 2.175-1.24 2.356-1.991" />
                                 </g>
                             </g>
-                        </svg>
+                            </svg>
                     </span>
                     SAMADA
                 </a>
@@ -54,11 +54,52 @@
                     </div>
                 </div> -->
                 <a href="{{ route('course') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Course</a>
+                @auth
                 <a href="{{ route('my.course') }}" class="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">My Course</a>
+                @endauth
             </nav>
             <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
+                @auth
+                <div class="relative inline-block">
+                    <div id="avatarButton" class="border shadow-lg cursor-pointer border-blue-500 cursor-pointerrelative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-slate-100 rounded-full dark:bg-slate-600">
+                        <span class="font-bold text-lg text-slate-600 dark:text-slate-300">
+                            @php
+                            $user = Auth::user();
+                            $userFullName = $user->name;
+                            $nameParts = explode(' ', $userFullName);
+                            if (count($nameParts) >= 2) {
+                            echo strtoupper($nameParts[0][0] . $nameParts[1][0]);
+                            } else {
+                            echo strtoupper(substr($userFullName, 0, 2));
+                            }
+                            @endphp
+                        </span>
+                    </div>
+
+                    <!-- Dropdown menu -->
+                    <div id="userDropdown" class="-left-36 hidden absolute top-full mt-2 w-44 bg-white divide-y divide-slate-100 rounded-lg shadow-lg dark:bg-slate-700 dark:divide-slate-600 z-10">
+                        <div class="px-4 py-3 text-sm text-slate-900 dark:text-white">
+                            <div class="line-clamp-1">{{ $userFullName }}</div>
+                            <div class="font-medium truncate line-clamp-1">{{ $user->email }}</div>
+                        </div>
+                        <ul class="py-2 text-sm text-slate-700 dark:text-slate-200" aria-labelledby="avatarButton">
+                            <li>
+                                <a href="{{ route('my.course') }}" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">My Course</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('profile') }}" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white">Profile</a>
+                            </li>
+                        </ul>
+                        <div class="py-1">
+                            <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 dark:text-slate-200 dark:hover:text-white">Sign out</a>
+                        </div>
+                    </div>
+                </div>
+
+                @else
                 <a href="{{ route('login') }}" class="m-1 inline-flex items-center gap-1 rounded-lg border bg-white px-3 py-2 font-medium text-sm text-blue-600 shadow hover:bg-blue-50"> Log in </a>
                 <a href="{{ route('register') }}" class="m-1 inline-flex items-center gap-1 rounded-lg border border-transparent bg-blue-600 px-3 py-2 font-medium text-sm text-white hover:bg-blue-700"> Register </a>
+                @endauth
             </nav>
         </div>
     </div>
@@ -109,6 +150,22 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('avatarButton').addEventListener('click', function() {
+            var dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('hidden');
+        });
+
+        // Optional: Close the dropdown if user clicks outside of it
+        document.addEventListener('click', function(event) {
+            var dropdown = document.getElementById('userDropdown');
+            var avatarButton = document.getElementById('avatarButton');
+            if (!dropdown.contains(event.target) && !avatarButton.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 
 </html>

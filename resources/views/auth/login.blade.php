@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LMS Samawa</title>
+    <title>SAMADA</title>
     @vite('resources/css/app.css')
 </head>
 
@@ -21,7 +21,7 @@
                 </p>
 
                 <p class="mt-3 text-center font-medium md:text-left">Log in to your account below</p>
-                <button class="flex items-center justify-center my-4 bg-white dark:bg-slate-900 border border-slate-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-slate-800 dark:text-white hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                <a href="{{ route('login.google') }}" class="flex items-center justify-center my-4 bg-white dark:bg-slate-900 border border-slate-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-slate-800 dark:text-white hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
                     <svg class="h-6 w-6 mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px" viewBox="-0.5 0 48 48" version="1.1">
                         <title>Google-color</title>
                         <desc>Created with Sketch.</desc>
@@ -38,20 +38,28 @@
                         </g>
                     </svg>
                     <span>Continue with Google</span>
-                </button>
+                </a>
 
                 <p class="text-center text-slate-500 font-medium md:text-left">or sign in with your cridential.</p>
 
-                <form class="flex flex-col items-stretch pt-3">
+                <form method="post" action="{{ route('login') }}" class="flex flex-col items-stretch pt-3">
+                    @csrf
                     <div class="flex flex-col pt-4">
                         <div class="relative flex overflow-hidden">
-                            <input type="email" id="login-email" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none" placeholder="Email" />
+                            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none @error('email') border-red-500 bg-red-50 text-red-900 placeholder-red-700 @enderror" />
                         </div>
+                        @error('email')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> {{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div class="flex flex-col pt-4">
                         <div class="relative flex overflow-hidden">
-                            <input type="password" id="login-password" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none" placeholder="Password" />
+                            <input type="password" name="password" placeholder="Password" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none @error('password') border-red-500 bg-red-50 text-red-900 placeholder-red-700 @enderror" />
                         </div>
+                        @error('password')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> {{ $message }}</p>
+                        @enderror
                     </div>
                     <a href="#" class="mb-6 text-center text-sm font-medium text-slate-600 md:text-left">Forgot password?</a>
                     <button type="submit" class="rounded-lg bg-blue-600 px-4 py-2 text-center text-base font-semibold text-white shadow-md outline-none ring-blue-500 ring-offset-0 transition hover:bg-blue-700 focus:ring-0 md:w-32">Log in</button>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LMS Samawa</title>
+    <title>SAMADA</title>
     @vite('resources/css/app.css')
 </head>
 
@@ -31,27 +31,44 @@
                 </p>
 
                 <div class="text-sm pt-8 text-gray-500">Complete the form below to finish registration.</div>
-                <form class="flex flex-col items-stretch ">
+                <form method="post" action="{{ route('register') }}" class="flex flex-col items-stretch">
+                    @csrf
                     <div class="flex flex-col pt-4">
                         <div class="relative flex overflow-hidden">
-                            <input type="text" name="fullname" placeholder="Fullname" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none" />
+                            <input type="text" name="name" placeholder="name" value="{{ old('name') }}" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none @error('name') border-red-500 bg-red-50 text-red-900 placeholder-red-700 @enderror" />
                         </div>
+                        @error('name')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> {{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div class="flex flex-col pt-4">
                         <div class="relative flex overflow-hidden">
-                            <input type="text" name="email" placeholder="Email" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none" />
+                            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none @error('email') border-red-500 bg-red-50 text-red-900 placeholder-red-700 @enderror" />
                         </div>
+                        @error('email')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> {{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div class="flex flex-col pt-4">
                         <div class="relative flex overflow-hidden">
-                            <input type="text" name="password" placeholder="password" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none" />
+                            <input type="password" name="password" placeholder="Password" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none @error('password') border-red-500 bg-red-50 text-red-900 placeholder-red-700 @enderror" />
                         </div>
+                        @error('password')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> {{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div class="flex flex-col pt-4">
                         <div class="relative flex overflow-hidden">
-                            <input type="text" name="confirm_password" placeholder="Confirm Password" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none" />
+                            <input type="password" name="password_confirmation" placeholder="Confirm Password" class="w-full flex-shrink appearance-none rounded-md border-slate-300 bg-white py-2 px-4 text-base text-slate-700 placeholder-slate-400 focus:outline-none @error('password_confirmation') border-red-500 bg-red-50 text-red-900 placeholder-red-700 @enderror" />
                         </div>
+                        @error('password_confirmation')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium"></span> {{ $message }}</p>
+                        @enderror
                     </div>
+
                     <div class="block mt-4">
                         <input class="mr-2 h-5 w-5 appearance-none rounded border border-gray-300 bg-contain bg-no-repeat align-top text-black shadow checked:bg-blue-600 focus:border-blue-600 focus:shadow" type="checkbox" id="remember-me" checked />
                         <label class="inline-block" for="remember-me"> I agree to the <a class="underline" href="#">Terms and Conditions</a></label>
