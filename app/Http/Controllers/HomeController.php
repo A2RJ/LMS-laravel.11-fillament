@@ -26,6 +26,16 @@ class HomeController extends Controller
         return view('class');
     }
 
+    public function course()
+    {
+        return view('course');
+    }
+
+    public function myCourse()
+    {
+        return view('my-course');
+    }
+
     public function testId($test)
     {
         $questions = [

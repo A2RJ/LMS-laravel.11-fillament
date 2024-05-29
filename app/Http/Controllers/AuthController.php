@@ -53,4 +53,9 @@ class AuthController extends Controller
     public function update(Request $request)
     {
     }
+
+    public function profile()
+    {
+        return view('profile');
+    }
 }

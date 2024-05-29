@@ -6,7 +6,7 @@ use Filament\Widgets\ChartWidget;
 
 class BlogPostsChart extends ChartWidget
 {
-    protected static ?string $heading = 'Cources created';
+    protected static ?string $heading = 'Courses created';
 
     protected static ?int $sort = 2;
 
@@ -15,7 +15,7 @@ class BlogPostsChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Cources created',
+                    'label' => 'Courses created',
                     'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
                 ],
             ],

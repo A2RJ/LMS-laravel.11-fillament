@@ -1,191 +1,62 @@
 @extends('components.layouts.home')
 
 @section('content')
-<!-- Hero section -->
-<div class="bg-white rounded-2xl pt-4">
-    <div class="grid grid-cols-2">
-        <div class="flex flex-col justify-center items-start p-8">
-            <p class="mb-4">Kini, belajar <br> <span class="whitespace-nowrap text-[#43c2e5] text-4xl uppercase font-bold">budaya Samawa</span> <br> lebih mudah dengan materi pembelajaran daring yang interaktif dan menarik.</p>
-            <div class="flex -space-x-3 mt-4 justify-center items-center">
-                <img class="h-10 w-10 rounded-full ring ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=256&h=256&q=80" />
-                <img class="h-10 w-10 rounded-full ring ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" />
-                <img class="h-10 w-10 rounded-full ring ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" />
-                <img class="h-10 w-10 rounded-full ring ring-white" src="https://images.unsplash.com/photo-1663996806932-357eddab9b50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" />
-                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-white font-semibold text-black ring ring-white">13+</div>
-                <p class="pl-3">Pelajar telah bergabung</p>
+<!-- Breadcrumb -->
+<nav class="flex py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+        <li class="inline-flex items-center">
+            <a href="#" class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-400 dark:hover:text-white">
+                <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                </svg>
+                Home
+            </a>
+        </li>
+        <li aria-current="page">
+            <div class="flex items-center">
+                <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                </svg>
+                <span class="ms-1 text-sm font-medium text-slate-500 md:ms-2 dark:text-slate-400">My Course</span>
             </div>
-        </div>
-        <div class="pl-20">
-            <img class="h-8/12 lg:h-72 max-w-lg rounded-lg object-cover" src="{{ asset('/hero.png') }}" />
-        </div>
-        <div class="col-span-2 h-6 bg-[#43c2e5] rounded-b-2xl"></div>
-    </div>
-</div>
+        </li>
+    </ol>
+</nav>
 
-<!-- categories -->
-<div class="items-center mt-4">
-    <h1 class="text-2xl font-bold flex items-center gap-1">Categories</h1>
-
-    <div class="grid grid-cols-5 gap-4 mt-4">
-        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
-            <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
-            <div class="py-1">
-                <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
-                <div class="flex flex-col space-y-1">
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M5.5 2H17a2.5 2.5 0 0 1 2.5 2.5v6.813a6.5 6.5 0 0 0-8.187 8.187H4.5a1 1 0 0 0 1 1h6.232A6.5 6.5 0 0 0 12.81 22H5.5A2.5 2.5 0 0 1 3 19.5v-15A2.5 2.5 0 0 1 5.5 2M7 5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zm16 12.5a5.5 5.5 0 1 0-11 0a5.5 5.5 0 0 0 11 0m-6.086-2.403l2.806 1.84q.131.084.205.223q.075.136.075.298a.65.65 0 0 1-.072.298a.6.6 0 0 1-.198.226l-2.807 1.915a.6.6 0 0 1-.158.077a.55.55 0 0 1-.395-.023a.7.7 0 0 1-.193-.135a.7.7 0 0 1-.13-.2a.6.6 0 0 1-.047-.237v-3.758a.62.62 0 0 1 .367-.57a.55.55 0 0 1 .547.045" />
-                        </svg>
-                        <span>120 Courses</span>
-                    </p>
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M24 14.6c0 .6-1.2 1-2.6 1.2c-.9-1.7-2.7-3-4.8-3.9c.2-.3.4-.5.6-.8h.8c3.1-.1 6 1.8 6 3.5M6.8 11H6c-3.1 0-6 1.9-6 3.6c0 .6 1.2 1 2.6 1.2c.9-1.7 2.7-3 4.8-3.9zm5.2 1c2.2 0 4-1.8 4-4s-1.8-4-4-4s-4 1.8-4 4s1.8 4 4 4m0 1c-4.1 0-8 2.6-8 5c0 2 8 2 8 2s8 0 8-2c0-2.4-3.9-5-8-5m5.7-3h.3c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.5 0-.9.1-1.3.3c.8 1 1.3 2.3 1.3 3.7c0 .7-.1 1.4-.3 2M6 10h.3C6.1 9.4 6 8.7 6 8c0-1.4.5-2.7 1.3-3.7C6.9 4.1 6.5 4 6 4C4.3 4 3 5.3 3 7s1.3 3 3 3" />
-                        </svg>
-                        <span>240 Students</span>
-                    </p>
-                </div>
-                <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}">
-                        <button class="px-3 py-1 border-2 border-blue-500 rounded-lg text-blue-500 hover:text-white hover:bg-blue-500 transition duration-150">
-                            Detail
-                        </button>
-                    </a>
-                </div>
+<div class="mb-10">
+    <div class="mx-auto">
+        <div class="relative isolate overflow-hidden bg-white px-6 py-20 text-center sm:rounded-3xl sm:border sm:border-slate-100 sm:px-16 sm:shadow-sm">
+            <h2 class="mx-auto max-w-2xl text-3xl md:text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                Discover the richness of cultures effortlessly!
+            </h2>
+            <h3 class="mx-auto mt-6 max-w-xl text-lg sm:text-sm leading-8 text-gray-500">
+                E-learning about culture offers an interactive and engaging approach to learning the traditions, language, and history of Sumbawa, through videos, quizzes, and immersive simulations.
+            </h3>
+            <div class="mt-8 flex items-center justify-center gap-x-6">
+                <a class="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="#">
+                    Explore the course
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
             </div>
-        </div>
-        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
-            <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
-            <div class="py-1">
-                <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
-                <div class="flex flex-col space-y-1">
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M5.5 2H17a2.5 2.5 0 0 1 2.5 2.5v6.813a6.5 6.5 0 0 0-8.187 8.187H4.5a1 1 0 0 0 1 1h6.232A6.5 6.5 0 0 0 12.81 22H5.5A2.5 2.5 0 0 1 3 19.5v-15A2.5 2.5 0 0 1 5.5 2M7 5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zm16 12.5a5.5 5.5 0 1 0-11 0a5.5 5.5 0 0 0 11 0m-6.086-2.403l2.806 1.84q.131.084.205.223q.075.136.075.298a.65.65 0 0 1-.072.298a.6.6 0 0 1-.198.226l-2.807 1.915a.6.6 0 0 1-.158.077a.55.55 0 0 1-.395-.023a.7.7 0 0 1-.193-.135a.7.7 0 0 1-.13-.2a.6.6 0 0 1-.047-.237v-3.758a.62.62 0 0 1 .367-.57a.55.55 0 0 1 .547.045" />
-                        </svg>
-                        <span>120 Courses</span>
-                    </p>
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M24 14.6c0 .6-1.2 1-2.6 1.2c-.9-1.7-2.7-3-4.8-3.9c.2-.3.4-.5.6-.8h.8c3.1-.1 6 1.8 6 3.5M6.8 11H6c-3.1 0-6 1.9-6 3.6c0 .6 1.2 1 2.6 1.2c.9-1.7 2.7-3 4.8-3.9zm5.2 1c2.2 0 4-1.8 4-4s-1.8-4-4-4s-4 1.8-4 4s1.8 4 4 4m0 1c-4.1 0-8 2.6-8 5c0 2 8 2 8 2s8 0 8-2c0-2.4-3.9-5-8-5m5.7-3h.3c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.5 0-.9.1-1.3.3c.8 1 1.3 2.3 1.3 3.7c0 .7-.1 1.4-.3 2M6 10h.3C6.1 9.4 6 8.7 6 8c0-1.4.5-2.7 1.3-3.7C6.9 4.1 6.5 4 6 4C4.3 4 3 5.3 3 7s1.3 3 3 3" />
-                        </svg>
-                        <span>240 Students</span>
-                    </p>
-                </div>
-                <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}">
-                        <button class="px-3 py-1 border-2 border-blue-500 rounded-lg text-blue-500 hover:text-white hover:bg-blue-500 transition duration-150">
-                            Detail
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
-            <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
-            <div class="py-1">
-                <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
-                <div class="flex flex-col space-y-1">
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M5.5 2H17a2.5 2.5 0 0 1 2.5 2.5v6.813a6.5 6.5 0 0 0-8.187 8.187H4.5a1 1 0 0 0 1 1h6.232A6.5 6.5 0 0 0 12.81 22H5.5A2.5 2.5 0 0 1 3 19.5v-15A2.5 2.5 0 0 1 5.5 2M7 5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zm16 12.5a5.5 5.5 0 1 0-11 0a5.5 5.5 0 0 0 11 0m-6.086-2.403l2.806 1.84q.131.084.205.223q.075.136.075.298a.65.65 0 0 1-.072.298a.6.6 0 0 1-.198.226l-2.807 1.915a.6.6 0 0 1-.158.077a.55.55 0 0 1-.395-.023a.7.7 0 0 1-.193-.135a.7.7 0 0 1-.13-.2a.6.6 0 0 1-.047-.237v-3.758a.62.62 0 0 1 .367-.57a.55.55 0 0 1 .547.045" />
-                        </svg>
-                        <span>120 Courses</span>
-                    </p>
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M24 14.6c0 .6-1.2 1-2.6 1.2c-.9-1.7-2.7-3-4.8-3.9c.2-.3.4-.5.6-.8h.8c3.1-.1 6 1.8 6 3.5M6.8 11H6c-3.1 0-6 1.9-6 3.6c0 .6 1.2 1 2.6 1.2c.9-1.7 2.7-3 4.8-3.9zm5.2 1c2.2 0 4-1.8 4-4s-1.8-4-4-4s-4 1.8-4 4s1.8 4 4 4m0 1c-4.1 0-8 2.6-8 5c0 2 8 2 8 2s8 0 8-2c0-2.4-3.9-5-8-5m5.7-3h.3c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.5 0-.9.1-1.3.3c.8 1 1.3 2.3 1.3 3.7c0 .7-.1 1.4-.3 2M6 10h.3C6.1 9.4 6 8.7 6 8c0-1.4.5-2.7 1.3-3.7C6.9 4.1 6.5 4 6 4C4.3 4 3 5.3 3 7s1.3 3 3 3" />
-                        </svg>
-                        <span>240 Students</span>
-                    </p>
-                </div>
-                <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}">
-                        <button class="px-3 py-1 border-2 border-blue-500 rounded-lg text-blue-500 hover:text-white hover:bg-blue-500 transition duration-150">
-                            Detail
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
-            <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
-            <div class="py-1">
-                <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
-                <div class="flex flex-col space-y-1">
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M5.5 2H17a2.5 2.5 0 0 1 2.5 2.5v6.813a6.5 6.5 0 0 0-8.187 8.187H4.5a1 1 0 0 0 1 1h6.232A6.5 6.5 0 0 0 12.81 22H5.5A2.5 2.5 0 0 1 3 19.5v-15A2.5 2.5 0 0 1 5.5 2M7 5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zm16 12.5a5.5 5.5 0 1 0-11 0a5.5 5.5 0 0 0 11 0m-6.086-2.403l2.806 1.84q.131.084.205.223q.075.136.075.298a.65.65 0 0 1-.072.298a.6.6 0 0 1-.198.226l-2.807 1.915a.6.6 0 0 1-.158.077a.55.55 0 0 1-.395-.023a.7.7 0 0 1-.193-.135a.7.7 0 0 1-.13-.2a.6.6 0 0 1-.047-.237v-3.758a.62.62 0 0 1 .367-.57a.55.55 0 0 1 .547.045" />
-                        </svg>
-                        <span>120 Courses</span>
-                    </p>
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M24 14.6c0 .6-1.2 1-2.6 1.2c-.9-1.7-2.7-3-4.8-3.9c.2-.3.4-.5.6-.8h.8c3.1-.1 6 1.8 6 3.5M6.8 11H6c-3.1 0-6 1.9-6 3.6c0 .6 1.2 1 2.6 1.2c.9-1.7 2.7-3 4.8-3.9zm5.2 1c2.2 0 4-1.8 4-4s-1.8-4-4-4s-4 1.8-4 4s1.8 4 4 4m0 1c-4.1 0-8 2.6-8 5c0 2 8 2 8 2s8 0 8-2c0-2.4-3.9-5-8-5m5.7-3h.3c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.5 0-.9.1-1.3.3c.8 1 1.3 2.3 1.3 3.7c0 .7-.1 1.4-.3 2M6 10h.3C6.1 9.4 6 8.7 6 8c0-1.4.5-2.7 1.3-3.7C6.9 4.1 6.5 4 6 4C4.3 4 3 5.3 3 7s1.3 3 3 3" />
-                        </svg>
-                        <span>240 Students</span>
-                    </p>
-                </div>
-                <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}">
-                        <button class="px-3 py-1 border-2 border-blue-500 rounded-lg text-blue-500 hover:text-white hover:bg-blue-500 transition duration-150">
-                            Detail
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="bg-white h-full p-3 overflow-hidden rounded-lg border border-slate-300">
-            <img class="rounded-lg w-full object-cover object-center md:h-36 lg:h-48" src="{{ asset('/balawas.webp') }}" alt="blog" />
-            <div class="py-1">
-                <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">Sakeco</h1>
-                <div class="flex flex-col space-y-1">
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M5.5 2H17a2.5 2.5 0 0 1 2.5 2.5v6.813a6.5 6.5 0 0 0-8.187 8.187H4.5a1 1 0 0 0 1 1h6.232A6.5 6.5 0 0 0 12.81 22H5.5A2.5 2.5 0 0 1 3 19.5v-15A2.5 2.5 0 0 1 5.5 2M7 5a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zm16 12.5a5.5 5.5 0 1 0-11 0a5.5 5.5 0 0 0 11 0m-6.086-2.403l2.806 1.84q.131.084.205.223q.075.136.075.298a.65.65 0 0 1-.072.298a.6.6 0 0 1-.198.226l-2.807 1.915a.6.6 0 0 1-.158.077a.55.55 0 0 1-.395-.023a.7.7 0 0 1-.193-.135a.7.7 0 0 1-.13-.2a.6.6 0 0 1-.047-.237v-3.758a.62.62 0 0 1 .367-.57a.55.55 0 0 1 .547.045" />
-                        </svg>
-                        <span>120 Courses</span>
-                    </p>
-                    <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M24 14.6c0 .6-1.2 1-2.6 1.2c-.9-1.7-2.7-3-4.8-3.9c.2-.3.4-.5.6-.8h.8c3.1-.1 6 1.8 6 3.5M6.8 11H6c-3.1 0-6 1.9-6 3.6c0 .6 1.2 1 2.6 1.2c.9-1.7 2.7-3 4.8-3.9zm5.2 1c2.2 0 4-1.8 4-4s-1.8-4-4-4s-4 1.8-4 4s1.8 4 4 4m0 1c-4.1 0-8 2.6-8 5c0 2 8 2 8 2s8 0 8-2c0-2.4-3.9-5-8-5m5.7-3h.3c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.5 0-.9.1-1.3.3c.8 1 1.3 2.3 1.3 3.7c0 .7-.1 1.4-.3 2M6 10h.3C6.1 9.4 6 8.7 6 8c0-1.4.5-2.7 1.3-3.7C6.9 4.1 6.5 4 6 4C4.3 4 3 5.3 3 7s1.3 3 3 3" />
-                        </svg>
-                        <span>240 Students</span>
-                    </p>
-                </div>
-                <div class="text-right mt-3">
-                    <a href="{{ route('category.id', 12) }}">
-                        <button class="px-3 py-1 border-2 border-blue-500 rounded-lg text-blue-500 hover:text-white hover:bg-blue-500 transition duration-150">
-                            Detail
-                        </button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex justify-end gap-2 mt-3">
-        <a href="" class="group border-2 border-transparent bg-blue-500 rounded-md px-2 flex items-center hover:bg-white hover:border-blue-500">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white group-hover:text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+            <!-- gradient svg -->
+            <svg viewBox="0 0 1024 1024" class="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-x-1/2 [mask-image:radial-gradient(closest-side,white,transparent)]" aria-hidden="true">
+                <circle cx="512" cy="512" r="512" fill="url(#827591b1-ce8c-4110-b064-7cb85a0b1217)" fill-opacity="0.7">
+                </circle>
+                <defs>
+                    <radialGradient id="827591b1-ce8c-4110-b064-7cb85a0b1217">
+                        <stop stop-color="#3b82f6"></stop>
+                        <stop offset="1" stop-color="#1d4ed8"></stop>
+                    </radialGradient>
+                </defs>
             </svg>
-        </a>
-        <a href="" class="group border-2 border-transparent bg-blue-500 rounded-md px-2 flex items-center hover:bg-white hover:border-blue-500">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white group-hover:text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
-            </svg>
-        </a>
+        </div>
     </div>
-</div>
 
-<!-- courses -->
-<div class="mb-4">
-    <div class="grid grid-cols-2 items-center py-4 mb-4">
+    <div class="grid grid-cols-2 items-center mt-8 py-2 mb-2">
         <h1 class="text-2xl font-bold flex items-center gap-1">
-            <span>Popular Courses</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="text-[#ffee00] h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
-                <path fill="currentColor" d="m19.555 23.411l-6.664-3.285a1.261 1.261 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.248 1.248 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.251 1.251 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z" />
-            </svg>
+            <span>My Course</span>
         </h1>
         <div class="flex justify-end">
             <form class="relative flex w-full max-w-2xl items-center justify-between rounded-md border border-slate-300">
@@ -229,8 +100,8 @@
                 </div>
                 <div class="text-right mt-3">
                     <a href="{{ route('class.id', 12) }}">
-                        <button class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                            Mulai belajar
+                        <button class="px-4 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Continue
                         </button>
                     </a>
                 </div>
@@ -265,8 +136,8 @@
                 </div>
                 <div class="text-right mt-3">
                     <a href="{{ route('class.id', 12) }}">
-                        <button class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                            Mulai belajar
+                        <button class="px-4 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Continue
                         </button>
                     </a>
                 </div>
@@ -301,8 +172,8 @@
                 </div>
                 <div class="text-right mt-3">
                     <a href="{{ route('class.id', 12) }}">
-                        <button class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                            Mulai belajar
+                        <button class="px-4 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Continue
                         </button>
                     </a>
                 </div>
@@ -337,8 +208,8 @@
                 </div>
                 <div class="text-right mt-3">
                     <a href="{{ route('class.id', 12) }}">
-                        <button class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                            Mulai belajar
+                        <button class="px-4 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Continue
                         </button>
                     </a>
                 </div>
@@ -373,8 +244,8 @@
                 </div>
                 <div class="text-right mt-3">
                     <a href="{{ route('class.id', 12) }}">
-                        <button class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                            Mulai belajar
+                        <button class="px-4 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Continue
                         </button>
                     </a>
                 </div>
@@ -409,8 +280,8 @@
                 </div>
                 <div class="text-right mt-3">
                     <a href="{{ route('class.id', 12) }}">
-                        <button class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                            Mulai belajar
+                        <button class="px-4 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Continue
                         </button>
                     </a>
                 </div>
@@ -445,8 +316,8 @@
                 </div>
                 <div class="text-right mt-3">
                     <a href="{{ route('class.id', 12) }}">
-                        <button class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                            Mulai belajar
+                        <button class="px-4 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Continue
                         </button>
                     </a>
                 </div>
@@ -481,8 +352,8 @@
                 </div>
                 <div class="text-right mt-3">
                     <a href="{{ route('class.id', 12) }}">
-                        <button class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                            Mulai belajar
+                        <button class="px-4 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
+                            Continue
                         </button>
                     </a>
                 </div>
@@ -490,129 +361,30 @@
         </div>
     </div>
 
-    <div class="mt-10 flex justify-center">
-        <a href="{{ route('course') }}" class="group inline-flex cursor-pointer rounded-full py-2 px-5 text-lg bg-blue-500 text-white hover:bg-white border border-transparent hover:border-blue-500">
-            <span class="group-hover:text-blue-500">Lebih banyak</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="group-hover:text-blue-500" width="32" height="32" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z" />
-            </svg>
-        </a>
-    </div>
+    <nav class="text-right mt-4">
+        <ul class="inline-flex -space-x-px text-base h-10">
+            <li>
+                <a href="#" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-slate-500 bg-white border border-e-0 border-slate-300 rounded-s-lg hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">Previous</a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">1</a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">2</a>
+            </li>
+            <li>
+                <a href="#" aria-current="page" class="flex items-center justify-center px-4 h-10 text-blue-600 border border-slate-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-slate-700 dark:bg-slate-700 dark:text-white">3</a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">4</a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-slate-500 bg-white border border-slate-300 hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">5</a>
+            </li>
+            <li>
+                <a href="#" class="flex items-center justify-center px-4 h-10 leading-tight text-slate-500 bg-white border border-slate-300 rounded-e-lg hover:bg-slate-100 hover:text-slate-700 dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
-
-
-<div class="relative mx-auto w-full py-16 px-5 font-sans text-gray-800 sm:px-20 md:max-w-screen-lg lg:py-24">
-    <h2 class="mb-5 text-center font-sans text-4xl sm:text-5xl font-bold">Frequently asked Questions</h2>
-    <p class="mb-12 text-center text-lg text-gray-600">We have written down answers to some of the frequently asked questions. But, if you still have any queries, feel free to ping us on chat.</p>
-    <ul class="space-y-4">
-        <li class="text-left">
-            <label for="accordion-1" class="relative flex flex-col rounded-md border border-gray-100 shadow-md">
-                <input class="peer hidden" type="checkbox" id="accordion-1" checked />
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 top-4 ml-auto mr-5 h-4 text-gray-500 transition peer-checked:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-                <div class="relative ml-4 cursor-pointer select-none items-center py-4 pr-12">
-                    <h3 class="text-sm text-gray-600 lg:text-base">Is there a free trial with Appsy?</h3>
-                </div>
-                <div class="max-h-0 overflow-hidden transition-all duration-500 peer-checked:max-h-96">
-                    <div class="p-5">
-                        <p class="text-sm">Lorem ipsum, consectetur adipisicing elit. Adipisci eligendi, recusandae voluptatum distinctio facilis necessitatibus aperiam ut? Dolor mollitia modi aliquam, non sint at reprehenderit commodi dignissimos quo unde asperiores officiis quos laboriosam similique nihil.</p>
-                    </div>
-                </div>
-            </label>
-        </li>
-
-        <li class="text-left">
-            <label for="accordion-2" class="relative flex flex-col rounded-md border border-gray-100 shadow-md">
-                <input class="peer hidden" type="checkbox" id="accordion-2" />
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 top-4 ml-auto mr-5 h-4 text-gray-500 transition peer-checked:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-                <div class="relative ml-4 cursor-pointer select-none items-center py-4 pr-12">
-                    <h3 class="text-sm text-gray-600 lg:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit?</h3>
-                </div>
-                <div class="max-h-0 overflow-hidden transition-all duration-500 peer-checked:max-h-96">
-                    <div class="p-5">
-                        <p class="text-sm">Lorem ipsum, <b>dolor sit amet</b> consectetur adipisicing elit. Adipisci eligendi, recusandae voluptatum distinctio facilis necessitatibus aperiam ut? Dolor mollitia modi aliquam, non sint at reprehenderit commodi dignissimos quo unde asperiores officiis quos laboriosam similique nihil.</p>
-                    </div>
-                </div>
-            </label>
-        </li>
-
-        <li class="text-left">
-            <label for="accordion-3" class="relative flex flex-col rounded-md border border-gray-100 shadow-md">
-                <input class="peer hidden" type="checkbox" id="accordion-3" />
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 top-4 ml-auto mr-5 h-4 text-gray-500 transition peer-checked:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-                <div class="relative ml-4 cursor-pointer select-none items-center py-4 pr-12">
-                    <h3 class="text-sm text-gray-600 lg:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio.?</h3>
-                </div>
-                <div class="max-h-0 overflow-hidden transition-all duration-500 peer-checked:max-h-96">
-                    <div class="p-5">
-                        <p class="text-sm">Lorem ipsum, <b>dolor sit amet</b> consectetur adipisicing elit. Adipisci eligendi, recusandae voluptatum distinctio facilis necessitatibus aperiam ut? Dolor mollitia modi aliquam, non sint at reprehenderit commodi dignissimos quo unde asperiores officiis quos laboriosam similique nihil.</p>
-                    </div>
-                </div>
-            </label>
-        </li>
-
-        <li class="text-left">
-            <label for="accordion-4" class="relative flex flex-col rounded-md border border-gray-100 shadow-md">
-                <input class="peer hidden" type="checkbox" id="accordion-4" />
-                <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-0 top-4 ml-auto mr-5 h-4 text-gray-500 transition peer-checked:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-                <div class="relative ml-4 cursor-pointer select-none items-center py-4 pr-12">
-                    <h3 class="text-sm text-gray-600 lg:text-base">Lorem ipsum dolor sit amet.?</h3>
-                </div>
-                <div class="max-h-0 overflow-hidden transition-all duration-500 peer-checked:max-h-96">
-                    <div class="p-5">
-                        <p class="text-sm">Lorem ipsum, <b>dolor sit amet</b> consectetur adipisicing elit. Adipisci eligendi, recusandae voluptatum distinctio facilis necessitatibus aperiam ut? Dolor mollitia modi aliquam, non sint at reprehenderit commodi dignissimos quo unde asperiores officiis quos laboriosam similique nihil.</p>
-                    </div>
-                </div>
-            </label>
-        </li>
-    </ul>
-    <div class="mt-10 flex justify-center">
-        <a class="inline-flex cursor-pointer rounded-full bg-blue-500 py-2 px-5 text-lg text-white border hover:border-blue-500 hover:text-blue-500 hover:bg-white" href="#">Still have questions?</a>
-    </div>
-</div>
-
-<!-- <div class="mx-auto max-w-screen-lg px-8 pt-10 pb-16 text-gray-700 md:pb-20">
-    <div class="flex flex-wrap">
-        <div class="w-full max-w-full flex-shrink-0 lg:mt-2 lg:w-1/3 lg:flex-none">
-            <h2 class="mb-3 text-xs font-bold uppercase tracking-wide text-gray-500 xl:text-base">Our Partners</h2>
-            <h3 class="mb-3 font-bold text-gray-800 sm:text-2xl xl:text-4xl">Trusted by over 300+ partners</h3>
-            <p class="">We bring solutions to make life easier to learn sumbawanese culcture.</p>
-        </div>
-        <div class="w-full max-w-full py-10 lg:w-2/3 lg:flex-none lg:px-8 lg:py-0">
-            <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 @endsection

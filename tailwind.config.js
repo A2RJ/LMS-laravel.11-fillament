@@ -10,6 +10,7 @@ export default {
         './vendor/filament/**/*.blade.php',
     ],
     plugins: [
+        require('@tailwindcss/forms'),
         plugin(({ addVariant, e }) => {
             addVariant('svg-checked', ({ modifySelectors, separator }) => {
                 modifySelectors(

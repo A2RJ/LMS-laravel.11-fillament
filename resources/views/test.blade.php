@@ -39,7 +39,7 @@
     </ol>
 </nav>
 
-<div class="max-w-screen-lg min-h-[60vh] mx-auto">
+<div class="max-w-screen-lg min-h-[60vh] mx-auto mb-10">
     <div class="flex justify-start items-center gap-2 mt-2 mb-4">
         <div>
             <a href="#" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
@@ -87,8 +87,8 @@
 
         <!-- Action Section -->
         <div class="mt-6 flex justify-end space-x-4">
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="prev-btn">Prev</button>
-            <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="next-btn">Next</button>
+            <button class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600" id="prev-btn">Prev</button>
+            <button class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600" id="next-btn">Next</button>
         </div>
     </div>
 

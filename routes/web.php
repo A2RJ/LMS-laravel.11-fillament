@@ -11,6 +11,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/callback', 'handleProviderCallback')->name('callback.google');
     Route::get('/login', 'login')->name('login');
     Route::get('/register', 'register')->name('register');
+    Route::get('profile', 'profile')->name('profile');
 });
 
 Route::controller(HomeController::class)->group(function () {
@@ -18,6 +19,8 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('class/{class}', 'classId')->name('class.id');
     Route::get('test/{test}', 'testId')->name('test.id');
     Route::post('test/{test}', 'storeTestId')->name('post.test.id');
+    Route::get('course', 'course')->name('course');
+    Route::get('my-course', 'myCourse')->name('my.course');
 });
 
 Route::post('file', function () {
