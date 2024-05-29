@@ -24,10 +24,12 @@
 </nav>
 
 <div class="mb-10">
-    <div class="mx-auto">
-        <div class="relative isolate overflow-hidden bg-white px-6 py-20 text-center sm:rounded-3xl sm:border sm:border-slate-100 sm:px-16 sm:shadow-sm">
+    <div class="grid grid-cols-12 gap-4 mx-auto">
+        <div class="col-span-9 relative isolate overflow-hidden bg-white px-6 pt-2 pb-6 text-center sm:rounded-3xl sm:border sm:border-slate-100 sm:px-16 sm:shadow-sm">
+            <img src="/Telecommuting-rafiki.svg" class="h-64 w-64 mx-auto" alt="" srcset="">
             <h2 class="mx-auto max-w-2xl text-3xl md:text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Discover the richness of cultures effortlessly!
+                <!-- Discover the richness of cultures effortlessly! -->
+                Welcome to SAMADA - Samawa Daring
             </h2>
             <h3 class="mx-auto mt-6 max-w-xl text-lg sm:text-sm leading-8 text-gray-500">
                 E-learning about culture offers an interactive and engaging approach to learning the traditions, language, and history of Sumbawa, through videos, quizzes, and immersive simulations.
@@ -51,6 +53,63 @@
                     </radialGradient>
                 </defs>
             </svg>
+        </div>
+        <div class="col-span-3 border border-slate-100 bg-white sm:rounded-3xl">
+            <div class="flex h-full flex-col rounded-2xl rounded-br-2xl bg-slate-200">
+                <ul class="flex flex-col">
+                    <li class="relative transition">
+                        <div class="relative m-2 bg-blue-500 text-white flex cursor-pointer items-center rounded-xl py-3 pl-5 text-sm hover:bg-slate-50">
+                            <span class="mr-5 flex w-5 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-white" viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="currentColor" d="M13 19h6V9.978l-7-5.444-7 5.444V19h6v-6h2v6zm8 1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.49a1 1 0 0 1 .386-.79l8-6.222a1 1 0 0 1 1.228 0l8 6.222a1 1 0 0 1 .386.79V20z" />
+                                </svg>
+                            </span>
+                            Home
+                        </div>
+                    </li>
+                    <li class="relative transition">
+                        <input class="peer hidden" type="checkbox" id="menu-1" checked />
+                        <div class="relative m-2 flex items-center rounded-xl border-b-4 border-slate-300 bg-slate-50 py-3 pl-5 text-sm text-slate-500">
+                            <span class="mr-5 flex w-5 text-slate-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" width="32" height="32" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M23 2H1a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h22a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1m-1 18h-2v-1h-5v1H2V4h20zM10.29 9.71A1.71 1.71 0 0 1 12 8c.95 0 1.71.77 1.71 1.71c0 .95-.76 1.72-1.71 1.72s-1.71-.77-1.71-1.72m-4.58 1.58c0-.71.58-1.29 1.29-1.29a1.29 1.29 0 0 1 1.29 1.29c0 .71-.58 1.28-1.29 1.28S5.71 12 5.71 11.29m10 0A1.29 1.29 0 0 1 17 10a1.29 1.29 0 0 1 1.29 1.29c0 .71-.58 1.28-1.29 1.28s-1.29-.57-1.29-1.28M20 15.14V16H4v-.86c0-.94 1.55-1.71 3-1.71c.55 0 1.11.11 1.6.3c.75-.69 2.1-1.16 3.4-1.16s2.65.47 3.4 1.16c.49-.19 1.05-.3 1.6-.3c1.45 0 3 .77 3 1.71" />
+                                </svg>
+                            </span>
+                            My Course
+                            <label for="menu-1" class="absolute inset-0 h-full w-full cursor-pointer"></label>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="peer-checked:rotate-180 absolute right-0 top-6 mr-5 ml-auto h-4 text-slate-500 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                        <ul class="duration-400 peer-checked:max-h-96 m-2 flex max-h-0 flex-col overflow-hidden rounded-2xl bg-slate-100 transition-all duration-300">
+                            <li class="m-2 flex cursor-pointer rounded-xl py-3 pl-5 text-sm text-slate-500 hover:bg-white">
+                                <span class="mr-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M4 15.77v-1h7.02v1zm0-4v-1h10.962v1zm0-4v-1h10.962v1zM16.442 20v-5.942l4.577 2.98z" />
+                                    </svg>
+                                </span>
+                                Carnival
+                            </li>
+                            <li class="m-2 flex cursor-pointer rounded-xl py-3 pl-5 text-sm text-slate-500 hover:bg-white">
+                                <span class="mr-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M4 15.77v-1h7.02v1zm0-4v-1h10.962v1zm0-4v-1h10.962v1zM16.442 20v-5.942l4.577 2.98z" />
+                                    </svg>
+                                </span>
+                                Analytics
+                            </li>
+                            <li class="m-2 flex cursor-pointer rounded-xl py-3 pl-5 text-sm text-slate-500 hover:bg-white">
+                                <span class="mr-5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
+                                        <path fill="currentColor" d="M4 15.77v-1h7.02v1zm0-4v-1h10.962v1zm0-4v-1h10.962v1zM16.442 20v-5.942l4.577 2.98z" />
+                                    </svg>
+                                </span>
+                                Revenue
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
