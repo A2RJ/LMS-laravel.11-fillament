@@ -82,30 +82,25 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                         <ul class="duration-400 peer-checked:max-h-96 m-2 flex max-h-0 flex-col overflow-hidden rounded-2xl bg-slate-100 transition-all duration-300">
+                            @forelse ($classes->take(5) as $class)
                             <li class="m-2 flex cursor-pointer rounded-xl py-3 pl-5 text-sm text-slate-500 hover:bg-white">
                                 <span class="mr-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
                                         <path fill="currentColor" d="M4 15.77v-1h7.02v1zm0-4v-1h10.962v1zm0-4v-1h10.962v1zM16.442 20v-5.942l4.577 2.98z" />
                                     </svg>
                                 </span>
-                                Carnival
+                                {{ $class->title }}
                             </li>
+                            @empty
                             <li class="m-2 flex cursor-pointer rounded-xl py-3 pl-5 text-sm text-slate-500 hover:bg-white">
                                 <span class="mr-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
                                         <path fill="currentColor" d="M4 15.77v-1h7.02v1zm0-4v-1h10.962v1zm0-4v-1h10.962v1zM16.442 20v-5.942l4.577 2.98z" />
                                     </svg>
                                 </span>
-                                Analytics
+                                No Class
                             </li>
-                            <li class="m-2 flex cursor-pointer rounded-xl py-3 pl-5 text-sm text-slate-500 hover:bg-white">
-                                <span class="mr-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
-                                        <path fill="currentColor" d="M4 15.77v-1h7.02v1zm0-4v-1h10.962v1zm0-4v-1h10.962v1zM16.442 20v-5.942l4.577 2.98z" />
-                                    </svg>
-                                </span>
-                                Revenue
-                            </li>
+                            @endforelse
                         </ul>
                     </li>
                 </ul>

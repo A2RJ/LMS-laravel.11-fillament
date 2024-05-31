@@ -10,7 +10,7 @@
 </head>
 
 <body class="bg-[#f6f5f5]">
-    <div class="sticky top-0 z-40 w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 shadow">
+    <div class="sticky top-0 z-20 w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 shadow">
         <div x-data="{ open: false }" class="flex flex-col container mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:py-4">
             <div class="flex flex-row items-center justify-between">
                 <a href="/" class="flex items-center whitespace-nowrap text-2xl font-black" title="Samawa Daring">
