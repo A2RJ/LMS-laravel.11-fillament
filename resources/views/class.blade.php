@@ -17,7 +17,9 @@
                 <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-slate-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                 </svg>
-                <a href="#" class="ms-1 text-sm font-medium text-slate-700 hover:text-blue-600 md:ms-2 dark:text-slate-400 dark:hover:text-white">Sakeco</a>
+                <a href="#" class="ms-1 text-sm font-medium text-slate-700 hover:text-blue-600 md:ms-2 dark:text-slate-400 dark:hover:text-white">
+                    {{ $class->category ? $class->category->category : 'No Category' }}
+                </a>
             </div>
         </li>
         <li aria-current="page">
@@ -53,7 +55,7 @@
             </div>
         </div>
 
-        <div class="mb-4 inline-flex space-x-4 overflow-x-scroll max-w-full pb-2">
+        <div class="mb-4 border-b-2 pb-4 border-dashed border-transparent inline-flex space-x-4 overflow-x-scroll max-w-full">
             <a href="#" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"> Introduction </a>
             @foreach ($class->sessions as $index => $session)
             <a href="#" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 transition-all duration-200 ease-in-out border border-slate-300 hover:bg-blue-500 hover:text-white"> Session {{ $index + 1 }} </a>
