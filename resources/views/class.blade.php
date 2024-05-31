@@ -34,15 +34,21 @@
 <div class="max-w-screen-lg mx-auto">
     <div class="flex justify-start items-center gap-2 mt-2 mb-4">
         <div>
-            <a href="#" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
+            <a href="{{ url()->previous() }}" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
                     <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
                 </svg>
             </a>
         </div>
         <div>
-            <h1 class="text-2xl font-bold">Kelas sakeco untuk pemula</h1>
-            <small class="text-sm font-medium text-slate-500">Lorem ipsum dolor sit amet consectetur.</small>
+            <h1 class="text-2xl font-bold">{{ $class->title }}</h1>
+            <small class="text-sm font-medium text-slate-500">
+                @empty($class->session)
+                Introduction
+                @else
+                {{ $class->session->title }}
+                @endempty
+            </small>
         </div>
     </div>
 
@@ -58,7 +64,32 @@
 
     <div class="grid grid-cols-12">
         <div class="col-span-10 border-r border-dashed border-slate-300 pr-1">
-            <article>
+            @empty($class->session)
+            <x-tinyview :view="$class->content"></x-tinyview>
+            @else
+            <x-tinyview :view="$class->session->content"></x-tinyview>
+            @endempty
+
+            @if(!empty($class->sessions))
+            <div class="flex justify-between mx-auto mt-3 mb-6">
+                <button class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 mr-2 transition-colors duration-300 group-hover:text-blue-500">
+                        <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                    </svg>
+                    <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Previous</span>
+                    <div class="absolute inset-0 bg-white transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></div>
+                </button>
+
+                <button class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
+                    <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Next</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 ml-2 transition-colors duration-300 group-hover:text-blue-500">
+                        <path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
+                    </svg>
+                    <div class="absolute inset-0 bg-white transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100"></div>
+                </button>
+            </div>
+            @endempty
+            <!-- <article>
                 <header class="mx-auto text-center">
                     <h1 class="mt-2 text-3xl font-bold text-slate-900 sm:text-5xl">Pendahuluan Kelas Sakeco</h1>
                     <p class="mt-6 text-lg text-slate-700">You're doing marketing the wrong way</p>
@@ -87,25 +118,7 @@
                 </div>
             </div>
 
-            <div class="flex justify-between mx-auto mt-3 mb-6">
-                <!-- Previous Button -->
-                <button class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 mr-2 transition-colors duration-300 group-hover:text-blue-500">
-                        <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
-                    </svg>
-                    <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Previous</span>
-                    <div class="absolute inset-0 bg-white transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></div>
-                </button>
-
-                <!-- Next Button -->
-                <button class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
-                    <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Next</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 ml-2 transition-colors duration-300 group-hover:text-blue-500">
-                        <path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
-                    </svg>
-                    <div class="absolute inset-0 bg-white transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100"></div>
-                </button>
-            </div>
+             -->
         </div>
         <div class="col-span-2 pl-1">
             <div class="p-2 border border-slate-300 rounded-lg space-y-2 bg-white w-full mt-2">

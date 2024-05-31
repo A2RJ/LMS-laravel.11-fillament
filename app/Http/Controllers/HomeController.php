@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\ClassRoom;
 use App\Models\Session;
 use Illuminate\Http\Request;
@@ -11,9 +12,11 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $categories = Category::query()
+            ->paginate(4);
         $classes = ClassRoom::query()
             ->paginate(8);
-        return view('welcome');
+        return view('welcome', compact('classes', 'categories'));
     }
 
     public function categoryId($id)
@@ -21,19 +24,37 @@ class HomeController extends Controller
         return view('category');
     }
 
-    public function classId($classRoom)
+    public function classId(ClassRoom $class, $session = null)
     {
-        return view('class');
+        if ($session) {
+            $sessionExists = Session::find($session);
+            if ($sessionExists) {
+                $class->load(['sessions' => function ($query) use ($session) {
+                    $query->where('id', $session)
+                        ->first();
+                }]);
+                $class->session = $class->sessions->first();
+                unset($class->sessions);
+            } else {
+                return redirect()->back()->withErrors('Session ID tidak valid.');
+            }
+        }
+
+        return view('class', compact('class'));
     }
 
     public function course()
     {
-        return view('course');
+        $classes = ClassRoom::query()
+            ->paginate(8);
+        return view('course', compact('classes'));
     }
 
     public function myCourse()
     {
-        return view('my-course');
+        $classes = ClassRoom::query()
+            ->paginate(8);
+        return view('my-course', compact('classes'));
     }
 
     public function testId($test)

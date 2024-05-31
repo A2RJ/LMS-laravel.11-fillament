@@ -19,7 +19,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('category/{category}', 'categoryId')->name('category.id');
-    Route::get('class/{class}', 'classId')->name('class.id');
+    Route::get('class/{class}/{session?}', 'classId')->name('class.id');
     Route::get('test/{test}', 'testId')->name('test.id');
     Route::post('test/{test}', 'storeTestId')->name('post.test.id');
     Route::get('course', 'course')->name('course');
