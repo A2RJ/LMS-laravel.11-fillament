@@ -155,25 +155,36 @@
                 </li>
             </ol>
 
-
+            @if(!empty($class->session))
             <p class="text-base font-bold text-slate-900 dark:text-white">Test list:</p>
-            <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400" role="alert">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-medium text-sm">Pre Test</h3>
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
-                    </svg>
-                </div>
-            </div>
 
-            <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" role="alert">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-medium text-sm">Post Test</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800 group-hover:text-white transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
-                    </svg>
-                </div>
+            @if (!empty($class->session->preTest))
+            <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400" role="alert">
+                <a href="{{ route('test.id', [$class->id, $class->session->preTest->id]) }}">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-medium text-sm">Pre Test</h3>
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                        </svg>
+                    </div>
+                </a>
             </div>
+            @endif
+
+            @if (!empty($class->session->postTest))
+            <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" role="alert">
+                <a href="{{ route('test.id', [$class->id, $class->session->postTest->id]) }}">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-medium text-sm">Post Test</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800 group-hover:text-white transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            @endif
+            @endif
+
         </div>
     </div>
 </div>

@@ -39,56 +39,80 @@
     </ol>
 </nav>
 
-<div class="max-w-screen-lg min-h-[60vh] mx-auto mb-10">
-    <div class="flex justify-start items-center gap-2 mt-2 mb-4">
-        <div>
-            <a href="#" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
-                    <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
-                </svg>
-            </a>
+<div class="max-w-screen-lg min-h-[60vh] mx-auto mb-10 ">
+    <div class="flex justify-between items-center gap-2 mt-2 mb-6 bg-white rounded-lg p-4">
+        <div class="flex justify-start">
+            <div>
+                <a href="#" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
+                        <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                    </svg>
+                </a>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold">Kelas sakeco untuk pemula</h1>
+                <small class="text-sm font-medium text-slate-500">Pre test session 2: Lorem ipsum dolor sit amet consectetur.</small>
+            </div>
         </div>
         <div>
-            <h1 class="text-2xl font-bold">Kelas sakeco untuk pemula</h1>
-            <small class="text-sm font-medium text-slate-500">Pre test session 2: Lorem ipsum dolor sit amet consectetur.</small>
+            <h1 class="text-3xl font-bold" id="countdown">01:00</h1>
         </div>
     </div>
 
-    <div class=" bg-white p-6 rounded-lg shadow-md">
+    <div class="grid grid-cols-12 gap-4">
         <!-- Section Nomor Soal -->
-        <div class="mb-6">
-            <nav class="grid grid-cols-12" aria-label="Pagination">
+        <div class="col-span-4 bg-white p-4 rounded-lg">
+
+            <nav class="grid grid-cols-6 gap-4" aria-label="Pagination">
                 @foreach ($questions as $index => $question)
-                <div class="pagination-btn text-center bg-white border border-slate-300 text-slate-500 px-4 py-2" data-index="{{ $index }}">
+                <div class="pagination-btn text-center rounded-lg bg-white border border-slate-300 text-slate-500 p-1" data-index="{{ $index }}">
                     {{ $index + 1 }}
                 </div>
                 @endforeach
             </nav>
         </div>
 
-        <!-- Form Section Soal dan Jawaban -->
-        <form id="form" action="{{ route('post.test.id', 12) }}" method="post">
-            @csrf
-            @foreach ($questions as $index => $question)
-            <div class="question" data-index="{{ $index }}" style="display: none;">
-                <h2 class="text-xl font-semibold mb-4">Question number {{ $index + 1 }}</h2>
-                <p class="mb-4">{{ $question['question'] }}</p>
-                <div class="mb-4">
-                    @foreach ($question['options'] as $option)
-                    <label class="block mb-2">
-                        <input type="radio" name="answer{{ $question['id'] }}" value="{{ $option }}" class="mr-2">
-                        {{ $option }}
-                    </label>
-                    @endforeach
+        <div class="col-span-8 bg-white p-4 rounded-lg">
+            <!-- Form Section Soal dan Jawaban -->
+            <form id="form" action="{{ route('post.test.id', 12) }}" method="post">
+                @csrf
+                @foreach ($questions as $index => $question)
+                <div class="question" data-index="{{ $index }}" style="display: none;">
+                    <h2 class="text-xl text-center font-semibold mb-4">Question number {{ $index + 1 }}</h2>
+                    <p class="mb-4 font-semibold">{{ $question->question }}</p>
+                    <div class="mb-4">
+                        @foreach ($question->answers as $option)
+                        <label class="flex justify-start items-start space-x-2 space-y-4">
+                            <input type="radio" name="answer{{ $question->id }}" value="{{ $option->id }}" class="mt-5">
+                            <x-tinyview :view="$option->answer"></x-tinyview>
+                        </label>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            @endforeach
-        </form>
+                @endforeach
+            </form>
 
-        <!-- Action Section -->
-        <div class="mt-6 flex justify-end space-x-4">
-            <button class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600" id="prev-btn">Prev</button>
-            <button class="bg-blue-500 text-white px-4 py-1 rounded-md hover:bg-blue-600" id="next-btn">Next</button>
+            <!-- Action Section -->
+            <div class="mt-6 flex justify-end space-x-4">
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="prev-btn">Prev</button>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="next-btn">Next</button>
+            </div>
+
+            <!-- <div class="flex justify-between mx-auto my-6 space-x-4">
+                <button class="relative group flex items-center justify-center px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white transition duration-100 hover:bg-white hover:text-blue-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="mr-2 transition-colors duration-100">
+                        <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                    </svg>
+                    <span class="transition-colors duration-100">Previous</span>
+                </button>
+
+                <button class="relative group flex items-center justify-center px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white transition duration-100 hover:bg-white hover:text-blue-500">
+                    <span class="transition-colors duration-100">Next</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="ml-2 transition-colors duration-100">
+                        <path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
+                    </svg>
+                </button>
+            </div> -->
         </div>
     </div>
 
@@ -149,6 +173,35 @@
     </div>
 
     <script>
+        function startCountdown(duration, display) {
+            var timer = duration,
+                minutes, seconds;
+            var interval = setInterval(function() {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    display.textContent = "00:00";
+                }
+            }, 1000);
+        }
+
+        window.onload = function() {
+            var countdownElement = document.getElementById("countdown");
+            var timeArray = countdownElement.textContent.split(":");
+            var minutes = parseInt(timeArray[0], 10);
+            var seconds = parseInt(timeArray[1], 10);
+            var totalSeconds = minutes * 60 + seconds;
+
+            startCountdown(totalSeconds, countdownElement);
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.getElementById('modal');
             const cancelButton = document.getElementById('cancel-button');

@@ -10,6 +10,13 @@ export default {
         './vendor/filament/**/*.blade.php',
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
     ],
+    theme: {
+        extend: {
+            gridTemplateColumns: {
+                '15': 'repeat(15, minmax(0, 1fr))',
+            },
+        },
+    },
     plugins: [
         require('@tailwindcss/forms'),
         plugin(({ addVariant, e }) => {

@@ -239,42 +239,4 @@
         <a class="inline-flex cursor-pointer rounded-full bg-blue-500 py-2 px-5 text-lg text-white border hover:border-blue-500 hover:text-blue-500 hover:bg-white" href="#">Still have questions?</a>
     </div>
 </div>
-
-<!-- <div class="mx-auto max-w-screen-lg px-8 pt-10 pb-16 text-gray-700 md:pb-20">
-    <div class="flex flex-wrap">
-        <div class="w-full max-w-full flex-shrink-0 lg:mt-2 lg:w-1/3 lg:flex-none">
-            <h2 class="mb-3 text-xs font-bold uppercase tracking-wide text-gray-500 xl:text-base">Our Partners</h2>
-            <h3 class="mb-3 font-bold text-gray-800 sm:text-2xl xl:text-4xl">Trusted by over 300+ partners</h3>
-            <p class="">We bring solutions to make life easier to learn sumbawanese culcture.</p>
-        </div>
-        <div class="w-full max-w-full py-10 lg:w-2/3 lg:flex-none lg:px-8 lg:py-0">
-            <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-                <div class="w-32">
-                    <img src="/rebana.jpg" alt="" class="" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 @endsection

@@ -73,6 +73,18 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - quiz view ubah opsi jawaban menjadi {!!  !!} dan gunakan grid untuk menjaga svg tetap di kanan 
 
 ## TODO
+### Student
+- home
+- dashboard
+- course
+- my course
+- profile
+- course detail
+- cource test
+- course result
+- my certificate
+
+### Teacher
 - [ ] tambah tabel review tugas sehingga bisa dinilai oleh guru
 - [ ] tambah final test pada class
 
