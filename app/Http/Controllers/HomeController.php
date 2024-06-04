@@ -9,6 +9,7 @@ use App\Models\Session;
 use App\Models\Test;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
 {
@@ -26,24 +27,27 @@ class HomeController extends Controller
         return view('category');
     }
 
-    public function classId(ClassRoom $class, $session = null)
+    public function classId(ClassRoom $class)
     {
-        if ($session) {
-            $sessionExists = Session::find($session);
-            if ($sessionExists) {
-                $class->load(['sessions' => function ($query) use ($session) {
-                    $query->where('id', $session)
-                        ->with(['preTest', 'postTest'])
-                        ->first();
-                }]);
-                $class->session = $class->sessions->first();
-                unset($class->sessions);
-            } else {
-                return redirect()->back()->withErrors('Session ID tidak valid.');
-            }
-        }
-
         return view('class', compact('class'));
+    }
+
+    public function classSession(ClassRoom $class)
+    {
+        $perPage = 1;
+        $currentPage = request('page', 1);
+        $session_list = collect($class->sessions->all())->toArray();
+        $currentItems = array_slice($session_list, ($currentPage - 1) * $perPage, $perPage);
+        $sessions = new LengthAwarePaginator(
+            $currentItems,
+            count($session_list),
+            $perPage,
+            $currentPage,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+        $session = $class->sessions[$currentPage - 1];
+
+        return view('session', compact('class', 'session', 'sessions'));
     }
 
     public function course()

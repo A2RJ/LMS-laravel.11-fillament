@@ -1,6 +1,61 @@
 @extends('components.layouts.home')
 
 @section('content')
+<style scoped>
+    p[style*="text-align: center;"] {
+        text-align: initial !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    table {
+        width: 80%;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+    th {
+        padding: 8px;
+        background-color: #f2f2f2;
+        text-align: left;
+        border: 1px solid #ddd;
+        /* full border atas, bawah, kiri, kanan */
+    }
+
+    tr {
+        border: 1px solid #ddd;
+        /* full border atas, bawah */
+    }
+
+    td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        /* full border atas, bawah, kiri, kanan */
+    }
+
+    tr:first-child {
+        font-weight: bold;
+    }
+
+    .custom-tiny>ul {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        color: #6b7280;
+        list-style-type: disc;
+        padding-left: 2rem;
+    }
+
+    .dark ul {
+        color: #9ca3af;
+    }
+
+    .custom-tiny a {
+        text-decoration: underline;
+        color: #0077cc;
+        /* Ganti dengan warna yang diinginkan */
+    }
+</style>
+
 <!-- Breadcrumb -->
 <nav class="max-w-screen-lg mx-auto flex pl-4 py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -46,7 +101,7 @@
             <div>
                 <h1 class="text-2xl font-bold">{{ $class->title }}</h1>
                 <small class="text-sm font-medium text-slate-500">
-                    Introduction
+                    {{ $session->title }}
                 </small>
             </div>
         </div>
@@ -54,16 +109,39 @@
         <div class="mb-4 border-b-2 pb-4 border-dashed border-transparent inline-flex space-x-4 overflow-x-scroll max-w-full">
             <a href="{{ route('class.id', $class->id) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white"> Introduction </a>
             @foreach ($class->sessions as $index => $session)
-            <a href="{{ route('session.id', ['class'=> $class->id, 'session'=> $session->id]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 transition-all duration-200 ease-in-out border border-slate-300 hover:bg-blue-500 hover:text-white"> Session {{ $index + 1 }} </a>
+            <a href="{{ route('class.id', ['class'=> $class->id, 'session'=> $session->id]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 transition-all duration-200 ease-in-out border border-slate-300 hover:bg-blue-500 hover:text-white"> Session {{ $index + 1 }} </a>
             @endforeach
         </div>
 
         <div class="min-h-[50vh]">
-            <x-tinyview :data="$class->content"></x-tinyview>
         </div>
 
-        <div class="float-right mt-8 mb-4">
-            <a href="{{ route('session.id', ['class' => $class->id, 'session' => $class->sessions->first()['id']]) }}?page=1">
+        @if($sessions->total() > 0)
+        <div class="flex justify-between mx-auto mt-3 mb-6">
+            <!-- Previous Page Link -->
+            @if ($sessions->onFirstPage())
+            <button class="relative group flex items-center justify-center px-3 py-1 border border-gray-500 overflow-hidden rounded-lg bg-gray-500 text-white cursor-not-allowed" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 mr-2 transition-colors duration-300 group-hover:text-gray-500">
+                    <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                </svg>
+                <span class="relative z-10 transition-colors duration-300 group-hover:text-gray-500">Previous</span>
+                <div class="absolute inset-0 bg-white transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></div>
+            </button>
+            @else
+            <a href="{{ $sessions->previousPageUrl() }}">
+                <button class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 mr-2 transition-colors duration-300 group-hover:text-blue-500">
+                        <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                    </svg>
+                    <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Previous</span>
+                    <div class="absolute inset-0 bg-white transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></div>
+                </button>
+            </a>
+            @endif
+
+            <!-- Next Page Link -->
+            @if ($sessions->hasMorePages())
+            <a href="{{ $sessions->nextPageUrl() }}">
                 <button class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
                     <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Next</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 ml-2 transition-colors duration-300 group-hover:text-blue-500">
@@ -72,7 +150,17 @@
                     <div class="absolute inset-0 bg-white transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100"></div>
                 </button>
             </a>
+            @else
+            <button class="relative group flex items-center justify-center px-3 py-1 border border-gray-500 overflow-hidden rounded-lg bg-gray-500 text-white cursor-not-allowed" disabled>
+                <span class="relative z-10 transition-colors duration-300 group-hover:text-gray-500">Next</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 ml-2 transition-colors duration-300 group-hover:text-gray-500">
+                    <path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q-.3-.3-.713-.312t-.712.287L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q-.3-.3-.713-.287t-.712.312q-.275.3-.288.7t.288.7z" />
+                </svg>
+                <div class="absolute inset-0 bg-white transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100"></div>
+            </button>
+            @endif
         </div>
+        @endif
     </div>
 
 

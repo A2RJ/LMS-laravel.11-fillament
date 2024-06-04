@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class tinyview extends Component
 {
+    public $params;
     /**
      * Create a new component instance.
      */
-    public function __construct(public $view)
+    public function __construct(public $data)
     {
-        //
+        $this->params = $data;
     }
 
     /**
@@ -21,6 +22,6 @@ class tinyview extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.tinyview')->with('view', $this->view);
+        return view('components.tinyview')->with('view', $this->params);
     }
 }
