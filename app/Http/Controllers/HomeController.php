@@ -45,9 +45,8 @@ class HomeController extends Controller
             $currentPage,
             ['path' => request()->url(), 'query' => request()->query()]
         );
-        $session = $class->sessions[$currentPage - 1];
 
-        return view('session', compact('class', 'session', 'sessions'));
+        return view('session', compact('class', 'sessions'));
     }
 
     public function course()

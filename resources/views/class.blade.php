@@ -63,7 +63,7 @@
         </div>
 
         <div class="float-right mt-8 mb-4">
-            <a href="{{ route('session.id', ['class' => $class->id, 'session' => $class->sessions->first()['id']]) }}?page=1">
+            <a href="{{ route('session.id', ['class' => $class->id]) }}?page=1">
                 <button class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
                     <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Next</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 ml-2 transition-colors duration-300 group-hover:text-blue-500">
