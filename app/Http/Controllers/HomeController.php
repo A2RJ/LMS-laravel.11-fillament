@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\ClassRoom;
 use App\Models\Session;
 use App\Models\Test;
+use Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -95,8 +96,24 @@ class HomeController extends Controller
         return view('test', compact('class'));
     }
 
-    public function storeTestId(Request $request, $test)
+    public function storeTestId(Request $request, $class, $session, $test)
     {
-        return $request->all();
+        $user_id = Auth::id();
+        $data = $request->all();
+
+        $transformedData = [];
+
+        foreach ($data as $key => $value) {
+            if ($key === '_token') {
+                continue;
+            }
+
+            $transformedData[] = [
+                'question_id' => (int)$key,
+                'answer_id' => (int)$value,
+            ];
+        }
+
+        return [$transformedData, $user_id, $class, $session, $test];
     }
 }

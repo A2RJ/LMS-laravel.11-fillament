@@ -22,7 +22,7 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('class/{class}', 'classId')->name('class.id');
     Route::get('session/{class}', 'classSession')->name('session.id');
     Route::get('test/{class}/{test}', 'testId')->name('test.id');
-    Route::post('test/{test}', 'storeTestId')->name('post.test.id');
+    Route::post('test/{class}/{session}/{test}', 'storeTestId')->name('post.test.id');
     Route::get('course', 'course')->name('course');
     Route::get('my-course', 'myCourse')->name('my.course');
 });

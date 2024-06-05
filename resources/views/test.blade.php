@@ -74,7 +74,7 @@
 
         <div class="col-span-8 bg-white p-4 rounded-lg">
             <!-- Form Section Soal dan Jawaban -->
-            <form id="form" action="{{ route('post.test.id', 12) }}" method="post">
+            <form id="form" action="{{ route('post.test.id', ['class' => $class->id, 'session' => $class->test->id, 'test' => request('test')]) }}" method="post">
                 @csrf
                 @foreach (collect($class->test->questions)->shuffle() as $index => $question)
                 <div class="question" data-index="{{ $index }}" style="display: none;">
@@ -83,7 +83,7 @@
                     <div class="mb-4">
                         @foreach ($question->answers as $option)
                         <label class="flex justify-start items-start space-x-2 space-y-4">
-                            <input type="radio" name="answer{{ $question->id }}" value="{{ $option->id }}" class="mt-5">
+                            <input type="radio" name="{{ $question->id }}" value="{{ $option->id }}" class="mt-5">
                             <x-tinyview :data="$option->answer"></x-tinyview>
                         </label>
                         @endforeach
