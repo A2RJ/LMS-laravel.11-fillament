@@ -8,6 +8,8 @@ use App\Models\ClassRoom;
 use App\Models\Session;
 use App\Models\Test;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -34,6 +36,8 @@ class HomeController extends Controller
 
     public function classSession(ClassRoom $class)
     {
+
+        $class->load(['sessions.preTest', 'sessions.postTest']);
         $perPage = 1;
         $currentPage = request('page', 1);
         $session_list = collect($class->sessions->all())->toArray();
@@ -45,8 +49,9 @@ class HomeController extends Controller
             $currentPage,
             ['path' => request()->url(), 'query' => request()->query()]
         );
+        $data = $sessions->getCollection()->first();
 
-        return view('session', compact('class', 'sessions'));
+        return view('session', compact('class', 'data', 'sessions'));
     }
 
     public function course()
@@ -65,31 +70,29 @@ class HomeController extends Controller
 
     public function testId(ClassRoom $class, Test $test)
     {
-        $class->load(['sessions' => function ($query) use ($test) {
-            $query
-                ->whereHas('preTest', function ($q) use ($test) {
-                    $q->where('id', $test->id);
-                })
-                ->orWhereHas('postTest', function ($q) use ($test) {
-                    $q->where('id', $test->id);
-                })
-                ->first();
-        }]);
+        $type = request('test', null);
+
+        $relation = $type == 'pre' ? 'preTest' : 'postTest';
+
+        $class->load(['sessions' => function ($query) use ($relation, $test) {
+            $query->with([$relation => function (BelongsTo $q) use ($test) {
+                $q->where('id', $test->id)
+                    ->with([
+                        'questions' => function (HasMany $query) {
+                            $query->whereHas('answers');
+                        },
+                        'questions.answers'
+                    ]);
+            }])->first();
+        }])->first();
+
         $class->session = $class->sessions->first();
+        $class->test = $class->session->$relation;
         unset($class->sessions);
 
-        if (!$class->session) return back()->with('failed', "Test not valid");
+        if (!isset($class->session->$relation)) return abort(404, "Test not valid");
 
-        if ($class->session?->pre_test_id == $test->id || $class->session?->post_test_id == $test->id) {
-            $questions = $test->questions->load('answers')->filter(function ($question) {
-                return $question->answers->isNotEmpty();
-            })->values()->shuffle();
-
-            if ($questions->count() == 0) return back()->with('failed', "Test doesn't have question list");
-            return view('test', compact('questions'));
-        } else {
-            return abort(404);
-        }
+        return view('test', compact('class'));
     }
 
     public function storeTestId(Request $request, $test)

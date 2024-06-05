@@ -41,9 +41,9 @@
 
 <div class="max-w-screen-lg min-h-[60vh] mx-auto mb-10 ">
     <div class="flex justify-between items-center gap-2 mt-2 mb-6 bg-white rounded-lg p-4">
-        <div class="flex justify-start">
+        <div class="flex justify-start space-x-2">
             <div>
-                <a href="#" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
+                <a href="{{ url()->previous() }}" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
                         <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
                     </svg>
@@ -64,7 +64,7 @@
         <div class="col-span-4 bg-white p-4 rounded-lg">
 
             <nav class="grid grid-cols-6 gap-4" aria-label="Pagination">
-                @foreach ($questions as $index => $question)
+                @foreach ($class->test->questions as $index => $question)
                 <div class="pagination-btn text-center rounded-lg bg-white border border-slate-300 text-slate-500 p-1" data-index="{{ $index }}">
                     {{ $index + 1 }}
                 </div>
@@ -76,15 +76,15 @@
             <!-- Form Section Soal dan Jawaban -->
             <form id="form" action="{{ route('post.test.id', 12) }}" method="post">
                 @csrf
-                @foreach ($questions as $index => $question)
+                @foreach (collect($class->test->questions)->shuffle() as $index => $question)
                 <div class="question" data-index="{{ $index }}" style="display: none;">
                     <h2 class="text-xl text-center font-semibold mb-4">Question number {{ $index + 1 }}</h2>
-                    <p class="mb-4 font-semibold">{{ $question->question }}</p>
+                    <p class="mb-4 font-semibold">{!! $question->question !!}</p>
                     <div class="mb-4">
                         @foreach ($question->answers as $option)
                         <label class="flex justify-start items-start space-x-2 space-y-4">
                             <input type="radio" name="answer{{ $question->id }}" value="{{ $option->id }}" class="mt-5">
-                            <x-tinyview :view="$option->answer"></x-tinyview>
+                            <x-tinyview :data="$option->answer"></x-tinyview>
                         </label>
                         @endforeach
                     </div>
@@ -97,22 +97,6 @@
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="prev-btn">Prev</button>
                 <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="next-btn">Next</button>
             </div>
-
-            <!-- <div class="flex justify-between mx-auto my-6 space-x-4">
-                <button class="relative group flex items-center justify-center px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white transition duration-100 hover:bg-white hover:text-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="mr-2 transition-colors duration-100">
-                        <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
-                    </svg>
-                    <span class="transition-colors duration-100">Previous</span>
-                </button>
-
-                <button class="relative group flex items-center justify-center px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white transition duration-100 hover:bg-white hover:text-blue-500">
-                    <span class="transition-colors duration-100">Next</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="ml-2 transition-colors duration-100">
-                        <path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
-                    </svg>
-                </button>
-            </div> -->
         </div>
     </div>
 
