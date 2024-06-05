@@ -51,7 +51,7 @@
             </div>
             <div>
                 <h1 class="text-2xl font-bold">Kelas sakeco untuk pemula</h1>
-                <small class="text-sm font-medium text-slate-500">Pre test session 2: Lorem ipsum dolor sit amet consectetur.</small>
+                <small class="text-sm font-medium text-slate-500"> {{ request('test') == 'pre' ? 'Pre Test ' : 'Post Test ' }} ({{ $class->session->title }})</small>
             </div>
         </div>
         <div>
