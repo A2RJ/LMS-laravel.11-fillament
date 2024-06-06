@@ -50,8 +50,8 @@
                 </a>
             </div>
             <div>
-                <h1 class="text-2xl font-bold">Kelas sakeco untuk pemula</h1>
-                <small class="text-sm font-medium text-slate-500"> {{ request('test') == 'pre' ? 'Pre Test ' : 'Post Test ' }} ({{ $class->session->title }})</small>
+                <h1 class="text-2xl font-bold">{{ $class->title }}</h1>
+                <small class="text-sm font-medium text-slate-500"> {{ request('test') == 'pre' ? 'Pre Test ' : 'Post Test ' }} {{ $session->title }} - {{ $session->test->title }}</small>
             </div>
         </div>
         <div>
@@ -64,7 +64,7 @@
         <div class="col-span-4 bg-white p-4 rounded-lg">
 
             <nav class="grid grid-cols-6 gap-4" aria-label="Pagination">
-                @foreach ($class->test->questions as $index => $question)
+                @foreach ($session->questions as $index => $question)
                 <div class="pagination-btn text-center rounded-lg bg-white border border-slate-300 text-slate-500 p-1" data-index="{{ $index }}">
                     {{ $index + 1 }}
                 </div>
@@ -74,9 +74,9 @@
 
         <div class="col-span-8 bg-white p-4 rounded-lg">
             <!-- Form Section Soal dan Jawaban -->
-            <form id="form" action="{{ route('post.test.id', ['class' => $class->id, 'session' => $class->test->id, 'test_type_id' => $class->test->id, 'test' => request('test')]) }}" method="post">
+            <form id="form" action="{{ route('post.test.id', ['class' => $class->id, 'session' => $session->id, 'test_type_id' => $session->test->id, 'test_type' => request('test')]) }}" method="post">
                 @csrf
-                @foreach (collect($class->test->questions)->shuffle() as $index => $question)
+                @foreach (collect($session->questions)->shuffle() as $index => $question)
                 <div class="question" data-index="{{ $index }}" style="display: none;">
                     <h2 class="text-xl text-center font-semibold mb-4">Question number {{ $index + 1 }}</h2>
                     <p class="mb-4 font-semibold">{!! $question->question !!}</p>

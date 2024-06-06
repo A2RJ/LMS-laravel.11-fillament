@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('test_results', function (Blueprint $table) {
             $table->id();
+            $table->text('test_number');
             $table->foreignId('class_room_id')
                 ->references('id')
                 ->on('class_rooms')
@@ -20,7 +21,7 @@ return new class extends Migration
                 ->noActionOnDelete();
             $table->foreignId('session_id')
                 ->references('id')
-                ->on('sessions')
+                ->on('class_sessions')
                 ->cascadeOnUpdate()
                 ->noActionOnDelete();
             $table->foreignId('pre_test_id')
@@ -49,7 +50,7 @@ return new class extends Migration
                 ->on('users')
                 ->cascadeOnUpdate()
                 ->noActionOnDelete();
-            $table->text('answer');
+            $table->text('answer')->nullable();
             $table->string('score')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();

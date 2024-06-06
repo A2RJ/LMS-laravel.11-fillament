@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use App\Models\Category;
 use App\Models\ClassRoom;
+use App\Models\Question;
+use App\Models\Session;
 use App\Models\Test;
+use App\Models\TestResult;
+use Arr;
+use Carbon\Carbon;
+use DB;
+use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use Ramsey\Uuid\Uuid;
 
 class HomeController extends Controller
 {
@@ -67,58 +76,69 @@ class HomeController extends Controller
         return view('my-course', compact('classes'));
     }
 
-    public function testId(ClassRoom $class, Test $test)
+    public function testId(ClassRoom $class, Session $session)
     {
+        if ($session->class_room_id != $class->id) {
+            return abort(500);
+        }
         $type = request('test', null);
 
         $relation = $type == 'pre' ? 'preTest' : 'postTest';
 
-        $class->load(['sessions' => function ($query) use ($relation, $test) {
-            $query->with([$relation => function (BelongsTo $q) use ($test) {
-                $q->where('id', $test->id)
-                    ->with([
-                        'questions' => function (HasMany $query) {
-                            $query->whereHas('answers');
-                        },
-                        'questions.answers'
-                    ]);
-            }])->first();
-        }])->first();
+        $session->load([$relation => function ($query) {
+            $query->with(['questions' => function ($query) {
+                $query->whereHas('answers');
+            }, 'questions.answers']);
+        }]);
 
-        $class->session = $class->sessions->first();
-        $class->test = $class->session->$relation;
-        unset($class->sessions);
+        $session->test = $session->$relation;
+        $session->questions = $session->$relation->questions;
 
-        if (!isset($class->session->$relation)) return abort(404, "Test not valid");
-
-        return view('test', compact('class'));
+        return view('test', compact('class', 'session'));
     }
 
-    // TODO Bagaimana ambil preTest/postTest id di halaman test untuk dikirim ke fungsi simpan test
-    public function storeTestId(Request $request, $class, $test_type_id, $session, $test)
+    public function storeTestId(Request $request, ClassRoom $class, Session $session, Test $test_type_id, $test_type)
     {
-        $user_id = Auth::id();
-        $data = $request->all();
-        $test_type = $test == 'pre' ? 'pre_test_id' : 'post_test_id';
+        DB::transaction(function () use ($request, $class, $session, $test_type_id, $test_type) {
+            $user_id = Auth::id();
+            $data = $request->all();
+            unset($data['_token']);
+            $preOrPostId = $test_type == 'pre' ? 'pre_test_id' : 'post_test_id';
 
-        $transformedData = [];
+            $createdAt = Carbon::now();
+            $formattedCreatedAt = $createdAt->format('Y-m-d H:i:s');
+            $test_id = Uuid::uuid4();
 
-        foreach ($data as $key => $value) {
-            if ($key === '_token') {
-                continue;
+            $transformedData = [];
+            foreach ($data as $key => $value) {
+                $question = Question::query()
+                    ->find((int)$key);
+
+                if ($question->answer_type == 'selected') {
+                    $answer_key = 'answer_id';
+                    $answer = (int)$value;
+                } else {
+                    $answer_key = 'answer';
+                    $answer = $value;
+                }
+
+                $form = [
+                    'test_number' => $test_id,
+                    'user_id' => (int)$user_id,
+                    'class_room_id' => (int)$class->id,
+                    'session_id' => (int)$session->id,
+                    $preOrPostId => (int)$test_type_id->id,
+                    'question_id' => (int)$key,
+                    $answer_key => $answer,
+                    'created_at' => $formattedCreatedAt
+                ];
+
+                $transformedData[] = $form;
             }
 
-            // periksa tipe soal apakah pilihan aganda atau isian
-
-            $transformedData[] = [
-                'class_room_id' => $class,
-                'session_id' => $session,
-                $test_type => $test_type_id,
-                'question_id' => (int)$key,
-                'answer_id' => (int)$value,
-            ];
-        }
-
-        return [$transformedData, $user_id, $class, $session, $test];
+            TestResult::query()
+                ->insert($transformedData);
+        });
+        return 'Berhasil simpan ujian';
     }
 }

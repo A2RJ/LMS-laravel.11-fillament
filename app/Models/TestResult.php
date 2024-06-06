@@ -37,8 +37,12 @@ class TestResult extends Model
     use HasFactory;
 
     protected $fillable = [
+        'test_number',
         'user_id',
+        'class_room_id',
         'session_id',
+        'pre_test_id',
+        'post_test_id',
         'question_id',
         'answer_id',
         'answer',

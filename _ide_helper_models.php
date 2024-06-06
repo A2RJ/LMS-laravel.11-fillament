@@ -341,6 +341,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUserId($value)
  * @mixin \Eloquent
+ * @property string $test_number
+ * @property int $class_room_id
+ * @property int|null $pre_test_id
+ * @property int|null $post_test_id
+ * @property string|null $score
+ * @property string|null $notes
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereClassRoomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereNotes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult wherePostTestId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult wherePreTestId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereScore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereTestNumber($value)
  */
 	class TestResult extends \Eloquent {}
 }
