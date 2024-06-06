@@ -13,27 +13,42 @@ return new class extends Migration
     {
         Schema::create('test_results', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('class_room_id')
+                ->references('id')
+                ->on('class_rooms')
+                ->cascadeOnUpdate()
+                ->noActionOnDelete();
             $table->foreignId('session_id')
                 ->references('id')
                 ->on('sessions')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->noActionOnDelete();
+            $table->foreignId('pre_test_id')
+                ->nullable()
+                ->references('id')
+                ->on('tests')
+                ->nullOnDelete();
+            $table->foreignId('post_test_id')
+                ->nullable()
+                ->references('id')
+                ->on('tests')
+                ->nullOnDelete();
             $table->foreignId('question_id')
                 ->references('id')
                 ->on('questions')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->noActionOnDelete();
             $table->foreignId('answer_id')
                 ->nullable()
                 ->references('id')
                 ->on('answers')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->noActionOnDelete();
             $table->foreignId('user_id')
                 ->references('id')
                 ->on('users')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->noActionOnDelete();
             $table->text('answer');
             $table->string('score')->nullable();
             $table->string('notes')->nullable();

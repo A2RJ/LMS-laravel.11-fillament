@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\ClassRoom;
-use App\Models\Session;
 use App\Models\Test;
-use Auth;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -96,10 +94,12 @@ class HomeController extends Controller
         return view('test', compact('class'));
     }
 
-    public function storeTestId(Request $request, $class, $session, $test)
+    // TODO Bagaimana ambil preTest/postTest id di halaman test untuk dikirim ke fungsi simpan test
+    public function storeTestId(Request $request, $class, $test_type_id, $session, $test)
     {
         $user_id = Auth::id();
         $data = $request->all();
+        $test_type = $test == 'pre' ? 'pre_test_id' : 'post_test_id';
 
         $transformedData = [];
 
@@ -108,7 +108,12 @@ class HomeController extends Controller
                 continue;
             }
 
+            // periksa tipe soal apakah pilihan aganda atau isian
+
             $transformedData[] = [
+                'class_room_id' => $class,
+                'session_id' => $session,
+                $test_type => $test_type_id,
                 'question_id' => (int)$key,
                 'answer_id' => (int)$value,
             ];

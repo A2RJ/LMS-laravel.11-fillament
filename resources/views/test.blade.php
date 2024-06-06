@@ -74,7 +74,7 @@
 
         <div class="col-span-8 bg-white p-4 rounded-lg">
             <!-- Form Section Soal dan Jawaban -->
-            <form id="form" action="{{ route('post.test.id', ['class' => $class->id, 'session' => $class->test->id, 'test' => request('test')]) }}" method="post">
+            <form id="form" action="{{ route('post.test.id', ['class' => $class->id, 'session' => $class->test->id, 'test_type_id' => $class->test->id, 'test' => request('test')]) }}" method="post">
                 @csrf
                 @foreach (collect($class->test->questions)->shuffle() as $index => $question)
                 <div class="question" data-index="{{ $index }}" style="display: none;">
