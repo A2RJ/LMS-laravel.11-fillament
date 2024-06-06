@@ -3,27 +3,86 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\ClassRoom;
+use App\Models\Question;
+use App\Models\Session;
 use App\Models\Test;
+use App\Models\TestResult;
+use Auth;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class TestController extends Controller
 {
-    public function preTest(Test $test)
+    public function test(ClassRoom $class, Session $session)
     {
-        return $test;
+        if ($session->class_room_id != $class->id) {
+            return abort(500);
+        }
+        $type = request('test', null);
+
+        $relation = $type == 'pre' ? 'preTest' : 'postTest';
+
+        $session->load([$relation => function ($query) {
+            $query->with(['questions' => function ($query) {
+                $query->whereHas('answers');
+            }, 'questions.answers']);
+        }]);
+
+        $session->test = $session->$relation;
+        $session->questions = $session->$relation->questions;
+
+        return view('test', compact('class', 'session'));
     }
 
-    public function savePreTest(Request $request, Test $test)
+    public function storeTest(Request $request, ClassRoom $class, Session $session, Test $test_type_id, $test_type)
     {
-        return $test;
+        DB::transaction(function () use ($request, $class, $session, $test_type_id, $test_type) {
+            $user_id = Auth::id();
+            $data = $request->all();
+            unset($data['_token']);
+            $preOrPostId = $test_type == 'pre' ? 'pre_test_id' : 'post_test_id';
+
+            $createdAt = Carbon::now();
+            $formattedCreatedAt = $createdAt->format('Y-m-d H:i:s');
+            $test_id = Uuid::uuid4();
+
+            $transformedData = [];
+            foreach ($data as $key => $value) {
+                $question = Question::query()
+                    ->find((int)$key);
+
+                if ($question->answer_type == 'selected') {
+                    $answer_key = 'answer_id';
+                    $answer = (int)$value;
+                } else {
+                    $answer_key = 'answer';
+                    $answer = $value;
+                }
+
+                $form = [
+                    'test_number' => $test_id,
+                    'user_id' => (int)$user_id,
+                    'class_room_id' => (int)$class->id,
+                    'session_id' => (int)$session->id,
+                    $preOrPostId => (int)$test_type_id->id,
+                    'question_id' => (int)$key,
+                    $answer_key => $answer,
+                    'created_at' => $formattedCreatedAt
+                ];
+
+                $transformedData[] = $form;
+            }
+
+            TestResult::query()
+                ->insert($transformedData);
+        });
+        return 'Berhasil simpan ujian';
     }
 
-    public function postTest(Test $test)
-    {
-        return $test;
-    }
-
-    public function savePostTest(Request $request, Test $test)
+    public function result(Test $test)
     {
         return $test;
     }

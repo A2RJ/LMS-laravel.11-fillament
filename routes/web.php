@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\User\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -17,14 +18,18 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('profile', 'profile')->name('profile');
 });
 
-Route::controller(HomeController::class)->group(function () {
-    Route::get('category/{category}', 'categoryId')->name('category.id');
-    Route::get('class/{class}', 'classId')->name('class.id');
-    Route::get('session/{class}', 'classSession')->name('session.id');
-    Route::get('test/{class}/{session}', 'testId')->name('test.id');
-    Route::post('test/{class}/{session}/{test_type_id}/{test_type}', 'storeTestId')->name('post.test.id');
-    Route::get('course', 'course')->name('course');
-    Route::get('my-course', 'myCourse')->name('my.course');
+Route::prefix('/')->group(function () {
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('category/{category}', 'categoryId')->name('category.id');
+        Route::get('class/{class}', 'classId')->name('class.id');
+        Route::get('session/{class}', 'classSession')->name('session.id');
+        Route::get('course', 'course')->name('course');
+        Route::get('my-course', 'myCourse')->name('my.course');
+    });
+    Route::controller(TestController::class)->group(function () {
+        Route::get('test/{class}/{session}', 'test')->name('test.id');
+        Route::post('test/{class}/{session}/{test_type_id}/{test_type}', 'storeTest')->name('post.test.id');
+    });
 });
 
 Route::post('file', function () {
