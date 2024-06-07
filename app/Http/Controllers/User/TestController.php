@@ -45,7 +45,6 @@ class TestController extends Controller
 
     public function storeTest(Request $request, ClassRoom $class, Session $session, Test $test_type_id, $test_type)
     {
-        return $request->all();
         try {
             $test_number = DB::transaction(function () use ($request, $class, $session, $test_type_id, $test_type) {
                 $user_id = Auth::id();
@@ -57,18 +56,12 @@ class TestController extends Controller
                 $formattedCreatedAt = $createdAt->format('Y-m-d H:i:s');
                 $test_number = Uuid::uuid4();
 
-                $transformedData = [];
+                $selectedData = [];
+                $textData = [];
+
                 foreach ($data as $key => $value) {
                     $question = Question::query()
                         ->find((int) $key);
-
-                    if ($question->answer_type == 'selected') {
-                        $answer_key = 'answer_id';
-                        $answer = (int) $value;
-                    } else {
-                        $answer_key = 'answer';
-                        $answer = $value;
-                    }
 
                     $form = [
                         'test_number' => $test_number,
@@ -77,15 +70,27 @@ class TestController extends Controller
                         'session_id' => (int) $session->id,
                         $preOrPostId => (int) $test_type_id->id,
                         'question_id' => (int) $key,
-                        $answer_key => $answer,
                         'created_at' => $formattedCreatedAt
                     ];
 
-                    $transformedData[] = $form;
+                    if ($question->answer_type == 'selected') {
+                        $form['answer_id'] = (int) $value;
+                        $selectedData[] = $form;
+                    } else {
+                        $form['answer'] = $value;
+                        $textData[] = $form;
+                    }
                 }
 
-                TestResult::query()
-                    ->insert($transformedData);
+                if (!empty($selectedData)) {
+                    TestResult::query()
+                        ->insert($selectedData);
+                }
+
+                if (!empty($textData)) {
+                    TestResult::query()
+                        ->insert($textData);
+                }
 
                 return $test_number;
             });
@@ -112,7 +117,8 @@ class TestController extends Controller
             ])
             ->get();
         $class = $tests->first();
-        $answered_correctly = $tests->filter(fn($item) => $item->answered->is_true)->count();
+
+        $answered_correctly = $tests->filter(fn ($item) => $item->answered)->filter(fn ($item) => $item->answered->is_true)->count();
 
         return view('result', compact('class', 'tests', 'answered_correctly'));
     }

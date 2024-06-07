@@ -4,37 +4,28 @@
 <script src="/js/tinymce_5.10.7/tinymce.min.js"></script>
 
 <!-- Breadcrumb -->
-<nav class="max-w-screen-lg mx-auto flex py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700"
-    aria-label="Breadcrumb">
+<nav class="max-w-screen-lg mx-auto flex py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li class="inline-flex items-center">
-            <a href="#"
-                class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-400 dark:hover:text-white">
-                <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                    viewBox="0 0 20 20">
-                    <path
-                        d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+            <a href="#" class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-400 dark:hover:text-white">
+                <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                 </svg>
                 Home
             </a>
         </li>
         <li>
             <div class="flex items-center">
-                <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-slate-400 " aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 9 4-4-4-4" />
+                <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-slate-400 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                 </svg>
-                <a href="#"
-                    class="ms-1 text-sm font-medium text-slate-700 hover:text-blue-600 md:ms-2 dark:text-slate-400 dark:hover:text-white">Sakeco</a>
+                <a href="#" class="ms-1 text-sm font-medium text-slate-700 hover:text-blue-600 md:ms-2 dark:text-slate-400 dark:hover:text-white">Sakeco</a>
             </div>
         </li>
         <li aria-current="page">
             <div class="flex items-center">
-                <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-slate-400" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 9 4-4-4-4" />
+                <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                 </svg>
                 <span class="ms-1 text-sm font-medium text-slate-500 md:ms-2 dark:text-slate-400">Kelas sakeco untuk
                     pemula</span>
@@ -42,10 +33,8 @@
         </li>
         <li aria-current="page">
             <div class="flex items-center">
-                <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-slate-400" aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="m1 9 4-4-4-4" />
+                <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-slate-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
                 </svg>
                 <span class="ms-1 text-sm font-medium text-slate-500 md:ms-2 dark:text-slate-400">Pre Test</span>
             </div>
@@ -57,12 +46,9 @@
     <div class="flex justify-between items-center gap-2 mt-2 mb-6 bg-white rounded-lg p-4">
         <div class="flex justify-start space-x-2">
             <div>
-                <a href="{{ url()->previous() }}"
-                    class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                        class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
-                        <path fill="currentColor"
-                            d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                <a href="{{ url()->previous() }}" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
+                        <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
                     </svg>
                 </a>
             </div>
@@ -82,44 +68,39 @@
         <div class="col-span-4 bg-white p-4 rounded-lg">
             <nav class="grid grid-cols-6 gap-4" aria-label="Pagination">
                 @foreach ($session->questions as $index => $question)
-                    <div class="pagination-btn text-center rounded-lg bg-white border border-slate-300 text-slate-500 p-1"
-                        data-index="{{ $index }}">
-                        {{ $index + 1 }}
-                    </div>
+                <div class="pagination-btn text-center rounded-lg bg-white border border-slate-300 text-slate-500 p-1" data-index="{{ $index }}">
+                    {{ $index + 1 }}
+                </div>
                 @endforeach
             </nav>
         </div>
 
         <div class="col-span-8 bg-white p-4 rounded-lg">
-            <form id="form"
-                action="{{ route('post.test.id', ['class' => $class->id, 'session' => $session->id, 'test_type_id' => $session->test->id, 'test_type' => request('test')]) }}"
-                method="post">
+            <form id="form" action="{{ route('post.test.id', ['class' => $class->id, 'session' => $session->id, 'test_type_id' => $session->test->id, 'test_type' => request('test')]) }}" method="post">
                 @csrf
                 @foreach (collect($session->questions)->shuffle() as $index => $question)
-                    <div class="question" data-index="{{ $index }}" style="display: none;">
-                        <h2 class="text-xl text-center font-semibold mb-4">Question number {{ $index + 1 }}</h2>
-                        <p class="mb-4 font-semibold">{!! $question->question !!}</p>
-                        <div class="mb-4">
-                            @if ($question->answer_type == 'selected')
-                                @foreach ($question->answers as $option)
-                                    <label class="flex justify-start items-start space-x-2 space-y-4">
-                                        <input type="radio" name="{{ $question->id }}" value="{{ $option->id }}" class="mt-5">
-                                        <x-tinyview :data="$option->answer"></x-tinyview>
-                                    </label>
-                                @endforeach                                
-                            @else
-                                <textarea id="editor{{ $question->id }}" name="{{ $question->id }}"></textarea>
-                            @endif
-                        </div>
+                <div class="question" data-index="{{ $index }}" style="display: none;">
+                    <h2 class="text-xl text-center font-semibold mb-4">Question number {{ $index + 1 }}</h2>
+                    <p class="mb-4 font-semibold">{!! $question->question !!}</p>
+                    <div class="mb-4">
+                        @if ($question->answer_type == 'selected')
+                        @foreach ($question->answers as $option)
+                        <label class="flex justify-start items-start space-x-2 space-y-4">
+                            <input type="radio" name="{{ $question->id }}" value="{{ $option->id }}" class="mt-5">
+                            <x-tinyview :data="$option->answer"></x-tinyview>
+                        </label>
+                        @endforeach
+                        @else
+                        <textarea id="editor{{ $question->id }}" name="{{ $question->id }}"></textarea>
+                        @endif
                     </div>
+                </div>
                 @endforeach
             </form>
 
             <div class="mt-6 flex justify-end space-x-4">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                    id="prev-btn">Prev</button>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-                    id="next-btn">Next</button>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="prev-btn">Prev</button>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" id="next-btn">Next</button>
             </div>
         </div>
     </div>
@@ -128,16 +109,12 @@
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-blur-md"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div
-                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
-                            <div
-                                class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                                 </svg>
                             </div>
                             <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -151,9 +128,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                        <button type="button"
-                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                            id="cancel-button">Cancel</button>
+                        <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" id="cancel-button">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -163,16 +138,12 @@
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity backdrop-blur-md"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                <div
-                    class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
-                            <div
-                                class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                    stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                                 </svg>
                             </div>
                             <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
@@ -185,23 +156,21 @@
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                        <button type="button"
-                            class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                            id="save">Save</button>
-                        <button type="button"
-                            class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                            id="cancel-save">Cancel</button>
+                        <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto" id="save">Save</button>
+                        <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto" id="cancel-save">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <input type="hidden" id="hidden" name="default" value='<script src="//cdn.public.flmngr.com/NXyzC2Un/widgets.js"></script>'>
+
     <script>
         function startCountdown(duration, display) {
             var timer = duration,
                 minutes, seconds;
-            var interval = setInterval(function () {
+            var interval = setInterval(function() {
                 minutes = parseInt(timer / 60, 10);
                 seconds = parseInt(timer % 60, 10);
 
@@ -217,7 +186,7 @@
             }, 1000);
         }
 
-        window.onload = function () {
+        window.onload = function() {
             var countdownElement = document.getElementById("countdown");
             var timeArray = countdownElement.textContent.split(":");
             var minutes = parseInt(timeArray[0], 10);
@@ -228,6 +197,32 @@
         };
 
         document.addEventListener('DOMContentLoaded', () => {
+            const textareas = document.querySelectorAll('textarea');
+            const textareaIds = Array.from(textareas).map(textarea => textarea.id);
+            textareaIds.forEach(function(id) {
+                tinymce.init({
+                    selector: '#' + id,
+                    height: 400,
+                    deprecation_warnings: false,
+                    plugins: [
+                        'file-manager', 'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
+                        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                        'insertdatetime', 'media', 'table', 'wordcount'
+                    ],
+                    toolbar: 'fullscreen undo redo | blocks | ' +
+                        'bold italic backcolor | alignleft aligncenter ' +
+                        'alignright alignjustify | bullist numlist outdent indent | ' +
+                        'removeformat | help',
+                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
+                    Flmngr: {
+                        apiKey: "NXyzC2Un",
+                        urlFileManager: 'http://127.0.0.1:8000/file',
+                        urlFiles: 'http://127.0.0.1:8000/storage',
+                    }
+                });
+            })
+
+
             const modal = document.getElementById('modal');
             const cancelButton = document.getElementById('cancel-button');
 
@@ -315,12 +310,33 @@
             });
 
             document.getElementById('next-btn').addEventListener('click', () => {
-                const radios = document.querySelectorAll('.question')[currentQuestionIndex].querySelectorAll('input[type="radio"]');
+                const currentQuestion = document.querySelectorAll('.question')[currentQuestionIndex];
+                const radios = currentQuestion.querySelectorAll('input[type="radio"]');
+                const textarea = currentQuestion.querySelector('textarea');
+
+                let textareaContent = '';
+                if (textarea) {
+                    textareaContent = tinymce.get(textarea.id).getContent();
+                }
+
+
+                const defaultTextarea = document.getElementsByName('default')[0];
+                const defaultTextareaContent = defaultTextarea ? defaultTextarea.value : null;
+
                 let answered = false;
                 for (let i = 0; i < radios.length; i++) {
                     if (radios[i].checked) {
                         answered = true;
                         break;
+                    }
+                }
+
+                if (!answered && textarea) {
+                    if (defaultTextareaContent === textareaContent) {
+                        answeredQuestions.delete(currentQuestionIndex);
+                    }
+                    if (defaultTextareaContent !== textareaContent) {
+                        answered = true;
                     }
                 }
 
@@ -333,9 +349,11 @@
                     showQuestion(currentQuestionIndex);
                     updateButtons();
                 } else {
-                    openModal()
+                    openModal();
                 }
-                if (answeredQuestions.size === questions.length) {
+
+                const totalQuestions = Array.from(questions).filter(question => question.querySelector('input[type="radio"]') || question.querySelector('textarea')).length;
+                if (answeredQuestions.size === totalQuestions) {
                     openModalSave();
                 }
             });
@@ -345,30 +363,4 @@
         });
     </script>
 </div>
-
-@foreach ($session->questions as $index => $question)
-    <script>
-        "use strict";
-        tinymce.init({
-            selector: '#editor{{$question->id}}',
-            height: 400,
-            deprecation_warnings: false,
-            plugins: [
-                'file-manager', 'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
-                'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                'insertdatetime', 'media', 'table', 'wordcount'
-            ],
-            toolbar: 'fullscreen undo redo | blocks | ' +
-                'bold italic backcolor | alignleft aligncenter ' +
-                'alignright alignjustify | bullist numlist outdent indent | ' +
-                'removeformat | help',
-            content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
-            Flmngr: {
-                apiKey: "NXyzC2Un",
-                urlFileManager: 'http://127.0.0.1:8000/file',
-                urlFiles: 'http://127.0.0.1:8000/storage',
-            }
-        });
-    </script>
-@endforeach
 @endsection

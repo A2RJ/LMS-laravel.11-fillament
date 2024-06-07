@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                            <dt class="font-medium text-slate-900">Answered Correctly</dt>
+                            <dt class="font-medium text-slate-900">Score</dt>
                             <dd class="text-slate-700 sm:col-span-2">{{ $answered_correctly }}</dd>
                         </div>
                     </dl>
@@ -117,8 +117,7 @@
     </div>
 
 
-
-    <div class="lg:pr-52 grid grid-cols-1 gap-8 pb-16">
+    <div class="lg:pr-32 grid grid-cols-1 gap-8 pb-16">
         @foreach ($tests as $index => $test)
             <div class="" data-index="{{ $index }}">
                 <div class="flex space-x-4">
@@ -126,48 +125,59 @@
                     <h4 class="font-bold">{!! $test->question->question !!}</h4>
                 </div>
                 <div class="ml-8">
-                    @foreach ($test->question->answers as $option)
-                        <label class="flex justify-start items-start space-x-2 space-y-4">
-                            @if ($test->answered->id == $option->id)
-                                @if ($option->is_true)
-                                    <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-                                        height="100" viewBox="0 0 48 48">
-                                        <path fill="#c8e6c9"
-                                            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
-                                        <path fill="#4caf50"
-                                            d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z">
-                                        </path>
-                                    </svg>
+                    @if ($test->question->answer_type == 'selected')
+                        @foreach ($test->question->answers as $option)
+                            <label class="flex justify-start items-start space-x-2 space-y-4">
+                                @if ($test->answered->id == $option->id)
+                                    @if ($option->is_true)
+                                        <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                            height="100" viewBox="0 0 48 48">
+                                            <path fill="#c8e6c9"
+                                                d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
+                                            <path fill="#4caf50"
+                                                d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z">
+                                            </path>
+                                        </svg>
+                                    @else
+                                        <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                            height="100" viewBox="0 0 48 48">
+                                            <path fill="#f44336"
+                                                d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
+                                            <path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z">
+                                            </path>
+                                            <path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z">
+                                            </path>
+                                        </svg>
+                                    @endif
                                 @else
-                                    <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-                                        height="100" viewBox="0 0 48 48">
-                                        <path fill="#f44336"
-                                            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
-                                        <path fill="#fff" d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z">
-                                        </path>
-                                        <path fill="#fff" d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z">
-                                        </path>
-                                    </svg>
+                                    @if ($option->is_true)
+                                        <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                            height="100" viewBox="0 0 48 48">
+                                            <path fill="#c8e6c9"
+                                                d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
+                                            <path fill="#4caf50"
+                                                d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z">
+                                            </path>
+                                        </svg>
+                                    @else
+                                        <input type="radio" name="" value=""
+                                            class="form-radio lg:h-5 lg:w-5 checked:bg-slate-500 text-slate-500 p-1 mt-5" disabled>
+                                    @endif
                                 @endif
-                            @else
-                                @if ($option->is_true)
-                                    <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-                                        height="100" viewBox="0 0 48 48">
-                                        <path fill="#c8e6c9"
-                                            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
-                                        <path fill="#4caf50"
-                                            d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z">
-                                        </path>
-                                    </svg>
-                                @else
-                                    <input type="radio" name="" value=""
-                                        class="form-radio lg:h-5 lg:w-5 checked:bg-slate-500 text-slate-500 p-1 mt-5" disabled>
-                                @endif
-                            @endif
-                            <x-tinyview :data="$option->answer"></x-tinyview>
-                        </label>
-                    @endforeach
-                </div>
+                                <div class="text-justify">
+                                    <x-tinyview :data="$option->answer"></x-tinyview>
+                                </div>
+                            </label>
+                        @endforeach
+                    @else
+                        <div class="border border-slate-300 rounded p-2 mt-2">
+                            <p class="font-semibold">Answer:</p>
+                            <div class="ml-3">
+                                <x-tinyview :data="$test->answer"></x-tinyview>
+                            </div>
+                        </div>
+                    @endif  
+              </div>
             </div>
         @endforeach
     </div>
