@@ -90,6 +90,7 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - [ ] tambah final test pada class
 
 ## NOTES
+- https://laracasts.com/discuss/channels/code-review/set-time-duration-for-a-quiz-app
 - https://dev.to/mikevarenek/10-free-tailwind-css-templates-32f7
 - https://welovedevs.com/app/tests/tailwind
 - https://tailwindui.com/components/application-ui/forms/form-layouts

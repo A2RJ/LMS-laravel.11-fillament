@@ -45,6 +45,7 @@ class TestController extends Controller
 
     public function storeTest(Request $request, ClassRoom $class, Session $session, Test $test_type_id, $test_type)
     {
+        return $request->all();
         try {
             $test_number = DB::transaction(function () use ($request, $class, $session, $test_type_id, $test_type) {
                 $user_id = Auth::id();
