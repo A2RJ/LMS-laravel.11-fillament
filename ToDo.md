@@ -74,6 +74,7 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 
 ## TODO
 ### Student
+- [ ] Test untuk tipe soal isian
 - home
 - dashboard
 - course
