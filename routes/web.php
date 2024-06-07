@@ -29,6 +29,7 @@ Route::prefix('/')->group(function () {
     Route::controller(TestController::class)->group(function () {
         Route::get('test/{class}/{session}', 'test')->name('test.id');
         Route::post('test/{class}/{session}/{test_type_id}/{test_type}', 'storeTest')->name('post.test.id');
+        Route::get('result/{result}', 'result')->name('test.result');
     });
 });
 

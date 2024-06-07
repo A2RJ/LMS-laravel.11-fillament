@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int $question_id
- * @property int $is_true
+ * @property-read int $is_true
  * @property int $score
  * @property string $answer
  * @property \Illuminate\Support\Carbon|null $created_at

@@ -17,7 +17,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $question_id
- * @property int $is_true
+ * @property-read int $is_true
  * @property int $score
  * @property string $answer
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -319,13 +319,23 @@ namespace App\Models{
  * 
  *
  * @property int $id
+ * @property string $test_number
+ * @property int $class_room_id
  * @property int $session_id
+ * @property int|null $pre_test_id
+ * @property int|null $post_test_id
  * @property int $question_id
- * @property int $answer_id
+ * @property int|null $answer_id
  * @property int $user_id
- * @property \App\Models\Answer $answer
+ * @property string|null $answer
+ * @property string|null $score
+ * @property string|null $notes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Answer|null $answerOption
+ * @property-read \App\Models\ClassRoom $classRoom
+ * @property-read \App\Models\Test|null $postTest
+ * @property-read \App\Models\Test|null $preTest
  * @property-read \App\Models\Question $question
  * @property-read \App\Models\Session $session
  * @property-read \App\Models\User $user
@@ -334,25 +344,20 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult query()
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereAnswer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereAnswerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereClassRoomId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereQuestionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereSessionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUserId($value)
- * @mixin \Eloquent
- * @property string $test_number
- * @property int $class_room_id
- * @property int|null $pre_test_id
- * @property int|null $post_test_id
- * @property string|null $score
- * @property string|null $notes
- * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereClassRoomId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereNotes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult wherePostTestId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult wherePreTestId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereQuestionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereScore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereTestNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUserId($value)
+ * @mixin \Eloquent
+ * @property-read \App\Models\Answer|null $answered
  */
 	class TestResult extends \Eloquent {}
 }

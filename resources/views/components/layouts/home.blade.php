@@ -11,7 +11,7 @@
 
 <body class="bg-[#f6f5f5]">
     <div class="sticky top-0 z-20 w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 shadow">
-        <div x-data="{ open: false }" class="flex flex-col container mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:py-4">
+        <div x-data="{ open: false }" class="max-w-screen-lg lg:max-w-screen-xl flex flex-col container mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:py-4">
             <div class="flex flex-row items-center justify-between">
                 <a href="/" class="flex items-center whitespace-nowrap text-2xl font-black" title="Samawa Daring">
                     <span class="mr-2 9">
@@ -61,7 +61,7 @@
             <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row">
                 @auth
                 <div class="relative inline-block">
-                    <div id="avatarButton" class="border shadow-lg cursor-pointer border-blue-500 cursor-pointerrelative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-slate-100 rounded-full dark:bg-slate-600">
+                    <div id="avatarButton" class="border cursor-pointer border-blue-500 cursor-pointerrelative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-slate-100 rounded-full dark:bg-slate-600">
                         <span class="font-bold text-lg text-slate-600 dark:text-slate-300">
                             @php
                             $user = Auth::user();
@@ -104,7 +104,7 @@
         </div>
     </div>
 
-    <div class="container m-auto md:p-4">
+    <div class="container md:p-4 max-w-screen-lg lg:max-w-screen-xl mx-auto">
         @yield('content')
     </div>
 
