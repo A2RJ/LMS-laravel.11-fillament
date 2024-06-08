@@ -11,8 +11,6 @@ use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SessionsRelationManager extends RelationManager
 {
@@ -40,7 +38,7 @@ class SessionsRelationManager extends RelationManager
                     ->label('Pre Test')
                     ->searchPrompt('Search test by title')
                     ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                    ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
+                    ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                     ->searchable()
                     ->optionsLimit(20),
                 Forms\Components\Select::make('post_test_id')
@@ -48,7 +46,7 @@ class SessionsRelationManager extends RelationManager
                     ->label('Pre Test')
                     ->searchPrompt('Search test by title')
                     ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                    ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
+                    ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                     ->searchable()
                     ->optionsLimit(20),
             ]);
@@ -61,9 +59,13 @@ class SessionsRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('preTest')
-                    ->formatStateUsing(fn (string $state) => $state ? 'Open Link' : 'No Test'),
+                    ->formatStateUsing(fn(string $state) => $state ? 'Preview Test' : 'No Test')
+                    ->badge()
+                    ->color('primary'),
                 Tables\Columns\TextColumn::make('postTest')
-                    ->formatStateUsing(fn (string $state) => $state ? 'Open Link' : 'No Test'),
+                    ->formatStateUsing(fn(string $state) => $state ? 'Preview Test' : 'No Test')
+                    ->badge()
+                    ->color('primary'),
                 Tables\Columns\TextColumn::make('start')->dateTime(),
                 Tables\Columns\TextColumn::make('end')->dateTime(),
             ])
@@ -74,9 +76,22 @@ class SessionsRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
+                Tables\Actions\Action::make('settings')
+                    ->label('Test Result')
+                    ->icon('heroicon-o-academic-cap')
+                    ->url(function (Session $session) {
+                        return route('filament.admin.resources.sessions.session.result', $session->id);
+                    }, true),
                 Tables\Actions\ViewAction::make()
-                    ->url(fn (Session $session) => SessionResource::getUrl('view', ['record' => $session->id])),
-                Tables\Actions\EditAction::make(),
+                    ->url(function (Session $session) {
+                        $sessions = Session::where('class_room_id', $session->class_room_id)->get();
+                        $currentIndex = $sessions->search(function ($item) use ($session) {
+                            return $item->id === $session->id;
+                        });
+                        return route('session.id', ['class' => $session->class_room_id]) . "?page=" . $currentIndex + 1;
+                    }, true),
+                Tables\Actions\EditAction::make()
+                    ->url(fn(Session $session) => route('filament.admin.resources.sessions.edit', ['record' => $session->id])),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

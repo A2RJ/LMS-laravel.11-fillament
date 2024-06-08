@@ -15,6 +15,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Pages\Page;
 
 class SessionResource extends Resource
 {
@@ -37,7 +38,7 @@ class SessionResource extends Resource
                             ->label('Class')
                             ->searchPrompt('Search test by title')
                             ->options(ClassRoom::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
+                            ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                             ->required()
                             ->searchable()
                             ->optionsLimit(20),
@@ -57,7 +58,7 @@ class SessionResource extends Resource
                             ->label('Pre Test')
                             ->searchPrompt('Search test by title')
                             ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
+                            ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                             ->searchable()
                             ->optionsLimit(20),
                         Forms\Components\Select::make('post_test_id')
@@ -65,7 +66,7 @@ class SessionResource extends Resource
                             ->label('Pre Test')
                             ->searchPrompt('Search test by title')
                             ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
+                            ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                             ->searchable()
                             ->optionsLimit(20)
                     ])
@@ -139,6 +140,14 @@ class SessionResource extends Resource
             'create' => Pages\CreateSession::route('/create'),
             'edit' => Pages\EditSession::route('/{record}/edit'),
             'view' => Pages\ViewSession::route('/{record}'),
+            'session.result' => Pages\TestResultBySession::route('/test/{record}/result')
         ];
     }
+
+    // public static function getRecordSubNavigation(Page $page): array
+    // {
+    //     return $page->generateNavigationItems([
+    //         Pages\TestResult::class,
+    //     ]);
+    // }
 }

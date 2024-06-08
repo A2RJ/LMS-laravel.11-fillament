@@ -21,6 +21,7 @@ use Illuminate\Support\HtmlString;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Notifications\Notification;
+use Filament\Resources\Pages\Page;
 
 class ClassRoomResource extends Resource
 {
@@ -92,7 +93,8 @@ class ClassRoomResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\ViewAction::make()
+                    ->url(fn(ClassRoom $class) => route('class.id', $class->id), true),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -119,7 +121,7 @@ class ClassRoomResource extends Resource
             'create' => Pages\CreateClassRoom::route('/create'),
             'edit' => Pages\EditClassRoom::route('/{record}/edit'),
             'view' => Pages\ViewClassRoom::route('/{record}'),
-            'lesson' => Pages\Lesson::route('/{record}/lesson/{lesson}')
+            'lesson' => Pages\Lesson::route('/{record}/lesson/{lesson}'),
         ];
     }
 
@@ -140,4 +142,13 @@ class ClassRoomResource extends Resource
                     ->columnSpanFull()
             ]);
     }
+
+    public static function getRecordSubNavigation(Page $page): array
+    {
+        return $page->generateNavigationItems([
+            // Pages\TestResult::class,
+        ]);
+    }
+
+
 }

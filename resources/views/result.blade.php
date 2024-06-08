@@ -46,7 +46,7 @@
 <div class="p-4 max-w-screen-lg mx-auto bg-white border border-slate-300 rounded-lg grid grid-cols-1 gap-4">
     <div class="flex justify-start items-center gap-2 mt-2">
         <div>
-            <a href="{{ url()->previous() }}"
+            <a href="{{ route('session.id', $class->class_room_id) }}?page={{ $class->session_id }}"
                 class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                     class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
@@ -117,7 +117,7 @@
     </div>
 
 
-    <div class="lg:pr-32 grid grid-cols-1 gap-8 pb-16">
+    <div class="lg:pr-32 lg:pl-4 grid grid-cols-1 gap-8 pb-16">
         @foreach ($tests as $index => $test)
             <div class="" data-index="{{ $index }}">
                 <div class="flex space-x-4">
@@ -171,13 +171,19 @@
                         @endforeach
                     @else
                         <div class="border border-slate-300 rounded p-2 mt-2">
-                            <p class="font-semibold">Answer:</p>
+                            <div class="flex justify-between items-center">
+                                <p class="font-semibold">Answer:</p>
+                                <span
+                                    class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $test->score ? 'bg-green-100 text-green-500' : 'bg-orange-300 text-orange-800' }}">
+                                    {{ $test->score ?? "Still being checked" }}
+                                </span>
+                            </div>
+
                             <div class="ml-3">
                                 <x-tinyview :data="$test->answer"></x-tinyview>
                             </div>
                         </div>
-                    @endif  
-              </div>
+                    @endif              </div>
             </div>
         @endforeach
     </div>

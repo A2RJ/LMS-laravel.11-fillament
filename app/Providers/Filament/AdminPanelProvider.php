@@ -59,6 +59,10 @@ class AdminPanelProvider extends PanelProvider
                 ProfileFilamentPlugin::make()
             ])
             ->viteTheme('resources/css/app.css')
+            ->colors([
+                'primary' => '#06b6d4',
+            ])
+            ->font('Poppins')
             ->topNavigation(false)
             ->spa(false);
     }

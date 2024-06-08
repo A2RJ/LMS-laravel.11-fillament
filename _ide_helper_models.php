@@ -222,11 +222,9 @@ namespace App\Models{
  * @property-read int|null $attendances_count
  * @property-read \App\Models\ClassRoom $classRoom
  * @property-read \App\Models\Test|null $postTest
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $postTestResult
- * @property-read int|null $post_test_result_count
  * @property-read \App\Models\Test|null $preTest
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $preTestResult
- * @property-read int|null $pre_test_result_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $testResult
+ * @property-read int|null $test_result_count
  * @method static \Illuminate\Database\Eloquent\Builder|Session newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Session newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Session onlyTrashed()
@@ -244,7 +242,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Session withoutTrashed()
- * @mixin \Eloquent
  */
 	class Session extends \Eloquent {}
 }
