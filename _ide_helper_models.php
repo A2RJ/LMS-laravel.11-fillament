@@ -242,6 +242,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Session withoutTrashed()
+ * @mixin \Eloquent
  */
 	class Session extends \Eloquent {}
 }
@@ -353,8 +354,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereTestNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUserId($value)
- * @mixin \Eloquent
  * @property-read \App\Models\Answer|null $answered
+ * @mixin \Eloquent
+ * @property int $is_checked
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereIsChecked($value)
  */
 	class TestResult extends \Eloquent {}
 }

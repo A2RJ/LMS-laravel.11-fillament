@@ -140,6 +140,7 @@ class SessionResource extends Resource
             'create' => Pages\CreateSession::route('/create'),
             'edit' => Pages\EditSession::route('/{record}/edit'),
             'view' => Pages\ViewSession::route('/{record}'),
+            'check.user.test' => Pages\CheckUserTest::route('/{record}/check'),
             'session.result' => Pages\TestResultBySession::route('/test/{record}/result')
         ];
     }

@@ -47,6 +47,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUserId($value)
  * @property-read \App\Models\Answer|null $answered
+ * @property int $is_checked
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereIsChecked($value)
  * @mixin \Eloquent
  */
 class TestResult extends Model
@@ -64,7 +66,8 @@ class TestResult extends Model
         'answer_id',
         'answer',
         'score',
-        'notes'
+        'notes',
+        'is_checked'
     ];
 
     public function user()

@@ -3,20 +3,23 @@
 namespace App\Filament\Resources\SessionResource\Pages;
 
 use App\Filament\Resources\SessionResource;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
-class TestResultBySession extends Page
+class TestResultBySession extends Page implements HasForms
 {
-    use InteractsWithRecord;
+    use InteractsWithRecord, InteractsWithForms;
 
-    public $session, $pre_test, $post_test;
+    public $session, $pre_test, $post_test, $score, $note;
 
     protected static string $resource = SessionResource::class;
 
-    protected static string $view = 'filament.resources.session-resource.pages.test-result';
+    protected static string $view = 'filament.resources.session-resource.pages.test-result-by-session';
 
     public function getHeading(): string
     {
@@ -49,5 +52,26 @@ class TestResultBySession extends Page
             $page,
             ['path' => request()->url(), 'pageName' => $pageName] + $options
         );
+    }
+
+    public $site_name;
+
+    protected $rules = [
+        'site_name' => 'required'
+    ];
+
+    protected function getFormSchema(): array
+    {
+        return [
+            TextInput::make('site_name'),
+        ];
+    }
+
+    public function submit()
+    {
+        $this->validate();
+
+        // SAVE THE SETTINGS HERE
+        dd($this->site_name);
     }
 }

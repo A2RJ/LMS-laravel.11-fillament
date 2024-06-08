@@ -58,7 +58,7 @@
                         <tr>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Exam date</th>
-                            <!-- <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Status</th> -->
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Status</th>
                             <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Action</th>
                         </tr>
                     </thead>
@@ -74,7 +74,20 @@
                                 </td>
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $post_test->created_at }}</td>
                                 <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                                    <a href="{{ route('test.result', ['result' => $post_test->test_number]) }}"
+                                    @if ($post_test->is_checked)
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                            Sudah diperiksa
+                                        </span>
+                                    @else
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                            Belum diperiksa
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                    <a href="{{ route('filament.admin.resources.sessions.check.user.test', ['record' => $post_test->test_number]) }}"
                                         target="_blank"
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                         Test detail
