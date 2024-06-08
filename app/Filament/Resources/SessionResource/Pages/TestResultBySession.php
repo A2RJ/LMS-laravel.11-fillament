@@ -3,11 +3,10 @@
 namespace App\Filament\Resources\SessionResource\Pages;
 
 use App\Filament\Resources\SessionResource;
-use App\Models\Test;
-use Filament\Actions;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
-use Session;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class TestResultBySession extends Page
 {
@@ -29,7 +28,26 @@ class TestResultBySession extends Page
         $this->record = $this->resolveRecord($record);
         $this->session = $this->record;
 
-        $this->pre_test = collect($this->session->testResult)->filter(fn($item) => $item->pre_test_id);
-        $this->post_test = collect($this->session->testResult)->filter(fn($item) => $item->post_test_id);
+        $this->pre_test = collect($this->session->testResult)
+            ->filter(fn($item) => $item->pre_test_id)
+            ->groupBy('test_number')
+            ->map(fn($group) => $group->first());
+        $this->post_test = collect($this->session->testResult)
+            ->filter(fn($item) => $item->post_test_id)
+            ->groupBy('test_number')
+            ->map(fn($group) => $group->first());
+    }
+
+    protected function paginate(Collection $items, string $pageName, int $perPage = 10, array $options = [])
+    {
+        $page = request()->input($pageName, 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator(
+            $items->forPage($page, $perPage),
+            $items->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'pageName' => $pageName] + $options
+        );
     }
 }
