@@ -123,4 +123,27 @@ class TestController extends Controller
 
         return view('result', compact('class', 'tests', 'answered_correctly'));
     }
+
+    public function postResult($test_number)
+    {
+        if (empty($test_number)) {
+            return back()->with('error', 'Invalid test number.');
+        }
+
+        try {
+            $updatedRows = TestResult::query()
+                ->where('test_number', $test_number)
+                ->update([
+                    'is_checked' => true
+                ]);
+
+            if ($updatedRows > 0) {
+                return back()->with('success', 'You have finished checking this test');
+            } else {
+                return back()->with('error', 'No tests found with the provided test number.');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'An error occurred while updating the test results.');
+        }
+    }
 }

@@ -7,16 +7,16 @@
             </small>
         </div>
 
-        <p>Pre Test: {{ $this->session->preTest?->title }}</p>
+        <p class="mt-6 font-bold mb-2">Post Test: {{ $this->session->postTest?->title }}</p>
         <div class="rounded-lg border border-gray-200">
             <div class="overflow-x-auto rounded-t-lg">
                 <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
                     <thead class="ltr:text-left rtl:text-right">
                         <tr>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Exam date</th>
-                            <!-- <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Status</th> -->
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Action</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Name</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Exam date</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Status</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Action</th>
                         </tr>
                     </thead>
 
@@ -26,12 +26,29 @@
                         @endphp
                         @forelse ($pre_tests as $pre_test)
                             <tr>
-                                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                <td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">
                                     {{ $pre_test->user->name }}
                                 </td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $pre_test->created_at }}</td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $pre_test->created_at }}</td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">
+                                    @if ($pre_test->is_checked)
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                                            Sudah diperiksa
+                                        </span>
+                                    @else
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                                            Belum diperiksa
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">
+                                    <a href="{{ route('filament.admin.resources.sessions.check.user.test', ['record' => $pre_test->test_number]) }}"
+                                        target="_blank"
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Test result
+                                    </a>
                                 </td>
                             </tr>
                         @empty
@@ -50,16 +67,16 @@
             </div>
         </div>
 
-        <p>Post Test: {{ $this->session->postTest?->title }}</p>
+        <p class="mt-6 font-bold mb-2">Post Test: {{ $this->session->postTest?->title }}</p>
         <div class="rounded-lg border border-gray-200">
             <div class="overflow-x-auto rounded-t-lg">
                 <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
                     <thead class="ltr:text-left rtl:text-right">
                         <tr>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Name</th>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Exam date</th>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Status</th>
-                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Action</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Name</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Exam date</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Status</th>
+                            <th class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">Action</th>
                         </tr>
                     </thead>
 
@@ -69,11 +86,11 @@
                         @endphp
                         @forelse ($post_tests as $post_test)
                             <tr>
-                                <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                <td class="whitespace-nowrap px-4 py-3 font-medium text-gray-900">
                                     {{ $post_test->user->name }}
                                 </td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $post_test->created_at }}</td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $post_test->created_at }}</td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">
                                     @if ($post_test->is_checked)
                                         <span
                                             class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
@@ -86,11 +103,11 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">
                                     <a href="{{ route('filament.admin.resources.sessions.check.user.test', ['record' => $post_test->test_number]) }}"
                                         target="_blank"
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                        Test result detail
+                                        Test result
                                     </a>
                                 </td>
                             </tr>
@@ -105,7 +122,7 @@
                 </table>
             </div>
 
-            <div class="rounded-b-lg border-t border-gray-200 px-4 py-2">
+            <div class="rounded-b-lg border-t border-gray-200 px-4 py-3">
                 {{ $post_tests->appends(['pre_test_page' => request()->input('pre_test_page')])->links() }}
             </div>
         </div>
