@@ -175,15 +175,22 @@
                                 <p class="font-semibold">Answer:</p>
                                 <span
                                     class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $test->score ? 'bg-green-100 text-green-500' : 'bg-orange-300 text-orange-800' }}">
-                                    {{ $test->score ?? "Still being checked" }}
+                                    {{ $test->score ? "Score: " . $test->score : "Still being checked" }}
                                 </span>
                             </div>
 
                             <div class="ml-3">
                                 <x-tinyview :data="$test->answer"></x-tinyview>
+                                @if ($test->notes)
+                                    <div class="mt-4">
+                                        <p class="font-bold text-orange-500">NOTES:</p>
+                                        <x-tinyview :data="$test->notes"></x-tinyview>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                    @endif              </div>
+                    @endif  
+              </div>
             </div>
         @endforeach
     </div>

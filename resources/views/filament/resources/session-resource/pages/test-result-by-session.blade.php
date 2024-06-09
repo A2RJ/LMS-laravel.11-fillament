@@ -90,7 +90,7 @@
                                     <a href="{{ route('filament.admin.resources.sessions.check.user.test', ['record' => $post_test->test_number]) }}"
                                         target="_blank"
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                        Test detail
+                                        Test result detail
                                     </a>
                                 </td>
                             </tr>

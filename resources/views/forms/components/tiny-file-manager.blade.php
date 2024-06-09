@@ -5,7 +5,7 @@
                     selector: '#editor',
                     height: 600,
                     deprecation_warnings: false,
-                    toolbar_sticky: true,
+                    toolbar_sticky: false,
                     toolbar_sticky_offset: 64,
                     object_resizing: true,
                     plugins: [

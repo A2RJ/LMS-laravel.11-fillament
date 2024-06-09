@@ -70,7 +70,8 @@ class TestController extends Controller
                         'session_id' => (int) $session->id,
                         $preOrPostId => (int) $test_type_id->id,
                         'question_id' => (int) $key,
-                        'created_at' => $formattedCreatedAt
+                        'created_at' => $formattedCreatedAt,
+                        'is_checked' => false
                     ];
 
                     if ($question->answer_type == 'selected') {
@@ -118,18 +119,8 @@ class TestController extends Controller
             ->get();
         $class = $tests->first();
 
-        $answered_correctly = $tests->filter(fn ($item) => $item->answered)->filter(fn ($item) => $item->answered->is_true)->count();
+        $answered_correctly = $tests->filter(fn($item) => $item->answered)->filter(fn($item) => $item->answered->is_true)->count();
 
         return view('result', compact('class', 'tests', 'answered_correctly'));
-    }
-
-    public function review(Test $test)
-    {
-        return $test;
-    }
-
-    public function postReview(Request $request, Test $test)
-    {
-        return $test;
     }
 }

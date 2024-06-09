@@ -54,16 +54,39 @@
         }
     </style>
     <div class="custom-tiny">
-        <!-- <iframe src="http://127.0.0.1:8000/storage/716c4383-6f60-41f2-9a35-9f22c232b2e5--SKRPSI%20-%20Revisi%20pak.Eri.pdf" width="600" height="700"></iframe> -->
         @php
-        $view = preg_replace_callback('/<iframe[^>]+>/', function($matches) {
-            if (strpos($matches[0], 'youtube') === false) {
-            return str_replace('<iframe ', ' <iframe sandbox="" ', $matches[0]);
-            } else {
-                return $matches[0];
-            }
-        }, $view);
+            $view = preg_replace_callback('/<iframe[^>]+>/', function ($matches) {
+                if (strpos($matches[0], 'youtube') === false) {
+                    return str_replace('<iframe ', ' <iframe sandbox="" ', $matches[0]);
+                } else {
+                    return $matches[0];
+                }
+            }, $view);
+
+            $view = preg_replace_callback('/<video[^>]+>/', function ($matches) {
+                return str_replace('autoplay', '', $matches[0]);
+            }, $view);
+
+            $view = preg_replace_callback('/(["\'])((?:\.\.\/)+storage\/[^"\']+)/', function ($matches) {
+                return $matches[1] . preg_replace('/^(?:\.\.\/)+/', '/', $matches[2]);
+            }, $view);
         @endphp
-        {!! $view !!} 
+        {!! $view !!}
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.removeAttribute('autoplay');
+            });
+
+            const iframes = document.querySelectorAll('iframe');
+            iframes.forEach(iframe => {
+                if (!iframe.src.includes('youtube')) {
+                    iframe.setAttribute('sandbox', '');
+                }
+            });
+        });
+    </script>
 </div>

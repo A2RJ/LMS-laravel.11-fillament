@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Forms\Components\TinyFileManager;
 use App\Models\TestResult;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\MarkdownEditor;
@@ -51,7 +52,10 @@ class SaveTestResultCheck extends Component implements HasForms
                     ->default(0)
                     ->minValue(0)
                     ->maxValue(100),
-                RichEditor::make('Note'),
+                // RichEditor::make('Note'),
+                TinyFileManager::make('Note')
+                    ->required()
+                    ->columnSpanFull(),
                 Hidden::make('id')->default($this->testId),
             ])
             ->statePath('data');
@@ -70,7 +74,7 @@ class SaveTestResultCheck extends Component implements HasForms
 
         $test->update([
             'score' => $score,
-            'note' => $note
+            'notes' => $note,
         ]);
 
         $test->refresh();

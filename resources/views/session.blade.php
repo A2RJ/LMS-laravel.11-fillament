@@ -244,7 +244,7 @@
                         </a>
                     </li>
                 @endforeach
-                <li>
+                <!-- <li>
                     <div class="w-full p-3 text-blue-700 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400"
                         role="alert">
                         <div class="flex items-center justify-between">
@@ -266,7 +266,7 @@
                             </svg>
                         </div>
                     </div>
-                </li>
+                </li> -->
             </ol>
 
             @if(!empty($data) && !empty($data["pre_test"]) || !empty($data) && !empty($data["post_test"]))
