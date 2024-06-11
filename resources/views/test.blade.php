@@ -80,6 +80,7 @@
 
     <div class="grid grid-cols-12 gap-4">
         <div class="col-span-4 bg-white p-4 rounded-lg">
+            <h2 class="text-xl text-center font-semibold mb-4">Question List</h2>
             <nav class="grid grid-cols-6 gap-4" aria-label="Pagination">
                 @foreach ($session->questions as $index => $question)
                     <div class="pagination-btn text-center rounded-lg bg-white border border-slate-300 text-slate-500 p-1"
