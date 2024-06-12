@@ -46,7 +46,7 @@
 <div class="p-4 max-w-screen-lg mx-auto bg-white border border-slate-300 rounded-lg grid grid-cols-1 gap-4">
     <div class="flex justify-start items-center gap-2 mt-2">
         <div>
-            <a href="{{ route('session.id', $class->class_room_id) }}?page={{ $class->session_id }}"
+            <a href="{{ route('session.id', $class->course_id) }}?page={{ $class->session_id }}"
                 class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                     class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
@@ -56,7 +56,7 @@
             </a>
         </div>
         <div>
-            <h1 class="text-2xl font-bold">{{ $class->classRoom->title }}</h1>
+            <h1 class="text-2xl font-bold">{{ $class->course->title }}</h1>
             <small class="text-sm font-medium text-slate-500">
                 {{ $class->session->title }}
             </small>
@@ -80,7 +80,7 @@
 
                         <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                             <dt class="font-medium text-slate-900">Class Name</dt>
-                            <dd class="text-slate-700 sm:col-span-2">{{ $class->classRoom->title }}
+                            <dd class="text-slate-700 sm:col-span-2">{{ $class->course->title }}
                                 ({{ $class->session->title }})</dd>
                         </div>
 

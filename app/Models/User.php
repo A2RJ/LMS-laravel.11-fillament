@@ -96,6 +96,12 @@ class User extends Authenticatable
         ];
     }
 
+    public function courses()
+    {
+        return $this->hasMany(UserCourse::class);
+    }
+
+
     public function tests()
     {
         return $this->hasMany(Test::class);

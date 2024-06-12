@@ -30,7 +30,7 @@ class SaveTestResultCheck extends Component implements HasForms
             ->where('id', $testId)
             ->with([
                 'user',
-                'classRoom',
+                'course',
                 'session',
                 'preTest',
                 'postTest',

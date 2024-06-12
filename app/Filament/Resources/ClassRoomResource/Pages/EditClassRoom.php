@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\ClassRoomResource\Pages;
 
 use App\Filament\Resources\ClassRoomResource;
-use App\Models\ClassRoom;
+use App\Models\Course;
 use Filament\Actions;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\EditRecord;
@@ -19,7 +19,7 @@ class EditClassRoom extends EditRecord
     {
         return [
             Action::make('Preview')
-                ->url(fn(ClassRoom $classRoom) => ClassRoomResource::getUrl('view', ['record' => $classRoom->id])),
+                ->url(fn(Course $course) => ClassRoomResource::getUrl('view', ['record' => $course->id])),
             // Actions\DeleteAction::make(),
             Actions\ForceDeleteAction::make(),
             Actions\RestoreAction::make(),

@@ -1,7 +1,7 @@
 <x-filament-panels::page class="p-0 dark:bg-inherit m-0 min-h-screen">
     <div class="p-4 pb-20 bg-white rounded-xl dark:bg-inherit border dark:border-slate-500">
         <div>
-            <h1 class="text-2xl font-bold">{{ $this->session->classRoom->title }}</h1>
+            <h1 class="text-2xl font-bold">{{ $this->session->course->title }}</h1>
             <small class="text-sm font-medium text-slate-500">
                 {{ $this->session->title }}
             </small>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\ClassRoom;
+use App\Models\Course;
 use App\Models\Question;
 use App\Models\Session;
 use App\Models\Test;
@@ -17,9 +17,9 @@ use Ramsey\Uuid\Uuid;
 
 class TestController extends Controller
 {
-    public function test(ClassRoom $class, Session $session)
+    public function test(Course $class, Session $session)
     {
-        if ($session->class_room_id != $class->id) {
+        if ($session->course_id != $class->id) {
             return abort(500);
         }
         $type = request('test', null);
@@ -43,7 +43,7 @@ class TestController extends Controller
         return view('test', compact('class', 'session'));
     }
 
-    public function storeTest(Request $request, ClassRoom $class, Session $session, Test $test_type_id, $test_type)
+    public function storeTest(Request $request, Course $class, Session $session, Test $test_type_id, $test_type)
     {
         try {
             $test_number = DB::transaction(function () use ($request, $class, $session, $test_type_id, $test_type) {
@@ -66,7 +66,7 @@ class TestController extends Controller
                     $form = [
                         'test_number' => $test_number,
                         'user_id' => (int) $user_id,
-                        'class_room_id' => (int) $class->id,
+                        'course_id' => (int) $class->id,
                         'session_id' => (int) $session->id,
                         $preOrPostId => (int) $test_type_id->id,
                         'question_id' => (int) $key,
@@ -107,7 +107,7 @@ class TestController extends Controller
             ->where('test_number', $result)
             ->with([
                 'user',
-                'classRoom',
+                'course',
                 'session',
                 'preTest',
                 'postTest',

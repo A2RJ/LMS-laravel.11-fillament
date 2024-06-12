@@ -7,7 +7,7 @@ use App\Filament\Resources\ClassRoomResource\RelationManagers\SessionsRelationMa
 use App\Forms\Components\TinyFileManager;
 use App\Infolists\Components\TinyDisplay;
 use App\Models\Category;
-use App\Models\ClassRoom;
+use App\Models\Course;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -32,7 +32,7 @@ class ClassRoomResource extends Resource
 
     protected static ?string $navigationGroup = 'Courses';
 
-    protected static ?string $model = ClassRoom::class;
+    protected static ?string $model = Course::class;
 
     // protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
@@ -105,7 +105,7 @@ class ClassRoomResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                    ->url(fn(ClassRoom $class) => route('class.id', $class->id), true),
+                    ->url(fn(Course $class) => route('class.id', $class->id), true),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\ClassRoom;
+use App\Models\Course;
+use App\Models\UserCourse;
+use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
@@ -12,10 +14,12 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::query()
+            ->withCount('users')
             ->paginate(4);
-        $classes = ClassRoom::query()
+        $courses = Course::query()
             ->paginate(8);
-        return view('welcome', compact('classes', 'categories'));
+
+        return view('welcome', compact('courses', 'categories'));
     }
 
     public function categoryId($id)
@@ -23,18 +27,18 @@ class HomeController extends Controller
         return view('category');
     }
 
-    public function classId(ClassRoom $class)
+    public function courseId(Course $course)
     {
-        return view('class', compact('class'));
+        return view('class', compact('course'));
     }
 
-    public function classSession(ClassRoom $class)
+    public function session(Course $course)
     {
 
-        $class->load(['sessions.preTest', 'sessions.postTest']);
+        $course->load(['sessions.preTest', 'sessions.postTest']);
         $perPage = 1;
         $currentPage = request('page', 1);
-        $session_list = collect($class->sessions->all())->toArray();
+        $session_list = collect($course->sessions->all())->toArray();
         $currentItems = array_slice($session_list, ($currentPage - 1) * $perPage, $perPage);
         $sessions = new LengthAwarePaginator(
             $currentItems,
@@ -45,14 +49,14 @@ class HomeController extends Controller
         );
         $data = $sessions->getCollection()->first();
 
-        return view('session', compact('class', 'data', 'sessions'));
+        return view('session', compact('course', 'data', 'sessions'));
     }
 
     public function course()
     {
         $search = request('search');
 
-        $classes = ClassRoom::query()
+        $courses = Course::query()
             ->when($search, function ($query, $search) {
                 $query->where('title', 'like', '%' . $search . '%')
                     ->orWhereHas('category', function ($query) use ($search) {
@@ -61,12 +65,22 @@ class HomeController extends Controller
             })
             ->paginate(8);
 
-        return view('course', compact('classes'));
+        return view('course', compact('courses'));
+    }
+
+    public function joinCourse(Course $course)
+    {
+        UserCourse::create([
+            'course_id' => $course->id,
+            'user_id' => Auth::id()
+        ]);
+
+        return back()->with('success', 'Successfully joined the course');
     }
 
     public function myCourse()
     {
-        $classes = ClassRoom::query()
+        $classes = Course::query()
             ->paginate(8);
         return view('my-course', compact('classes'));
     }

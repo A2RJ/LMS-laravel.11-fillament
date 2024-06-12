@@ -5,18 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MediaLibrary extends Model
+class UserCourse extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'filename',
-        'attachment'
+        'course_id',
     ];
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 }

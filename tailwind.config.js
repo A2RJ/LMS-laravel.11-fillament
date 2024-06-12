@@ -19,6 +19,9 @@ export default {
     },
     plugins: [
         require('@tailwindcss/forms'),
+        require('tailwindcss-accent')({
+            colors: ['green']
+        }),
         plugin(({ addVariant, e }) => {
             addVariant('svg-checked', ({ modifySelectors, separator }) => {
                 modifySelectors(

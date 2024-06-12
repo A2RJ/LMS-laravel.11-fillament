@@ -28,7 +28,7 @@ class CheckUserTest extends Page
             ->where('test_number', $record)
             ->with([
                 'user',
-                'classRoom',
+                'course',
                 'session',
                 'preTest',
                 'postTest',

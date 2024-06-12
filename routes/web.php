@@ -21,14 +21,15 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 Route::prefix('/')->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('category/{category}', 'categoryId')->name('category.id');
-        Route::get('class/{class}', 'classId')->name('class.id');
-        Route::get('session/{class}', 'classSession')->name('session.id');
+        Route::get('course/{course}', 'courseId')->name('course.id');
+        Route::get('session/{course}', 'session')->name('session.id');
         Route::get('course', 'course')->name('course');
         Route::get('my-course', 'myCourse')->name('my.course');
+        Route::get('join/{course}', 'joinCourse')->name('join.course');
     });
     Route::controller(TestController::class)->group(function () {
-        Route::get('test/{class}/{session}', 'test')->name('test.id');
-        Route::post('test/{class}/{session}/{test_type_id}/{test_type}', 'storeTest')->name('post.test.id');
+        Route::get('test/{course}/{session}', 'test')->name('test.id');
+        Route::post('test/{course}/{session}/{test_type_id}/{test_type}', 'storeTest')->name('post.test.id');
         Route::get('result/{result}', 'result')->name('test.result');
         Route::post('result/{test_number}', 'postResult')->name('post.test.result');
     });

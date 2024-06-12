@@ -10,15 +10,18 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('class_attachements', function (Blueprint $table) {
+        Schema::create('user_courses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')
+            $table->foreignId('user_id')
                 ->references('id')
-                ->on('classs')
+                ->on('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->string('attachment');
-            $table->text('url');
+            $table->foreignId('course_id')
+                ->references('id')
+                ->on('class_rooms')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('class_attachements');
+        Schema::dropIfExists('user_courses');
     }
 };

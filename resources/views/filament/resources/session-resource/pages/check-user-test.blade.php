@@ -3,7 +3,7 @@
         <div class="grid grid-cols-2 gap-4">
             <div class="col-span-2 lg:col-span-1 flex justify-start items-center gap-2 mt-2">
                 <div>
-                    <a href="{{ route('session.id', $this->session->class_room_id) }}?page={{ $this->session->session_id }}"
+                    <a href="{{ route('session.id', $this->session->course_id) }}?page={{ $this->session->session_id }}"
                         class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                             class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
@@ -13,7 +13,7 @@
                     </a>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-bold">{{ $this->session->classRoom->title }}</h1>
+                    <h1 class="text-2xl font-bold">{{ $this->session->course->title }}</h1>
                     <small class="text-sm font-medium text-slate-500">
                         {{ $this->session->session->title }}
                     </small>
@@ -57,7 +57,7 @@
 
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                                 <dt class="font-medium text-slate-900">Class Name</dt>
-                                <dd class="text-slate-700 sm:col-span-2">{{ $this->session->classRoom->title }}
+                                <dd class="text-slate-700 sm:col-span-2">{{ $this->session->course->title }}
                                     ({{ $this->session->session->title }})</dd>
                             </div>
 

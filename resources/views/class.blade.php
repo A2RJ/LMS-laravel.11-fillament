@@ -17,7 +17,7 @@
             </a>
         </li>
         <li>
-            <div class="flex items-center">
+            <div class="items-center flex pt-2 p-4">
                 <svg class="rtl:rotate-180 block w-3 h-3 mx-1 text-slate-400 " aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -25,7 +25,7 @@
                 </svg>
                 <a href="#"
                     class="ms-1 text-sm font-medium text-slate-700 hover:text-blue-600 md:ms-2 dark:text-slate-400 dark:hover:text-white">
-                    {{ $class->category ? $class->category->category : 'No Category' }}
+                    {{ $course->category ? $course->category->category : 'No Category' }}
                 </a>
             </div>
         </li>
@@ -37,7 +37,7 @@
                         d="m1 9 4-4-4-4" />
                 </svg>
                 <span
-                    class="ms-1 text-sm font-medium text-slate-500 md:ms-2 dark:text-slate-400">{{ $class->title }}</span>
+                    class="ms-1 text-sm font-medium text-slate-500 md:ms-2 dark:text-slate-400">{{ $course->title }}</span>
             </div>
         </li>
     </ol>
@@ -57,20 +57,34 @@
                 </a>
             </div>
             <div>
-                <h1 class="text-2xl font-bold">{{ $class->title }}</h1>
+                <h1 class="text-2xl font-bold">{{ $course->title }}</h1>
                 <small class="text-sm font-medium text-slate-500">
                     Introduction
                 </small>
             </div>
         </div>
 
+        @if (session('success'))
+            <div data-accent="green" class="bg-accent-300 p-3 mb-3 rounded-md flex items-center text-green-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14"
+                    class="mr-2 text-green-500">
+                    <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="13" height="13" x=".5" y=".5" rx="3" />
+                        <path d="m4 8l2.05 1.64a.48.48 0 0 0 .4.1a.5.5 0 0 0 .34-.24L10 4" />
+                    </g>
+                </svg>
+                {{ session('success') }}
+            </div>
+        @endif
+
+
         <div
             class="border-b-2 pb-4 border-dashed border-transparent inline-flex space-x-4 overflow-x-scroll max-w-full">
-            <a href="{{ route('class.id', $class->id) }}"
+            <a href="{{ route('course.id', $course->id) }}"
                 class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
                 Introduction </a>
-            @foreach ($class->sessions as $index => $session)
-                <a href="{{ route('session.id', ['class' => $class->id, 'session' => $session->id]) }}"
+            @foreach ($course->sessions as $index => $session)
+                <a href="{{ route('session.id', ['course' => $course->id, 'session' => $session->id]) }}"
                     class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 transition-all duration-200 ease-in-out border border-slate-300 hover:bg-blue-500 hover:text-white">
                     Session {{ $index + 1 }} </a>
             @endforeach
@@ -84,7 +98,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
                 </svg>
-                <b>{{ $class->category?->category }}</b>
+                <b>{{ $course->category?->category }}</b>
             </div>
             <div class="flex justify-center items-center gap-1 border border-slate-300 lg:border-r-0 p-2">
                 <svg class="text-orange-500 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -103,7 +117,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
                 </svg>
-                <b>{{ $class->sessions->count() + 1 }}</b>
+                <b>{{ $course->sessions->count() + 1 }}</b>
                 <p> Lessons</p>
             </div>
             <div class="flex justify-center items-center gap-1 border border-slate-300 p-2 lg:rounded-r-lg">
@@ -118,11 +132,11 @@
         </div>
 
         <div class="min-h-[50vh]">
-            <x-tinyview :data="$class->content"></x-tinyview>
+            <x-tinyview :data="$course->content"></x-tinyview>
         </div>
 
         <div class="float-right mt-8 mb-4">
-            <a href="{{ route('session.id', ['class' => $class->id]) }}?page=1">
+            <a href="{{ route('session.id', ['course' => $course->id]) }}?page=1">
                 <button
                     class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
                     <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Next</span>
@@ -143,10 +157,32 @@
     <div class="col-span-3 pl-1">
         <div
             class="sticky top-[70px] max-h-screen overflow-y-scroll p-2 pb-24 border border-transparent rounded-lg space-y-2 bg-white w-full mt-2">
+            <div
+                class="p-4 mb-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 flex flex-col items-center justify-between space-y-4">
+                <div class="block text-center mb-5 lg:text-left lg:mb-0">
+                    <h2 class="font-manrope text-xl text-white font-semibold mb-5 lg:mb-2">
+                        Kickstart Your Learning!
+                    </h2>
+                    <p class="text-sm text-indigo-100">
+                        Commit and track your progress.
+                    </p>
+                </div>
+                <a href="{{ route('join.course', ['course' => $course->id]) }}"
+                    class="flex items-center gap-2 bg-white rounded-full shadow-sm text-base text-blue-500 font-semibold py-1 px-4 transition-all duration-500 hover:bg-blue-600 hover:text-white border-2 border-transparent hover:border-white group">
+                    Join Now
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                        class="relative z-10 ml-2 transition-colors duration-150 group-hover:text-white">
+                        <path fill="currentColor"
+                            d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
+                    </svg>
+                </a>
+
+            </div>
+
             <div class="text-base font-bold text-slate-900 dark:text-white">Course Session</div>
             <ol class="space-y-2">
                 <li class="">
-                    <a href="{{ route('class.id', ['class' => $class->id]) }}">
+                    <a href="{{ route('course.id', ['course' => $course->id]) }}">
                         <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400"
                             role="alert">
                             <div class="flex items-center justify-between">
@@ -160,9 +196,9 @@
                         </div>
                     </a>
                 </li>
-                @foreach ($class->sessions as $index => $session)
+                @foreach ($course->sessions as $index => $session)
                     <li class="">
-                        <a href="{{ route('session.id', ['class' => $class->id, 'page' => $index + 1]) }}">
+                        <a href="{{ route('session.id', ['course' => $course->id, 'page' => $index + 1]) }}">
                             <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400"
                                 role="alert">
                                 <div class="flex items-center justify-between line-clamp-1">
@@ -181,13 +217,13 @@
                 @endforeach
             </ol>
 
-            @if(!empty($class->session) && !empty($class->session->preTest) && !empty($class->session->postTest))
+            @if(!empty($course->session) && !empty($course->session->preTest) && !empty($course->session->postTest))
                 <p class="text-base font-bold text-slate-900 dark:text-white">Test list:</p>
 
-                @if (!empty($class->session->preTest))
+                @if (!empty($course->session->preTest))
                     <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400"
                         role="alert">
-                        <a href="{{ route('test.id', [$class->id, $class->session->preTest->id]) }}">
+                        <a href="{{ route('test.id', [$course->id, $course->session->preTest->id]) }}">
                             <div class="flex items-center justify-between">
                                 <h3 class="font-medium text-sm">Pre Test</h3>
                                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -200,10 +236,10 @@
                     </div>
                 @endif
 
-                @if (!empty($class->session->postTest))
+                @if (!empty($course->session->postTest))
                     <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400"
                         role="alert">
-                        <a href="{{ route('test.id', [$class->id, $class->session->postTest->id]) }}">
+                        <a href="{{ route('test.id', [$course->id, $course->session->postTest->id]) }}">
                             <div class="flex items-center justify-between">
                                 <h3 class="font-medium text-sm">Post Test</h3>
                                 <svg xmlns="http://www.w3.org/2000/svg"

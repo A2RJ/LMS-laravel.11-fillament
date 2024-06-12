@@ -3,7 +3,7 @@
 namespace App\Filament\Resources\ClassRoomResource\Pages;
 
 use App\Filament\Resources\ClassRoomResource;
-use App\Models\ClassRoom;
+use App\Models\Course;
 use Filament\Actions\Action;
 use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
@@ -30,7 +30,7 @@ class ViewClassRoom extends Page
     {
         return [
             Action::make('edit')
-                ->url(fn(ClassRoom $classRoom) => ClassRoomResource::getUrl('edit', ['record' => $classRoom->id]))
+                ->url(fn(Course $course) => ClassRoomResource::getUrl('edit', ['record' => $course->id]))
         ];
     }
 

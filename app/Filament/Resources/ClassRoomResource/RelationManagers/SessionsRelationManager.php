@@ -84,11 +84,11 @@ class SessionsRelationManager extends RelationManager
                     }, true),
                 Tables\Actions\ViewAction::make()
                     ->url(function (Session $session) {
-                        $sessions = Session::where('class_room_id', $session->class_room_id)->get();
+                        $sessions = Session::where('course_id', $session->course_id)->get();
                         $currentIndex = $sessions->search(function ($item) use ($session) {
                             return $item->id === $session->id;
                         });
-                        return route('session.id', ['class' => $session->class_room_id]) . "?page=" . $currentIndex + 1;
+                        return route('session.id', ['class' => $session->course_id]) . "?page=" . $currentIndex + 1;
                     }, true),
                 Tables\Actions\EditAction::make()
                     ->url(fn(Session $session) => route('filament.admin.resources.sessions.edit', ['record' => $session->id])),

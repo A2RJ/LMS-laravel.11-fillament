@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('class_sessions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('class_room_id')
+            $table->foreignId('course_id')
                 ->references('id')
                 ->on('class_rooms')
                 ->cascadeOnUpdate()

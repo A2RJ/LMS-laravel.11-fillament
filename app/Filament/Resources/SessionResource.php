@@ -5,7 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SessionResource\Pages;
 use App\Filament\Resources\SessionResource\RelationManagers;
 use App\Forms\Components\TinyFileManager;
-use App\Models\ClassRoom;
+use App\Models\Course;
 use App\Models\Session;
 use App\Models\Test;
 use Filament\Forms;
@@ -34,10 +34,10 @@ class SessionResource extends Resource
             ->schema([
                 Forms\Components\Section::make()
                     ->schema([
-                        Forms\Components\Select::make('class_room_id')
+                        Forms\Components\Select::make('course_id')
                             ->label('Class')
                             ->searchPrompt('Search test by title')
-                            ->options(ClassRoom::query()->where('user_id', auth()->id())->pluck('title', 'id'))
+                            ->options(Course::query()->where('user_id', auth()->id())->pluck('title', 'id'))
                             ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                             ->required()
                             ->searchable()
@@ -77,7 +77,7 @@ class SessionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('classRoom.title')
+                Tables\Columns\TextColumn::make('course.title')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('preTest.title')
