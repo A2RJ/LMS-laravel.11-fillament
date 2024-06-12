@@ -12,7 +12,8 @@
             toolbar_sticky_offset: 64,
             object_resizing: true,
             plugins: [
-                'file-manager', 'image', 'imagetools', 'advlist', 'autolink', 'lists', 'link', 'charmap', 'preview',
+                'file-manager', 'image', 'imagetools', 'advlist', 'autolink', 'lists', 'link', 'charmap',
+                'preview',
                 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
                 'insertdatetime', 'media', 'table', 'wordcount', 'youtube', 'emoticons'
             ],

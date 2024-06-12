@@ -55,27 +55,39 @@
     </style>
     <div class="custom-tiny">
         @php
-            $view = preg_replace_callback('/<iframe[^>]+>/', function ($matches) {
-                if (strpos($matches[0], 'youtube') === false) {
-                    return str_replace('<iframe ', ' <iframe sandbox="" ', $matches[0]);
-                } else {
-                    return $matches[0];
-                }
-            }, $view);
+            $view = preg_replace_callback(
+                '/<iframe[^>]+>/',
+                function ($matches) {
+                    if (strpos($matches[0], 'youtube') === false) {
+                        return str_replace('<iframe ', ' <iframe sandbox="" ', $matches[0]);
+                    } else {
+                        return $matches[0];
+                    }
+                },
+                $view,
+            );
 
-            $view = preg_replace_callback('/<video[^>]+>/', function ($matches) {
-                return str_replace('autoplay', '', $matches[0]);
-            }, $view);
+            $view = preg_replace_callback(
+                '/<video[^>]+>/',
+                function ($matches) {
+                    return str_replace('autoplay', '', $matches[0]);
+                },
+                $view,
+            );
 
-            $view = preg_replace_callback('/(["\'])((?:\.\.\/)+storage\/[^"\']+)/', function ($matches) {
-                return $matches[1] . preg_replace('/^(?:\.\.\/)+/', '/', $matches[2]);
-            }, $view);
+            $view = preg_replace_callback(
+                '/(["\'])((?:\.\.\/)+storage\/[^"\']+)/',
+                function ($matches) {
+                    return $matches[1] . preg_replace('/^(?:\.\.\/)+/', '/', $matches[2]);
+                },
+                $view,
+            );
         @endphp
         {!! $view !!}
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const videos = document.querySelectorAll('video');
             videos.forEach(video => {
                 video.removeAttribute('autoplay');

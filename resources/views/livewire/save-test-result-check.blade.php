@@ -3,7 +3,7 @@
         <p class="font-semibold">Answer:</p>
         <span
             class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $test->score ? 'bg-green-100 text-green-500' : 'bg-orange-300 text-orange-800' }}">
-            {{ $test->score ? "Score: " . $test->score : "Still being checked" }}
+            {{ $test->score ? 'Score: ' . $test->score : 'Still being checked' }}
         </span>
     </div>
 

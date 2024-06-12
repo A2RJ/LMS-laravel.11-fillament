@@ -100,13 +100,15 @@
                         </div>
                     </a>
                     @foreach ($this->getRecord()->sessions as $index => $session)
-                            <a
-                                href="{{ route('filament.admin.resources.class-rooms.lesson', ['record' => $this->getRecord()->id, 'lesson' => $session->id]) }}">
-                                <div class="group">
-                                    <div class="flex items-center justify-between gap-1 rounded-md border border-slate-500 p-2 cursor-pointer hover:border-blue-500 group-hover:bg-blue-500  {{ request('lesson') == $session->id ? 'bg-blue-500 text-white' : '' }}"">
-                                        <div class=" flex gap-1 items-center">
+                        <a
+                            href="{{ route('filament.admin.resources.class-rooms.lesson', ['record' => $this->getRecord()->id, 'lesson' => $session->id]) }}">
+                            <div class="group">
+                                <div
+                                    class="flex items-center justify-between gap-1 rounded-md border border-slate-500 p-2 cursor-pointer hover:border-blue-500 group-hover:bg-blue-500  {{ request('lesson') == $session->id ? 'bg-blue-500 text-white' : '' }}"">
+                                    <div class=" flex gap-1 items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="w-5 h-5 group-hover:text-white">
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-5 h-5 group-hover:text-white">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -115,40 +117,40 @@
                                         <p class="group-hover:text-white font-normal text-sm">{{ $session->title }}</p>
                                     </div>
                                     @if ($index % 2 == 1)
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                            stroke="currentColor" class="w-4 h-4 text-orange-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-orange-500">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                                         </svg>
                                     @else
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                            stroke="currentColor" class="w-4 h-4 group-hover:text-white text-blue-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-4 h-4 group-hover:text-white text-blue-500">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                                         </svg>
-
                                     @endif
 
                                 </div>
-                        </div>
+                            </div>
                         </a>
                     @endforeach
-            </div>
-            <p class="font-bold my-2">
-                Announcements:
-            </p>
-            <div class="flex flex-col gap-4 mb-32">
-                @foreach (range(5, 1) as $announcement)
-                    <div class="p-4 bg-gray-200 rounded-lg">
-                        <p class="text-sm text-gray-700">Pengumuman ke-{{ $announcement }}</p>
-                    </div>
-                @endforeach
+                </div>
+                <p class="font-bold my-2">
+                    Announcements:
+                </p>
+                <div class="flex flex-col gap-4 mb-32">
+                    @foreach (range(5, 1) as $announcement)
+                        <div class="p-4 bg-gray-200 rounded-lg">
+                            <p class="text-sm text-gray-700">Pengumuman ke-{{ $announcement }}</p>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
-    </div>
     <script>
-        window.addEventListener('scroll', function () {
+        window.addEventListener('scroll', function() {
             var rightSide = document.querySelector('.custom-class-right-side');
             if (window.scrollY >= 122) {
                 rightSide.style.top = '90px';

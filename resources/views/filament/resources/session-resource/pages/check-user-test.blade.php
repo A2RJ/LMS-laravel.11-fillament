@@ -74,7 +74,7 @@
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                                 <dt class="font-medium text-slate-900">Test</dt>
                                 <dd class="text-slate-700 sm:col-span-2">
-                                    {{ isset($this->session->preTest) ? "Pre Test" : "Post Test" }}
+                                    {{ isset($this->session->preTest) ? 'Pre Test' : 'Post Test' }}
                                 </dd>
                             </div>
 
@@ -120,8 +120,8 @@
                                     <div class="m-0 p-0">
                                         @if ($test->answered->id == $option->id)
                                             @if ($option->is_true)
-                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-                                                    height="100" viewBox="0 0 48 48">
+                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                    y="0px" width="100" height="100" viewBox="0 0 48 48">
                                                     <path fill="#c8e6c9"
                                                         d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z">
                                                     </path>
@@ -130,8 +130,8 @@
                                                     </path>
                                                 </svg>
                                             @else
-                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-                                                    height="100" viewBox="0 0 48 48">
+                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                    y="0px" width="100" height="100" viewBox="0 0 48 48">
                                                     <path fill="#f44336"
                                                         d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z">
                                                     </path>
@@ -145,8 +145,8 @@
                                             @endif
                                         @else
                                             @if ($option->is_true)
-                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
-                                                    height="100" viewBox="0 0 48 48">
+                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                    y="0px" width="100" height="100" viewBox="0 0 48 48">
                                                     <path fill="#c8e6c9"
                                                         d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z">
                                                     </path>
@@ -156,7 +156,8 @@
                                                 </svg>
                                             @else
                                                 <input type="radio" name="" value=""
-                                                    class="form-radio h-5 w-5 checked:bg-slate-500 text-slate-500 p-1 mt-5" disabled>
+                                                    class="form-radio h-5 w-5 checked:bg-slate-500 text-slate-500 p-1 mt-5"
+                                                    disabled>
                                             @endif
                                         @endif
                                     </div>
@@ -171,7 +172,6 @@
                     </div>
                 </div>
             @endforeach
-
 
         </div>
     </div>

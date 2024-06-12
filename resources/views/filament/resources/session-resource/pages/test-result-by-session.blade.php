@@ -57,7 +57,7 @@
                                     <div class="w-full h-40 flex justify-center items-center">No Data</div>
                                 </td>
                             </tr>
-                        @endforelse 
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -117,7 +117,7 @@
                                     <div class="w-full h-40 flex justify-center items-center">No Data</div>
                                 </td>
                             </tr>
-                        @endforelse 
+                        @endforelse
                     </tbody>
                 </table>
             </div>
@@ -128,10 +128,10 @@
         </div>
     </div>
 
-    <!-- 
-        - terdapat pilihan pre test dan post test dalam bentuk tabel masing-masing 
-        - menampilkan user, score, badge telah diperiksa dan tidak (order by belum di periksa) 
+    <!--
+        - terdapat pilihan pre test dan post test dalam bentuk tabel masing-masing
+        - menampilkan user, score, badge telah diperiksa dan tidak (order by belum di periksa)
         - terdapat menu assesment/periksa tugas user, lalu tampilkan test result
-        - jika type jawaban == description maka tampil form penilaian berikan score dan note 
+        - jika type jawaban == description maka tampil form penilaian berikan score dan note
      -->
 </x-filament-panels::page>
