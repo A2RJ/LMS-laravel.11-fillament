@@ -65,7 +65,7 @@
         </div>
 
         <div
-            class="mb-4 border-b-2 pb-4 border-dashed border-transparent inline-flex space-x-4 overflow-x-scroll max-w-full">
+            class="border-b-2 pb-4 border-dashed border-transparent inline-flex space-x-4 overflow-x-scroll max-w-full">
             <a href="{{ route('class.id', $class->id) }}"
                 class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
                 Introduction </a>
@@ -74,6 +74,47 @@
                     class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 transition-all duration-200 ease-in-out border border-slate-300 hover:bg-blue-500 hover:text-white">
                     Session {{ $index + 1 }} </a>
             @endforeach
+        </div>
+
+        <div class="grid grid-cols-1 mb-4 lg:grid-cols-4 font-normal text-slate-600 text-xs lg:text-sm">
+            <div
+                class="flex justify-center items-center gap-1 border border-slate-300 lg:border-r-0 p-2 lg:rounded-l-lg">
+                <svg class="text-blue-500 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+                </svg>
+                <b>{{ $class->category?->category }}</b>
+            </div>
+            <div class="flex justify-center items-center gap-1 border border-slate-300 lg:border-r-0 p-2">
+                <svg class="text-orange-500 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <b>4,9</b>
+                <p>(1 Reviews)</p>
+            </div>
+            <div class="flex justify-center items-center gap-1 border border-slate-300 lg:border-r-0 p-2">
+                <svg class="text-blue-500 bg-blue-200 rounded-full w-4 h-4" xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+                </svg>
+                <b>{{ $class->sessions->count() + 1 }}</b>
+                <p> Lessons</p>
+            </div>
+            <div class="flex justify-center items-center gap-1 border border-slate-300 p-2 lg:rounded-r-lg">
+                <svg class="text-slate-500 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+                </svg>
+                <b>24</b>
+                <p> Quizzes</p>
+            </div>
         </div>
 
         <div class="min-h-[50vh]">
@@ -138,29 +179,6 @@
                         </a>
                     </li>
                 @endforeach
-                <!-- <li>
-                    <div class="w-full p-3 text-blue-700 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400"
-                        role="alert">
-                        <div class="flex items-center justify-between">
-                            <h3 class="font-medium text-sm">5. Pre Test</h3>
-                            <h3 class="font-medium text-sm">Now</h3>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400"
-                        role="alert">
-                        <div class="flex items-center justify-between">
-                            <h3 class="font-medium text-sm">6. Post Test</h3>
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 text-slate-800 group-hover:text-white transition-colors duration-150"
-                                width="32" height="32" viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                    d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
-                            </svg>
-                        </div>
-                    </div>
-                </li> -->
             </ol>
 
             @if(!empty($class->session) && !empty($class->session->preTest) && !empty($class->session->postTest))

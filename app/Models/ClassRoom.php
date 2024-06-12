@@ -53,7 +53,8 @@ class ClassRoom extends Model
         'title',
         'thumbnail',
         'progress',
-        'content'
+        'content',
+        'category_id'
     ];
 
     // protected function thumbnail(): Attribute

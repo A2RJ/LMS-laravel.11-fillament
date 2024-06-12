@@ -6,9 +6,11 @@ use App\Filament\Resources\ClassRoomResource\Pages;
 use App\Filament\Resources\ClassRoomResource\RelationManagers\SessionsRelationManager;
 use App\Forms\Components\TinyFileManager;
 use App\Infolists\Components\TinyDisplay;
+use App\Models\Category;
 use App\Models\ClassRoom;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -44,6 +46,9 @@ class ClassRoomResource extends Resource
                         ->label('Class Name')
                         ->required()
                         ->columnSpanFull(),
+                    Select::make('category_id')
+                        ->label('Category')
+                        ->options(Category::pluck('category', 'id')->toArray()),
                     FileUpload::make('thumbnail')
                         ->hiddenOn('edit')
                         ->required()
@@ -70,6 +75,10 @@ class ClassRoomResource extends Resource
             ->columns([
                 TextColumn::make('title')
                     ->label('Class Name')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('category.category')
+                    ->label('Category')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('thumbnail')
