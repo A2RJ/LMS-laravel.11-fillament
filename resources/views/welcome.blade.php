@@ -144,7 +144,7 @@
             </svg>
         </h1>
         <div class="flex justify-end">
-            <form
+            <form id="searchForm"
                 class="relative flex w-full max-w-2xl items-center justify-between rounded-md border border-slate-300">
                 <svg class="absolute left-2 block h-5 w-5 text-slate-500" xmlns="http://www.w3.org/2000/svg" width="24"
                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -152,11 +152,11 @@
                     <circle cx="11" cy="11" r="8" class=""></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65" class=""></line>
                 </svg>
-                <input type="name" name="search"
+                <input type="text" name="search" id="searchInput"
                     class="h-12 w-full rounded-md text-slate-500 py-4 pr-40 pl-12 outline-none focus:ring-2"
                     placeholder="Search Courses" />
                 <button type="submit"
-                    class="absolute right-0 mr-1 inline-flex h-10  items-center justify-center rounded-lg bg-blue-500 px-10 font-medium text-white focus:ring-0">Search</button>
+                    class="absolute right-0 mr-1 inline-flex h-10 items-center justify-center rounded-lg bg-blue-500 px-10 font-medium text-white focus:ring-0">Search</button>
             </form>
         </div>
     </div>
@@ -343,4 +343,12 @@
             href="#">Still have questions?</a>
     </div>
 </div>
+
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        var searchParams = document.getElementById('searchInput').value;
+        window.location.href = '/course?search=' + encodeURIComponent(searchParams);
+    });
+</script>
 @endsection

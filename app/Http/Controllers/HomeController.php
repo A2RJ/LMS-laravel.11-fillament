@@ -50,8 +50,17 @@ class HomeController extends Controller
 
     public function course()
     {
+        $search = request('search');
+
         $classes = ClassRoom::query()
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', '%' . $search . '%')
+                    ->orWhereHas('category', function ($query) use ($search) {
+                        $query->where('category', 'like', '%' . $search . '%');
+                    });
+            })
             ->paginate(8);
+
         return view('course', compact('classes'));
     }
 
