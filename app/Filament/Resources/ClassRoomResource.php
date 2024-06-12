@@ -27,9 +27,11 @@ class ClassRoomResource extends Resource
 {
     protected static ?string $navigationLabel = 'Courses';
     protected static ?string $pluralModelLabel = 'Courses';
-    protected static ?string $model = ClassRoom::class;
 
     protected static ?string $navigationGroup = 'Courses';
+
+    protected static ?string $model = ClassRoom::class;
+
     // protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 

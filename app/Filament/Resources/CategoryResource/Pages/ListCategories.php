@@ -16,4 +16,10 @@ class ListCategories extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    protected function mutateFormDataBeforeFill(array $data): array
+    {
+        $data['attachment'] = preg_replace("/(\.\.\/)+storage/", "/storage", $data['attachment']);
+        return $data;
+    }
 }
