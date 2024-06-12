@@ -80,6 +80,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property array $attachment
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereAttachment($value)
  */
 	class Category extends \Eloquent {}
 }
@@ -355,9 +357,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUserId($value)
  * @property-read \App\Models\Answer|null $answered
- * @mixin \Eloquent
  * @property int $is_checked
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereIsChecked($value)
+ * @mixin \Eloquent
  */
 	class TestResult extends \Eloquent {}
 }

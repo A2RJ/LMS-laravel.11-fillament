@@ -1,5 +1,14 @@
-console.log('custom tiny');
+const videos = document.querySelectorAll('video');
+videos.forEach(video => {
+    video.removeAttribute('autoplay');
+});
 
+const iframes = document.querySelectorAll('iframe');
+iframes.forEach(iframe => {
+    if (!iframe.src.includes('youtube')) {
+        iframe.setAttribute('sandbox', '');
+    }
+});
 // document.addEventListener('DOMContentLoaded', function () {
 //     const sortableClass = [
 //         'fi-fo-builder-item',

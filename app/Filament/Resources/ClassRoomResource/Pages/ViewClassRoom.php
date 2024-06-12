@@ -16,7 +16,7 @@ class ViewClassRoom extends Page
     protected static string $view = 'filament.resources.class-room-resource.pages.view-class-room';
     protected static ?string $title = 'Detail';
 
-    public function mount(int | string $record): void
+    public function mount(int|string $record): void
     {
         $this->record = $this->resolveRecord($record);
     }
@@ -30,7 +30,7 @@ class ViewClassRoom extends Page
     {
         return [
             Action::make('edit')
-                ->url(fn (ClassRoom $classRoom) => ClassRoomResource::getUrl('edit', ['record' => $classRoom->id]))
+                ->url(fn(ClassRoom $classRoom) => ClassRoomResource::getUrl('edit', ['record' => $classRoom->id]))
         ];
     }
 

@@ -23,7 +23,11 @@ class CategoryResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('category')
+                    ->required(),
+                Forms\Components\FileUpload::make('attachment')
+                    ->required()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -31,7 +35,17 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('category')
+                    ->searchable(),
+                Tables\Columns\ImageColumn::make('attachment'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //

@@ -29,6 +29,11 @@ class Category extends Model
 
     protected $fillable = [
         'category',
+        'attachment'
+    ];
+
+    protected $casts = [
+        'attachment' => 'array',
     ];
 
     public function classes()

@@ -76,8 +76,8 @@ class SessionsRelationManager extends RelationManager
                 Tables\Actions\CreateAction::make(),
             ])
             ->actions([
-                Tables\Actions\Action::make('settings')
-                    ->label('Test Result')
+                Tables\Actions\Action::make('test')
+                    ->label('Test Review')
                     ->icon('heroicon-o-academic-cap')
                     ->url(function (Session $session) {
                         return route('filament.admin.resources.sessions.session.result', $session->id);
