@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\UserCourse;
 use Auth;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class HomeController extends Controller
@@ -14,7 +15,11 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::query()
-            ->withCount('users')
+            ->withCount([
+                'users' => function (Builder $query) {
+                    $query->distinct();
+                }
+            ])
             ->paginate(4);
         $courses = Course::query()
             ->paginate(8);
