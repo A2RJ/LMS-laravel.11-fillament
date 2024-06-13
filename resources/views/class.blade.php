@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Breadcrumb -->
-<nav class="max-w-screen-lg mx-auto flex pl-4 py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700"
+<nav class="max-w-screen-lg lg:max-w-screen-xl mx-auto flex pl-4 py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700"
     aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li class="inline-flex items-center">
@@ -43,7 +43,7 @@
     </ol>
 </nav>
 
-<div class="max-w-screen-lg mx-auto bg-white border border-slate-300 rounded-lg grid grid-cols-12">
+<div class="max-w-screen-md lg:max-w-screen-xl mx-auto bg-white border border-slate-300 rounded-lg grid grid-cols-12">
     <div class="col-span-9 border-r border-dashed border-slate-300 py-1 px-4">
         <div class="flex justify-start items-center gap-2 mt-2 mb-4">
             <div>
@@ -62,18 +62,6 @@
                     Introduction
                 </small>
             </div>
-        </div>
-
-        <div
-            class="border-b-2 pb-4 border-dashed border-transparent inline-flex space-x-4 overflow-x-scroll max-w-full">
-            <a href="{{ route('course.id', $course->id) }}"
-                class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
-                Introduction </a>
-            @foreach ($course->sessions as $index => $session)
-                <a href="{{ route('session.id', ['course' => $course->id, 'session' => $session->id]) }}"
-                    class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 transition-all duration-200 ease-in-out border border-slate-300 hover:bg-blue-500 hover:text-white">
-                    Session {{ $index + 1 }} </a>
-            @endforeach
         </div>
 
         <div class="grid grid-cols-1 mb-4 lg:grid-cols-4 font-normal text-slate-600 text-xs lg:text-sm">
@@ -117,6 +105,18 @@
             </div>
         </div>
 
+        <div
+            class="border-b-2 pb-4 border-dashed border-transparent inline-flex space-x-4 overflow-x-scroll max-w-full">
+            <a href="{{ route('course.id', $course->id) }}"
+                class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
+                Introduction </a>
+            @foreach ($course->sessions as $index => $session)
+                <a href="{{ route('session.id', ['course' => $course->id, 'session' => $session->id]) }}"
+                    class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 transition-all duration-200 ease-in-out border border-slate-300 hover:bg-blue-500 hover:text-white">
+                    Session {{ $index + 1 }} </a>
+            @endforeach
+        </div>
+
         <div class="min-h-[50vh]">
             <x-tinyview :data="$course->content"></x-tinyview>
         </div>
@@ -145,7 +145,7 @@
 
             @if (session('success'))
                 <div
-                    class="p-4 mb-4 rounded-2xl bg-gradient-to-t to-yellow-400 from-orange-400 flex flex-col items-center justify-between space-y-4">
+                    class="p-4 mb-4 rounded-2xl bg-gradient-to-tr from-blue-500 to-violet-300 flex flex-col items-center justify-between space-y-4">
                     <div class="block text-center mb-5 lg:text-left lg:mb-0">
                         <img class="h-20" src="/cup.png" alt="cup.png" srcset="/cup.png">
                     </div>
@@ -159,7 +159,7 @@
             @endif
 
             <div
-                class="p-4 mb-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 flex flex-col items-center justify-between space-y-4">
+                class="p-4 py-8 mb-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-center justify-between space-y-4">
                 <div class="block text-center mb-5 lg:text-left lg:mb-0">
                     <h2 class="font-manrope text-xl text-white font-semibold mb-5 lg:mb-2">
                         Kickstart Your Learning!
@@ -169,7 +169,7 @@
                     </p>
                 </div>
                 <a href="{{ route('join.course', ['course' => $course->id]) }}"
-                    class="flex items-center gap-2 bg-white rounded-full shadow-sm text-base text-blue-500 font-semibold py-1 px-4 transition-all duration-500 hover:bg-blue-600 hover:text-white border-2 border-transparent hover:border-white group">
+                    class="flex items-center gap-2 bg-white rounded-full shadow-sm text-base text-blue-500 font-semibold py-1 px-4 transition-all duration-500 hover:bg-transparent hover:text-white border-2 border-transparent hover:border-white group">
                     Join Now
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                         class="relative z-10 ml-2 transition-colors duration-150 group-hover:text-white">

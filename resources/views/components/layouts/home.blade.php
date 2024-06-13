@@ -10,11 +10,11 @@
 </head>
 
 <body class="bg-[#f6f5f5]">
-    <div class="sticky top-0 z-20 w-full text-gray-700 bg-white dark-mode:text-gray-200 dark-mode:bg-gray-800 shadow">
-        <div x-data="{ open: false }"
+  <div id="navbar" class="sticky top-0 z-20 w-full text-gray-700 bg-white transition duration-200 dark:text-gray-200 dark:bg-gray-800 shadow">
+     <div x-data="{ open: false }"
             class="max-w-screen-lg lg:max-w-screen-xl flex flex-col container mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:py-4">
             <div class="flex flex-row items-center justify-between">
-                <a href="/" class="flex items-center whitespace-nowrap text-2xl font-black" title="Samawa Daring">
+                <a href="/" class="flex items-center whitespace-nowrap text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500" title="Samawa Daring">
                     <span class="mr-2 9">
                         <sv9 xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                             <g fill="none">
@@ -195,6 +195,25 @@
             if (!dropdown.contains(event.target) && !avatarButton.contains(event.target)) {
                 dropdown.classList.add('hidden');
             }
+        });
+
+         document.addEventListener('DOMContentLoaded', function() {
+            var navbar = document.getElementById('navbar');
+            var navbarHeight = navbar.offsetHeight; // Tinggi navbar
+
+            // Menambahkan event listener untuk mengatur efek saat scroll
+            window.addEventListener('scroll', function() {
+                // Ambil posisi scroll dari atas halaman
+                var scrollPosition = window.scrollY || window.pageYOffset;
+
+                // Jika posisi scroll melebihi tinggi navbar, tambahkan kelas bg-gradient-to-r
+                if (scrollPosition > navbarHeight) {
+                navbar.classList.add('bg-gradient-to-r');
+                } else {
+                // Jika tidak, hapus kelas bg-gradient-to-r
+                navbar.classList.remove('bg-gradient-to-r');
+                }
+            });
         });
     </script>
 </body>

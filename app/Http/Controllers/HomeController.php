@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\UserCourse;
-use Auth;
-use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -40,9 +40,29 @@ class HomeController extends Controller
         return view('welcome', compact('courses', 'categories'));
     }
 
-    public function categoryId($id)
+    public function categoryId($category)
     {
-        return view('category');
+        $search = request('search');
+
+        $category = Category::whereId($category)
+            ->withCount([
+                'users as total_students' => function (Builder $query) {
+                    $query->select(DB::raw('count(distinct users.id)'));
+                }
+            ])
+            ->withCount([
+                'courses as total_teachers' => function (Builder $query) {
+                    $query->join('users', 'courses.user_id', '=', 'users.id')
+                        ->select(DB::raw('count(distinct users.id)'));
+                }
+            ])
+            ->first();
+        $courses = Course::whereCategoryId($category->id)
+            ->when($search, function ($query, $search) {
+                $query->where('title', 'like', '%' . $search . '%');
+            })->paginate(8);
+
+        return view('category', compact('category', 'courses'));
     }
 
     public function courseId(Course $course)

@@ -2,11 +2,11 @@
 
 @section('content')
 <!-- Hero section -->
-<div class="bg-white rounded-2xl pt-4">
+<div class="bg-white rounded-lg pt-4 bg-gradient-to-r from-cyan-500 to-blue-500">
     <div class="grid grid-cols-2">
         <div class="flex flex-col justify-center items-start p-8">
-            <p class="mb-4">Kini, belajar <br> <span
-                    class="whitespace-nowrap text-[#43c2e5] text-4xl uppercase font-bold">budaya Samawa</span> <br>
+            <p class="mb-4 text-white text-sm">Kini, belajar <br> <span
+                    class="whitespace-nowrap text-white text-5xl uppercase font-bold ">budaya Samawa</span> <br>
                 lebih mudah dengan materi pembelajaran daring yang interaktif dan menarik.</p>
             <div class="flex -space-x-3 mt-4 justify-center items-center">
                 <img class="h-10 w-10 rounded-full ring ring-white"
@@ -18,15 +18,15 @@
                 <img class="h-10 w-10 rounded-full ring ring-white"
                     src="https://images.unsplash.com/photo-1663996806932-357eddab9b50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" />
                 <div
-                    class="flex h-10 w-10 items-center justify-center rounded-full bg-white font-semibold text-black ring ring-white">
+                    class="flex h-10 w-10 items-center justify-center rounded-full bg-white font-semibold text-slate-800 ring ring-white">
                     13+</div>
-                <p class="pl-3">Pelajar telah bergabung</p>
+                <p class="pl-4 text-slate-800">Pelajar telah bergabung</p>
             </div>
         </div>
         <div class="pl-20">
             <img class="h-8/12 lg:h-72 max-w-lg rounded-lg object-cover" src="{{ asset('/hero.png') }}" />
         </div>
-        <div class="col-span-2 h-6 bg-[#43c2e5] rounded-b-2xl"></div>
+        <div class="col-span-2 h-6 bg-blue-500 rounded-b-lg"></div>
     </div>
 </div>
 
