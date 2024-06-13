@@ -73,6 +73,7 @@
                         d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
                 </svg>
                 <b>{{ $course->category?->category }}</b>
+                <p>Category</p>
             </div>
             <div class="flex justify-center items-center gap-1 border border-slate-300 lg:border-r-0 p-2">
                 <svg class="text-orange-500 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -100,7 +101,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
                 </svg>
-                <b>24</b>
+                <b>{{ $totalTest ?? 0 }}</b>
                 <p> Quizzes</p>
             </div>
         </div>
@@ -158,26 +159,30 @@
                 </div>
             @endif
 
-            <div
-                class="p-4 py-8 mb-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-center justify-between space-y-4">
-                <div class="block text-center mb-5 lg:text-left lg:mb-0">
-                    <h2 class="font-manrope text-xl text-white font-semibold mb-5 lg:mb-2">
-                        Kickstart Your Learning!
-                    </h2>
-                    <p class="text-sm text-indigo-100">
-                        Commit and track your progress.
-                    </p>
+            @if ($exists)
+
+            @else
+                <div
+                    class="p-4 py-8 mb-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-center justify-between space-y-4">
+                    <div class="block text-center mb-5 lg:text-left lg:mb-0">
+                        <h2 class="font-manrope text-xl text-white font-semibold mb-5 lg:mb-2">
+                            Kickstart Your Learning!
+                        </h2>
+                        <p class="text-sm text-indigo-100">
+                            Commit and track your progress.
+                        </p>
+                    </div>
+                    <a href="{{ route('join.course', ['course' => $course->id]) }}"
+                        class="flex items-center gap-2 bg-white rounded-full shadow-sm text-base text-blue-500 font-semibold py-1 px-4 transition-all duration-500 hover:bg-transparent hover:text-white border-2 border-transparent hover:border-white group">
+                        Join Now
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                            class="relative z-10 ml-2 transition-colors duration-150 group-hover:text-white">
+                            <path fill="currentColor"
+                                d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
+                        </svg>
+                    </a>
                 </div>
-                <a href="{{ route('join.course', ['course' => $course->id]) }}"
-                    class="flex items-center gap-2 bg-white rounded-full shadow-sm text-base text-blue-500 font-semibold py-1 px-4 transition-all duration-500 hover:bg-transparent hover:text-white border-2 border-transparent hover:border-white group">
-                    Join Now
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                        class="relative z-10 ml-2 transition-colors duration-150 group-hover:text-white">
-                        <path fill="currentColor"
-                            d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
-                    </svg>
-                </a>
-            </div>
+            @endif
 
             <div class="text-base font-bold text-slate-900 dark:text-white">Course Session</div>
             <ol class="space-y-2">

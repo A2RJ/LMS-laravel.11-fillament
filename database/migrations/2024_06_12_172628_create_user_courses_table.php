@@ -19,7 +19,7 @@ return new class extends Migration {
                 ->cascadeOnDelete();
             $table->foreignId('course_id')
                 ->references('id')
-                ->on('class_rooms')
+                ->on('cources')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->timestamps();

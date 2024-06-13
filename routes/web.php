@@ -24,8 +24,9 @@ Route::prefix('/')->group(function () {
         Route::get('course/{course}', 'courseId')->name('course.id');
         Route::get('session/{course}', 'session')->name('session.id');
         Route::get('course', 'course')->name('course');
-        Route::get('my-course', 'myCourse')->name('my.course');
-        Route::get('join/{course}', 'joinCourse')->name('join.course');
+        Route::get('my-course', 'myCourse')->name('my.course')->middleware('auth');
+        Route::get('join/{course}', 'joinCourse')->name('join.course')->middleware('auth');
+        Route::post('/sessions/{session}/attendance', 'markAttendance')->name('sessions.attendance');
     });
     Route::controller(TestController::class)->group(function () {
         Route::get('test/{course}/{session}', 'test')->name('test.id');

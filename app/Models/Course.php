@@ -97,4 +97,9 @@ class Course extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function userCourses()
+    {
+        return $this->hasMany(UserCourse::class);
+    }
 }

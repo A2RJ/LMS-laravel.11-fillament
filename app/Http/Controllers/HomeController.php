@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\UserCourse;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Request;
 
 class HomeController extends Controller
 {
@@ -65,14 +67,32 @@ class HomeController extends Controller
         return view('category', compact('category', 'courses'));
     }
 
-    public function courseId(Course $course)
+    public function courseId($course)
     {
-        return view('class', compact('course'));
+        $course = Course::whereId($course)
+            ->with([
+                'author',
+                'sessions' => function ($query) {
+                    $query->with(['preTest', 'postTest']);
+                }
+            ])
+            ->first();
+
+        $totalPreTests = $course->sessions->whereNotNull('pre_test_id')->count();
+        $totalPostTests = $course->sessions->whereNotNull('post_test_id')->count();
+        $totalTest = (int) $totalPreTests + (int) $totalPostTests;
+
+        $userId = Auth::id();
+
+        $exists = UserCourse::whereCourseId($course->id)
+            ->whereUserId($userId)
+            ->exists();
+
+        return view('class', compact('course', 'totalTest', 'exists'));
     }
 
     public function session(Course $course)
     {
-
         $course->load(['sessions.preTest', 'sessions.postTest']);
         $perPage = 1;
         $currentPage = request('page', 1);
@@ -87,7 +107,11 @@ class HomeController extends Controller
         );
         $data = $sessions->getCollection()->first();
 
-        return view('session', compact('course', 'data', 'sessions'));
+        $hasAttendance = Attendance::whereSessionId($data['id'])
+            ->whereUserId(Auth::id())
+            ->exists();
+
+        return view('session', compact('course', 'data', 'sessions', 'hasAttendance'));
     }
 
     public function course()
@@ -108,6 +132,15 @@ class HomeController extends Controller
 
     public function joinCourse(Course $course)
     {
+        $userId = Auth::id();
+
+        $exists = UserCourse::where('course_id', $course->id)
+            ->where('user_id', $userId)
+            ->exists();
+
+        if ($exists)
+            return abort(401);
+
         UserCourse::create([
             'course_id' => $course->id,
             'user_id' => Auth::id()
@@ -121,5 +154,26 @@ class HomeController extends Controller
         $classes = Course::query()
             ->paginate(8);
         return view('my-course', compact('classes'));
+    }
+
+    public function markAttendance(Request $request, $sessionId)
+    {
+        $userId = Auth::id();
+
+        $exists = Attendance::where('session_id', $sessionId)
+            ->where('user_id', $userId)
+            ->exists();
+
+        if ($exists) {
+            return back()->with('error', 'You have already marked your attendance for this session.');
+        }
+
+        // Tandai kehadiran
+        Attendance::create([
+            'user_id' => $userId,
+            'session_id' => $sessionId,
+        ]);
+
+        return back()->with('success', 'Attendance marked successfully.');
     }
 }

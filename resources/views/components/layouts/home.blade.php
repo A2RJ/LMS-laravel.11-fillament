@@ -182,7 +182,34 @@
         </div>
     </footer>
 
+    <div class="relative">
+        <button id="back-to-top" class="fixed hidden bottom-5 right-5 bg-blue-500 text-white px-3 py-1 rounded-full shadow-lg hover:bg-blue-600 transition duration-300">
+        ↑ Back to Top
+    </button>
+    </div>
+
     <script>
+        let backToTopButton = document.getElementById("back-to-top");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        backToTopButton.addEventListener('click', function() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
         document.getElementById('avatarButton').addEventListener('click', function() {
             var dropdown = document.getElementById('userDropdown');
             dropdown.classList.toggle('hidden');

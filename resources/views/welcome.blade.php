@@ -26,7 +26,7 @@
         <div class="pl-20">
             <img class="h-8/12 lg:h-72 max-w-lg rounded-lg object-cover" src="{{ asset('/hero.png') }}" />
         </div>
-        <div class="col-span-2 h-6 bg-blue-500 rounded-b-lg"></div>
+        <div class="col-span-2 h-4 bg-cyan-500 rounded-b-lg"></div>
     </div>
 </div>
 

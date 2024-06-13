@@ -127,6 +127,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CourseAttachement> $attachments
  * @property-read int|null $attachments_count
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserCourse> $userCourses
+ * @property-read int|null $user_courses_count
  */
 	class Course extends \Eloquent {}
 }
