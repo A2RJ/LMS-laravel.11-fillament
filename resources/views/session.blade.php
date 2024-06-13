@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Breadcrumb -->
-<nav class="max-w-screen-lg mx-auto flex pl-4 py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700"
+<nav class="max-w-screen-lg lg:max-w-screen-xl mx-auto flex pl-4 py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700"
     aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li class="inline-flex items-center">
@@ -43,7 +43,7 @@
     </ol>
 </nav>
 
-<div class="max-w-screen-lg mx-auto bg-white border border-slate-300 rounded-lg grid grid-cols-12">
+<div class="max-w-screen-lg lg:max-w-screen-xl mx-auto bg-white border border-slate-300 rounded-lg grid grid-cols-12">
     <div class="col-span-9 border-r border-dashed border-slate-300 py-1 px-4">
         <div class="flex justify-start items-center gap-2 mt-2 mb-4">
             <div>
@@ -156,13 +156,9 @@
             @if($hasAttendance)
                 <div role="alert" class="mb-4 rounded border-s-4 border-green-500 bg-green-50 p-4">
                     <div class="flex items-center gap-2 text-green-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                            <path fill-rule="evenodd"
-                                d="M10.293 16.293a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414l-4.293 4.293-1.293-1.293a1 1 0 00-1.414 1.414l2 2z"
-                                clip-rule="evenodd" />
-                            <path fill-rule="evenodd"
-                                d="M11 3a8 8 0 100 16 8 8 0 000-16zM9 9a1 1 0 011-1h4a1 1 0 010 2H10a1 1 0 01-1-1zm1 5a1 1 0 100 2 1 1 0 000-2z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11t-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22" />
                         </svg>
 
                         <strong class="block font-medium"> Info: </strong>

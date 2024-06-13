@@ -46,8 +46,9 @@ class ClassRoomResource extends Resource
                         ->label('Class Name')
                         ->required()
                         ->columnSpanFull(),
-                    Select::make('category_id')
+                        Select::make('category_id')
                         ->label('Category')
+                        ->required()
                         ->options(Category::pluck('category', 'id')->toArray()),
                     FileUpload::make('thumbnail')
                         ->hiddenOn('edit')
