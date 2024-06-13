@@ -55,6 +55,8 @@ use Rawilk\ProfileFilament\Concerns\TwoFactorAuthenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorEnabled($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserCourse> $courses
+ * @property-read int|null $courses_count
  * @mixin \Eloquent
  */
 class User extends Authenticatable

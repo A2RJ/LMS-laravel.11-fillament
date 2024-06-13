@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Course;
 use App\Models\UserCourse;
 use Auth;
+use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -16,12 +17,24 @@ class HomeController extends Controller
     {
         $categories = Category::query()
             ->withCount([
-                'users' => function (Builder $query) {
-                    $query->distinct();
+                'users as total_students' => function (Builder $query) {
+                    $query->select(DB::raw('count(distinct users.id)'));
+                }
+            ])
+            ->withCount([
+                'courses as total_teachers' => function (Builder $query) {
+                    $query->join('users', 'courses.user_id', '=', 'users.id')
+                        ->select(DB::raw('count(distinct users.id)'));
                 }
             ])
             ->paginate(4);
+
         $courses = Course::query()
+            ->withCount([
+                'users as total_students' => function (Builder $query) {
+                    $query->select(DB::raw('count(distinct users.id)'));
+                }
+            ])
             ->paginate(8);
 
         return view('welcome', compact('courses', 'categories'));

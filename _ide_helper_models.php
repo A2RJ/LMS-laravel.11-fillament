@@ -11,7 +11,7 @@
  */
 
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -35,12 +35,10 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|Answer whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-	class Answer extends \Eloquent
-{
-}
+	class Answer extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -61,12 +59,10 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUserId($value)
  * @mixin \Eloquent
  */
-	class Attendance extends \Eloquent
-{
-}
+	class Attendance extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -74,52 +70,25 @@ namespace App\Models {
  * @property string $category
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Course> $classes
- * @property-read int|null $classes_count
+ * @property array $attachment
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Course> $courses
+ * @property-read int|null $courses_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereAttachment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereCategory($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property array $attachment
- * @method static \Illuminate\Database\Eloquent\Builder|Category whereAttachment($value)
  */
-	class Category extends \Eloquent
-{
-}
+	class Category extends \Eloquent {}
 }
 
-namespace App\Models {
-/**
- * 
- *
- * @property int $id
- * @property int $course_id
- * @property string $attachment
- * @property string $url
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Course $course
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement query()
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement whereAttachment($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement whereClassRoomId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClassAttachement whereUrl($value)
- * @mixin \Eloquent
- */
-	class ClassAttachement extends \Eloquent
-{
-}
-}
-
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -133,12 +102,12 @@ namespace App\Models {
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int|null $category_id
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ClassAttachement> $attachments
- * @property-read int|null $attachments_count
+ * @property-read \App\Models\User $author
  * @property-read \App\Models\Category|null $category
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Session> $sessions
  * @property-read int|null $sessions_count
- * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|Course newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Course newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Course onlyTrashed()
@@ -155,17 +124,39 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Course withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CourseAttachement> $attachments
+ * @property-read int|null $attachments_count
  * @mixin \Eloquent
- * @property-read \App\Models\User|null $author
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserCourse> $users
- * @property-read int|null $users_count
  */
-	class Course extends \Eloquent
-{
-}
+	class Course extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $course_id
+ * @property string $attachment
+ * @property string $url
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Course $course
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement whereAttachment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement whereCourseId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CourseAttachement whereUrl($value)
+ * @mixin \Eloquent
+ */
+	class CourseAttachement extends \Eloquent {}
+}
+
+namespace App\Models{
 /**
  * 
  *
@@ -186,12 +177,10 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|MediaLibrary whereUserId($value)
  * @mixin \Eloquent
  */
-	class MediaLibrary extends \Eloquent
-{
-}
+	class MediaLibrary extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -215,12 +204,10 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|Question whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-	class Question extends \Eloquent
-{
-}
+	class Question extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -248,8 +235,8 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|Session newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Session onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Session query()
- * @method static \Illuminate\Database\Eloquent\Builder|Session whereClassRoomId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Session whereCourseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereEnd($value)
@@ -263,17 +250,15 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|Session withoutTrashed()
  * @mixin \Eloquent
  */
-	class Session extends \Eloquent
-{
-}
+	class Session extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
  * @property int $id
- * @property int $class_session_id
+ * @property int $course_session_id
  * @property string $attachment
  * @property string $url
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -283,19 +268,17 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement query()
  * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement whereAttachment($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement whereClassSessionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement whereCourseSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|SessionAttachement whereUrl($value)
  * @mixin \Eloquent
  */
-	class SessionAttachement extends \Eloquent
-{
-}
+	class SessionAttachement extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -332,12 +315,10 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|Test withoutTrashed()
  * @mixin \Eloquent
  */
-	class Test extends \Eloquent
-{
-}
+	class Test extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -355,21 +336,25 @@ namespace App\Models {
  * @property string|null $notes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Answer|null $answerOption
+ * @property int $is_checked
+ * @property-read \App\Models\Answer|null $answered
+ * @property-read \App\Models\User|null $author
  * @property-read \App\Models\Course $course
  * @property-read \App\Models\Test|null $postTest
  * @property-read \App\Models\Test|null $preTest
  * @property-read \App\Models\Question $question
  * @property-read \App\Models\Session $session
- * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $user
+ * @property-read int|null $user_count
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult query()
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereAnswer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereAnswerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereClassRoomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereCourseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereIsChecked($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereNotes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult wherePostTestId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult wherePreTestId($value)
@@ -379,17 +364,12 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereTestNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereUserId($value)
- * @property-read \App\Models\Answer|null $answered
- * @property int $is_checked
- * @method static \Illuminate\Database\Eloquent\Builder|TestResult whereIsChecked($value)
  * @mixin \Eloquent
  */
-	class TestResult extends \Eloquent
-{
-}
+	class TestResult extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -437,16 +417,14 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorEnabled($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
- * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserCourse> $courses
  * @property-read int|null $courses_count
+ * @mixin \Eloquent
  */
-	class User extends \Eloquent
-{
-}
+	class User extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -455,23 +433,22 @@ namespace App\Models {
  * @property int $course_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Course|null $course
+ * @property-read \App\Models\Course $course
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|UserCourse newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserCourse newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserCourse query()
- * @method static \Illuminate\Database\Eloquent\Builder|UserCourse whereClassRoomId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserCourse whereCourseId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserCourse whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserCourse whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserCourse whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserCourse whereUserId($value)
+ * @mixin \Eloquent
  */
-	class UserCourse extends \Eloquent
-{
-}
+	class UserCourse extends \Eloquent {}
 }
 
-namespace App\Models {
+namespace App\Models{
 /**
  * 
  *
@@ -494,8 +471,6 @@ namespace App\Models {
  * @method static \Illuminate\Database\Eloquent\Builder|Vocabulary whereUserId($value)
  * @mixin \Eloquent
  */
-	class Vocabulary extends \Eloquent
-{
-}
+	class Vocabulary extends \Eloquent {}
 }
 

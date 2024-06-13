@@ -7,6 +7,45 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * 
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $title
+ * @property string $thumbnail
+ * @property string $progress
+ * @property string $content
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int|null $category_id
+ * @property-read \App\Models\User $author
+ * @property-read \App\Models\Category|null $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Session> $sessions
+ * @property-read int|null $sessions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Course newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Course newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Course onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Course query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereProgress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereThumbnail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Course withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Course withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CourseAttachement> $attachments
+ * @property-read int|null $attachments_count
+ * @mixin \Eloquent
+ */
 class Course extends Model
 {
     use HasFactory, SoftDeletes;
@@ -46,7 +85,7 @@ class Course extends Model
 
     public function attachments()
     {
-        return $this->hasMany(ClassAttachement::class);
+        return $this->hasMany(CourseAttachement::class);
     }
 
     public function sessions()
