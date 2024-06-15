@@ -96,6 +96,11 @@ class HomeController extends Controller
             unset($session->attendances);
         });
 
+        $totalSessions = count($session_list);
+        $attendedSessions = count(array_filter($session_list->toArray(), fn ($session) => $session['attendance']));
+        $progressPercentage = ($attendedSessions / $totalSessions) * 100;
+        $progressPercentageStyle = "style='width: " . $progressPercentage . "%'";
+
         $totalPreTests = $course->sessions->whereNotNull('pre_test_id')->count();
         $totalPostTests = $course->sessions->whereNotNull('post_test_id')->count();
         $totalTest = (int) $totalPreTests + (int) $totalPostTests;
@@ -106,7 +111,7 @@ class HomeController extends Controller
             ->whereUserId($userId)
             ->exists();
 
-        return view('course', compact('course', 'totalTest', 'exists', 'session_list'));
+        return view('course', compact('course', 'totalTest', 'exists', 'session_list', 'progressPercentage', 'progressPercentageStyle'));
     }
 
     public function session(Course $course)
@@ -186,7 +191,11 @@ class HomeController extends Controller
 
     public function myCourse()
     {
+        $userId = Auth::id();
         $classes = Course::query()
+            ->whereHas('userCourses', function (BelongsTo $query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
             ->paginate(8);
         return view('my-course', compact('classes'));
     }

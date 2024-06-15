@@ -118,29 +118,59 @@
             <div class="sticky top-[70px] max-h-screen overflow-y-scroll p-2 pb-24 border border-transparent rounded-lg space-y-2 bg-white w-full mt-2">
 
                 @if (session('success'))
-                <div class="p-4 py-8 mb-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-center justify-between space-y-4">
-                    <div class="block text-center mb-5 lg:text-left lg:mb-0">
-                        <img class="h-20" src="/cup.png" alt="cup.png" srcset="/cup.png">
+                <div role="alert" class="mb-4 rounded border-s-4 border-green-500 bg-green-50 p-4">
+                    <div class="flex items-center gap-2 text-green-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11t-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22" />
+                        </svg>
+                        <strong class="block font-medium"> Explore course now </strong>
                     </div>
-                    <p class="text-sm font-bold text-center text-white">
-                        Explore course now
-                    </p>
-                    <p class="text-xs font-bold text-center text-white">
-                        Congratulations on joining <br /> the course!
+
+                    <p class="mt-2 text-sm text-green-700">
+                        Congratulations on joining the course!
                     </p>
                 </div>
                 @endif
 
                 @if ($exists)
-                PROGRESS
-                <div>
-                    <span id="ProgressLabel" class="sr-only">Loading</span>
+                <div role="alert" class="mb-4 rounded border-s-4 border-blue-500 bg-blue-50 p-4">
+                    <div class="flex items-center gap-2 text-blue-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 17q.425 0 .713-.288T13 16v-4q0-.425-.288-.712T12 11t-.712.288T11 12v4q0 .425.288.713T12 17m0-8q.425 0 .713-.288T13 8t-.288-.712T12 7t-.712.288T11 8t.288.713T12 9m0 13q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22" />
+                        </svg>
 
-                    <span role="progressbar" aria-labelledby="ProgressLabel" aria-valuenow="50" class="block rounded-full bg-gray-200">
-                        <span class="block h-4 rounded-full bg-indigo-600 text-center text-[10px]/4" style="width: 50%">
-                            <span class="font-bold text-white"> 50% </span>
+                        <strong class="block font-medium"> Info: </strong>
+                    </div>
+
+                    <p class="mt-2 text-sm text-blue-700">
+                        Complete your course to unlock and download your certificate!
+                    </p>
+
+                    <div class="bg-blue-300 rounded-full mt-4 transition duration-300">
+                        <span id="ProgressLabel" class="sr-only">Loading</span>
+
+                        <span role="progressbar" aria-labelledby="ProgressLabel" aria-valuenow="{{ $progressPercentage }}" class="block rounded-full bg-gray-200">
+                            <span class="block h-5 rounded-full bg-blue-600 text-center text-[10px]/4" {!! $progressPercentageStyle !!}>
+                                <span class="font-bold text-white pl-1"> {{ $progressPercentage }}% </span>
+                            </span>
                         </span>
-                    </span>
+                    </div>
+
+                    <a href="#" class="flex justify-center items-center gap-2 bg-blue-700 rounded-lg mt-2 shadow-sm text-sm text-white font-semibold py-2 px-4 transition-all duration-500 hover:bg-blue-500">
+                        Download Certificate
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" width="32" height="32" viewBox="0 0 24 24">
+                            <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                <path d="M3 14.25a.75.75 0 0 1 .75.75c0 1.435.002 2.436.103 3.192c.099.734.28 1.122.556 1.399c.277.277.665.457 1.4.556c.754.101 1.756.103 3.191.103h6c1.435 0 2.436-.002 3.192-.103c.734-.099 1.122-.28 1.399-.556c.277-.277.457-.665.556-1.4c.101-.755.103-1.756.103-3.191a.75.75 0 0 1 1.5 0v.055c0 1.367 0 2.47-.116 3.337c-.122.9-.38 1.658-.982 2.26c-.602.602-1.36.86-2.26.982c-.867.116-1.97.116-3.337.116h-6.11c-1.367 0-2.47 0-3.337-.116c-.9-.122-1.658-.38-2.26-.982c-.602-.602-.86-1.36-.981-2.26c-.117-.867-.117-1.97-.117-3.337V15a.75.75 0 0 1 .75-.75" opacity=".5" />
+                                <path d="M12 16.75a.75.75 0 0 0 .553-.244l4-4.375a.75.75 0 1 0-1.107-1.012l-2.696 2.95V3a.75.75 0 0 0-1.5 0v11.068l-2.696-2.95a.75.75 0 0 0-1.108 1.013l4 4.375a.75.75 0 0 0 .554.244" />
+                            </g>
+                        </svg>
+                    </a>
+
+                    <div class="mt-2">
+                        <a href="#" class="text-blue-500 underline ">
+                            <small>Lihat semua sertifkat saya</small>
+                        </a>
+                    </div>
                 </div>
                 @else
                 <div class="p-4 py-8 mb-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-center justify-between space-y-4">
