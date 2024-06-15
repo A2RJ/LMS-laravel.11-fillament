@@ -44,6 +44,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Course withoutTrashed()
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CourseAttachement> $attachments
  * @property-read int|null $attachments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserCourse> $userCourses
+ * @property-read int|null $user_courses_count
  * @mixin \Eloquent
  */
 class Course extends Model

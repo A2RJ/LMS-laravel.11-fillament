@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Course|null $course
  * @property-read \App\Models\Session $session
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance newModelQuery()
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereCourseId($value)
  * @mixin \Eloquent
  */
 class Attendance extends Model
@@ -31,8 +33,14 @@ class Attendance extends Model
 
     protected $fillable = [
         'user_id',
+        'course_id',
         'session_id',
     ];
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 
     public function user()
     {

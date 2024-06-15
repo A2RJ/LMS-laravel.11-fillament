@@ -47,6 +47,7 @@ namespace App\Models{
  * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Course|null $course
  * @property-read \App\Models\Session $session
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance newModelQuery()
@@ -57,6 +58,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereSessionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereCourseId($value)
  * @mixin \Eloquent
  */
 	class Attendance extends \Eloquent {}
@@ -126,9 +128,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Course withoutTrashed()
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CourseAttachement> $attachments
  * @property-read int|null $attachments_count
- * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserCourse> $userCourses
  * @property-read int|null $user_courses_count
+ * @mixin \Eloquent
  */
 	class Course extends \Eloquent {}
 }
@@ -315,6 +317,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Test whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Test withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Test withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $result
+ * @property-read int|null $result_count
  * @mixin \Eloquent
  */
 	class Test extends \Eloquent {}

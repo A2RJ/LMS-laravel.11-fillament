@@ -41,6 +41,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Test whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Test withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Test withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $result
+ * @property-read int|null $result_count
  * @mixin \Eloquent
  */
 class Test extends Model
@@ -80,5 +82,10 @@ class Test extends Model
     public function postTest()
     {
         return $this->hasMany(Session::class, 'post_test_id');
+    }
+
+    public function result()
+    {
+        return $this->hasMany(TestResult::class);
     }
 }

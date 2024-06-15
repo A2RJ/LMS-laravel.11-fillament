@@ -1,141 +1,250 @@
 @extends('components.layouts.home')
 
 @section('content')
-    <div class="max-w-screen-xl mx-auto pt-4">
-        <!-- Breadcrumb -->
-        <nav class="flex mt-4 py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-                <li class="inline-flex items-center">
-                    <a href="#"
-                        class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-400 dark:hover:text-white">
-                        <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 20 20">
-                            <path
-                                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                        </svg>
-                        Home
-                    </a>
-                </li>
-                <li aria-current="page">
-                    <div class="flex items-center">
-                        <svg class="rtl:rotate-180  w-3 h-3 mx-1 text-slate-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 9 4-4-4-4" />
-                        </svg>
-                        <span class="ms-1 text-sm font-medium text-slate-500 md:ms-2 dark:text-slate-400">Course List</span>
-                    </div>
-                </li>
-            </ol>
-        </nav>
+<div class="max-w-screen-xl mx-auto pt-4">
+    <nav aria-label="Breadcrumb" class="p-4">
+        <ol class="flex items-center gap-1 text-sm text-slate-600">
+            <li>
+                <a href="/" class="block transition hover:text-slate-700">
+                    <span class="sr-only"> Home </span>
 
-        <div class="mb-10 min-h-[50vh]">
-            <div class="grid grid-cols-2 items-center py-2 mb-2">
-                <h1 class="text-2xl font-bold flex items-center gap-1">
-                    <span>Course List</span>
-                </h1>
-                <div class="flex justify-end">
-                    <form
-                        class="relative flex w-full max-w-2xl items-center justify-between rounded-md border border-slate-300">
-                        @if (request('search', false))
-                            <a href="{{ url()->current() }}" class="absolute flex justify-center items-center"
-                                title="Cancel">
-                                <svg class="absolute left-2 block h-6 w-6 text-red-500" xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="m8.4 17l3.6-3.6l3.6 3.6l1.4-1.4l-3.6-3.6L17 8.4L15.6 7L12 10.6L8.4 7L7 8.4l3.6 3.6L7 15.6zm3.6 5q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8" />
-                                </svg>
-                            </a>
-                        @else
-                            <svg class="absolute left-2 block h-5 w-5 text-slate-500" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="11" cy="11" r="8" class=""></circle>
-                                <line x1="21" y1="21" x2="16.65" y2="16.65" class=""></line>
-                            </svg>
-                        @endif
-                        <input type="name" name="search"
-                            class="h-12 w-full rounded-md text-slate-500 py-4 pr-40 pl-12 outline-none focus:ring-2"
-                            placeholder="Search Courses" value="{{ request('search') }}" />
-                        <button type="submit"
-                            class="absolute right-0 mr-1 inline-flex h-10  items-center justify-center rounded-lg bg-blue-500 px-10 font-medium text-white focus:ring-0">Search</button>
-                    </form>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                </a>
+            </li>
+
+            <li class="rtl:rotate-180">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </li>
+
+            <li>
+                <a href="{{ route('category.id', $course->category->id) }}" class="block transition hover:text-slate-700">
+                    {{ $course->category ? $course->category->category : 'No Category' }} </a>
+            </li>
+
+            <li class="rtl:rotate-180">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+            </li>
+
+            <li>
+                <a href="#" class="block transition hover:text-slate-700"> {{ $course->title }} </a>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="max-w-screen-md lg:max-w-screen-xl mx-auto bg-white border border-slate-300 rounded-lg grid grid-cols-12">
+        <div class="col-span-9 border-r border-dashed border-slate-300 py-1 px-4">
+            <div class="flex justify-start items-center gap-2 mt-2 mb-4">
+                <div>
+                    <a href="{{ url()->previous() }}" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
+                            <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
+                        </svg>
+                    </a>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold">{{ $course->title }}</h1>
+                    <small class="text-sm font-medium text-slate-500">
+                        Introduction
+                    </small>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                @forelse ($courses as $course)
-                    <div
-                        class="bg-white group hover:shadow-lg transition duration-150 h-full overflow-hidden rounded-lg border border-slate-300">
-                        <img class="w-full transform object-cover object-center transition duration-500 ease-in-out group-hover:scale-105 md:h-36 lg:h-48"
-                            src="{{ '/storage/' . $course->thumbnail }}" alt="thumbnail" />
-                        <h2
-                            class="title-font inline-block cursor-pointer px-6 pt-4 pb-1 text-xs font-semibold uppercase tracking-widest text-[#43c2e5] hover:font-bold">
-                            {{ $course->category ? $course->category->category : 'No Category' }}
-                        </h2>
-                        <div class="py-1 px-6 pb-6">
-                            <h1 class="line-clamp-2 max-h-[3.50rem] font-bold text-lg text-gray-800 overflow-hidden mb-3">
-                                {{ $course->title }}
-                            </h1>
-                            <div class="flex flex-col space-y-1">
-                                <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32"
-                                        height="32" viewBox="0 0 48 48">
-                                        <path fill="currentColor"
-                                            d="M12.25 8A4.25 4.25 0 0 0 8 12.25v15.5A4.25 4.25 0 0 0 12.25 32h19.851a7 7 0 0 1-1.641-2.5H12.25a1.75 1.75 0 0 1-1.75-1.75v-15.5c0-.966.784-1.75 1.75-1.75h23.5c.967 0 1.75.784 1.75 1.75v7.768c.89.062 1.733.291 2.5.656V12.25A4.25 4.25 0 0 0 35.75 8zm-7 27.5h20.978A5 5 0 0 0 26 36.998v.502q0 .252.016.5H5.25a1.25 1.25 0 1 1 0-2.5M42 27a5 5 0 1 1-10 0a5 5 0 0 1 10 0m4 10.5c0 3.5-3.15 6.5-9 6.5s-9-3-9-6.5v-.502A3 3 0 0 1 31 34h12c1.657 0 3 1.34 3 2.998z" />
-                                    </svg>
-                                    <span>{{ count($course->sessions) }} Sessions</span>
-                                </p>
-                                <p class="inline-flex items-center gap-1 text-sm leading-none text-gray-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-500" width="32"
-                                        height="32" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
-                                    </svg>
-                                    <span>{{ $course->author->name }}</span>
-                                </p>
-                                <div class="flex items-center gap-1 text-sm leading-none text-gray-400">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" width="32"
-                                        height="32" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M2 12c0 5.523 4.477 10 10 10s10-4.477 10-10S17.523 2 12 2S2 6.477 2 12m18 0a8 8 0 1 1-16 0a8 8 0 0 1 16 0m-8 0V6a5.98 5.98 0 0 1 4.243 1.757z" />
-                                    </svg>
-                                    <div class="w-full bg-slate-200 rounded-full dark:bg-slate-700">
-                                        <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                                            style="width: 10%"> 0%</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-right mt-3">
-                                <a href="{{ route('course.id', $course->id) }}">
-                                    <button
-                                        class="px-2 py-1 border-2 border-blue-500 rounded-lg bg-blue-500 text-white hover:bg-white hover:text-blue-500 transition duration-150">
-                                        Mulai belajar
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <div
-                        class="col-span-12 flex flex-col justify-center items-center h-56 bg-white p-3 overflow-hidden rounded-lg border border-dashed border-slate-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="text-orange-500 h-6" width="32"
-                            height="32" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M12 17.75a.75.75 0 0 0 .75-.75v-6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75M12 7a1 1 0 1 1 0 2a1 1 0 0 1 0-2" />
-                            <path fill="currentColor" fill-rule="evenodd"
-                                d="M1.25 12C1.25 6.063 6.063 1.25 12 1.25S22.75 6.063 22.75 12S17.937 22.75 12 22.75S1.25 17.937 1.25 12M12 2.75a9.25 9.25 0 1 0 0 18.5a9.25 9.25 0 0 0 0-18.5"
-                                clip-rule="evenodd" />
-                        </svg>
-                        <p class="text-orange-500 text-sm">No Data</p>
-                    </div>
-                @endforelse
+            <div class="grid grid-cols-1 mb-4 lg:grid-cols-4 font-normal text-slate-600 text-xs lg:text-sm">
+                <div class="flex justify-center items-center gap-1 border border-slate-300 lg:border-r-0 p-2 lg:rounded-l-lg">
+                    <svg class="text-blue-500 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+                    </svg>
+                    <b>{{ $course->category?->category }}</b>
+                    <p>Category</p>
+                </div>
+                <div class="flex justify-center items-center gap-1 border border-slate-300 lg:border-r-0 p-2">
+                    <svg class="text-orange-500 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+                    </svg>
+                    <b>4,9</b>
+                    <p>(1 Reviews)</p>
+                </div>
+                <div class="flex justify-center items-center gap-1 border border-slate-300 lg:border-r-0 p-2">
+                    <svg class="text-blue-500 bg-blue-200 rounded-full w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+                    </svg>
+                    <b>{{ $course->sessions->count() + 1 }}</b>
+                    <p> Lessons</p>
+                </div>
+                <div class="flex justify-center items-center gap-1 border border-slate-300 p-2 lg:rounded-r-lg">
+                    <svg class="text-slate-500 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z" />
+                    </svg>
+                    <b>{{ $totalTest ?? 0 }}</b>
+                    <p> Quizzes</p>
+                </div>
             </div>
 
-            <nav class="text-right mt-4">
-                {{ $courses->links() }}
-            </nav>
+            <div class="border-b-2 pb-4 border-dashed border-transparent inline-flex space-x-4 overflow-x-scroll max-w-full">
+                <a href="{{ route('course.id', $course->id) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
+                    Introduction </a>
+                @foreach ($course->sessions as $index => $session)
+                <a href="{{ route('session.id', ['course' => $course->id, 'session' => $session->id]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 transition-all duration-200 ease-in-out border border-slate-300 hover:bg-blue-500 hover:text-white">
+                    Session {{ $index + 1 }} </a>
+                @endforeach
+            </div>
 
+            <div class="min-h-[50vh]">
+                <x-tinyview :data="$course->content"></x-tinyview>
+            </div>
+
+            <div class="float-right mt-8 mb-4">
+                <a href="{{ route('session.id', ['course' => $course->id]) }}?page=1">
+                    <button class="relative group flex items-center justify-center px-3 py-1 border border-blue-500 overflow-hidden rounded-lg bg-blue-500 text-white">
+                        <span class="relative z-10 transition-colors duration-300 group-hover:text-blue-500">Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 ml-2 transition-colors duration-300 group-hover:text-blue-500">
+                            <path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
+                        </svg>
+                        <div class="absolute inset-0 bg-white transform scale-x-0 origin-right transition-transform duration-300 group-hover:scale-x-100">
+                        </div>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-span-3 pl-1">
+            <div class="sticky top-[70px] max-h-screen overflow-y-scroll p-2 pb-24 border border-transparent rounded-lg space-y-2 bg-white w-full mt-2">
+
+                @if (session('success'))
+                <div class="p-4 py-8 mb-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-center justify-between space-y-4">
+                    <div class="block text-center mb-5 lg:text-left lg:mb-0">
+                        <img class="h-20" src="/cup.png" alt="cup.png" srcset="/cup.png">
+                    </div>
+                    <p class="text-sm font-bold text-center text-white">
+                        Explore course now
+                    </p>
+                    <p class="text-xs font-bold text-center text-white">
+                        Congratulations on joining <br /> the course!
+                    </p>
+                </div>
+                @endif
+
+                @if ($exists)
+                PROGRESS
+                <div>
+                    <span id="ProgressLabel" class="sr-only">Loading</span>
+
+                    <span role="progressbar" aria-labelledby="ProgressLabel" aria-valuenow="50" class="block rounded-full bg-gray-200">
+                        <span class="block h-4 rounded-full bg-indigo-600 text-center text-[10px]/4" style="width: 50%">
+                            <span class="font-bold text-white"> 50% </span>
+                        </span>
+                    </span>
+                </div>
+                @else
+                <div class="p-4 py-8 mb-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 flex flex-col items-center justify-between space-y-4">
+                    <div class="block text-center mb-5 lg:text-left lg:mb-0">
+                        <h2 class="font-manrope text-xl text-white font-semibold mb-5 lg:mb-2">
+                            Kickstart Your Learning!
+                        </h2>
+                        <p class="text-sm text-indigo-100">
+                            Commit and track your progress.
+                        </p>
+                    </div>
+                    <a href="{{ route('join.course', ['course' => $course->id]) }}" class="flex items-center gap-2 bg-white rounded-full shadow-sm text-base text-blue-500 font-semibold py-1 px-4 transition-all duration-500 hover:bg-transparent hover:text-white border-2 border-transparent hover:border-white group">
+                        Join Now
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 ml-2 transition-colors duration-150 group-hover:text-white">
+                            <path fill="currentColor" d="M16.15 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.15L13.3 8.15q-.3-.3-.288-.7t.288-.7q.3-.3.713-.312t.712.287L19.3 11.3q.15.15.213.325t.062.375t-.062.375t-.213.325l-4.575 4.575q-.3.3-.712.288t-.713-.313q-.275-.3-.288-.7t.288-.7z" />
+                        </svg>
+                    </a>
+                </div>
+                @endif
+
+                <div class="text-base font-bold text-slate-900 dark:text-white">Course Session</div>
+                <ol class="space-y-2">
+                    <li class="">
+                        <a href="{{ route('course.id', ['course' => $course->id]) }}">
+                            <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-medium text-sm">1. Introduction</h3>
+                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    @foreach ($session_list as $index => $session)
+                    @if (request('page') == $index + 1)
+                    <li>
+                        <div class="w-full p-3 text-blue-700 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400" role="alert">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-medium text-sm">{{ $index + 2 }}. {{ substr($session->title, 0, 25) }}...</h3>
+                                <h3 class="font-medium text-sm">Now</h3>
+                            </div>
+                        </div>
+                    </li>
+                    @elseif ($session->attendance)
+                    <li class="">
+                        <a href="{{ route('session.id', ['course' => $course->id, 'page' => $index + 1]) }}">
+                            <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400">
+                                <div class="flex items-center justify-between line-clamp-1">
+                                    <h3 class="font-medium text-sm">{{ $index + 2 }}. {{ substr($session->title, 0, 25) }}...</h3>
+                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    @else
+                    <li>
+                        <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" role="alert">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-medium text-sm">{{ $index + 2 }}. {{ substr($session->title, 0, 25) }}...</h3>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800 group-hover:text-white transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </li>
+                    @endif
+                    @endforeach
+                </ol>
+
+                @if (!empty($course->session) && !empty($course->session->preTest) && !empty($course->session->postTest))
+                <p class="text-base font-bold text-slate-900 dark:text-white">Test list:</p>
+
+                @if (!empty($course->session->preTest))
+                <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400" role="alert">
+                    <a href="{{ route('test.id', [$course->id, $course->session->preTest->id]) }}">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-medium text-sm">Pre Test</h3>
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                @endif
+
+                @if (!empty($course->session->postTest))
+                <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" role="alert">
+                    <a href="{{ route('test.id', [$course->id, $course->session->postTest->id]) }}">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-medium text-sm">Post Test</h3>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800 group-hover:text-white transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                @endif
+                @endif
+
+            </div>
         </div>
     </div>
+</div>
 @endsection
