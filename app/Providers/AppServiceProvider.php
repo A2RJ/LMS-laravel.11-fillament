@@ -31,15 +31,15 @@ class AppServiceProvider extends ServiceProvider
             Js::make('custom-script', asset('js/tinymce_5.10.7/custom-tiny.js')),
         ]);
 
-        Filament::serving(function () {
-            Filament::registerNavigationItems([
-                NavigationItem::make('Test Review')
-                    ->url(route('filament.admin.resources.tests.index'), shouldOpenInNewTab: true)
-                    ->icon('heroicon-o-list-bullet')
-                    ->activeIcon('heroicon-s-list-bullet')
-                    ->group('Courses')
-                    ->sort(3),
-            ]);
-        });
+        // Filament::serving(function () {
+        //     Filament::registerNavigationItems([
+        //         NavigationItem::make('Test Review')
+        //             ->url(route('filament.admin.resources.tests.index'), shouldOpenInNewTab: true)
+        //             ->icon('heroicon-o-presentation-chart-line')
+        //             ->activeIcon('heroicon-s-presentation-chart-line')
+        //             ->group('Courses')
+        //             ->sort(3),
+        //     ]);
+        // });
     }
 }
