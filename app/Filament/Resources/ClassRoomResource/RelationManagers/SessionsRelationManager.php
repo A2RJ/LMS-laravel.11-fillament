@@ -38,7 +38,7 @@ class SessionsRelationManager extends RelationManager
                     ->label('Pre Test')
                     ->searchPrompt('Search test by title')
                     ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                    ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
+                    ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
                     ->searchable()
                     ->optionsLimit(20),
                 Forms\Components\Select::make('post_test_id')
@@ -46,7 +46,7 @@ class SessionsRelationManager extends RelationManager
                     ->label('Pre Test')
                     ->searchPrompt('Search test by title')
                     ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                    ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
+                    ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
                     ->searchable()
                     ->optionsLimit(20),
             ]);
@@ -59,11 +59,11 @@ class SessionsRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('preTest')
-                    ->formatStateUsing(fn(string $state) => $state ? 'Preview Test' : 'No Test')
+                    ->formatStateUsing(fn (string $state) => $state ? 'Preview Test' : 'No Test')
                     ->badge()
                     ->color('primary'),
                 Tables\Columns\TextColumn::make('postTest')
-                    ->formatStateUsing(fn(string $state) => $state ? 'Preview Test' : 'No Test')
+                    ->formatStateUsing(fn (string $state) => $state ? 'Preview Test' : 'No Test')
                     ->badge()
                     ->color('primary'),
                 Tables\Columns\TextColumn::make('start')->dateTime(),
@@ -88,10 +88,10 @@ class SessionsRelationManager extends RelationManager
                         $currentIndex = $sessions->search(function ($item) use ($session) {
                             return $item->id === $session->id;
                         });
-                        return route('session.id', ['class' => $session->course_id]) . "?page=" . $currentIndex + 1;
+                        return route('session.id', ['course' => $session->course_id]) . "?page=" . $currentIndex + 1;
                     }, true),
                 Tables\Actions\EditAction::make()
-                    ->url(fn(Session $session) => route('filament.admin.resources.sessions.edit', ['record' => $session->id])),
+                    ->url(fn (Session $session) => route('filament.admin.resources.sessions.edit', ['record' => $session->id])),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

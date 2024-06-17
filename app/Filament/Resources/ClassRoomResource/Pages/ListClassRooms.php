@@ -7,6 +7,7 @@ use App\Filament\Resources\ClassRoomResource\Widgets\CoursesChart;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListClassRooms extends ListRecords
 {
@@ -26,6 +27,11 @@ class ListClassRooms extends ListRecords
                 ),
         ];
     }
+
+    // protected function getTableQuery(): Builder
+    // {
+    //     return parent::getTableQuery();
+    // }
 
     protected function getHeaderWidgets(): array
     {

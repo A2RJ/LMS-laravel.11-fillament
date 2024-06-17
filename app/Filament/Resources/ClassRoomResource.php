@@ -46,7 +46,7 @@ class ClassRoomResource extends Resource
                         ->label('Class Name')
                         ->required()
                         ->columnSpanFull(),
-                        Select::make('category_id')
+                    Select::make('category_id')
                         ->label('Category')
                         ->required()
                         ->options(Category::pluck('category', 'id')->toArray()),
@@ -106,7 +106,7 @@ class ClassRoomResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                    ->url(fn(Course $class) => route('class.id', $class->id), true),
+                    ->url(fn (Course $class) => route('course.id', $class->id), true),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
@@ -161,6 +161,4 @@ class ClassRoomResource extends Resource
             // Pages\TestResult::class,
         ]);
     }
-
-
 }
