@@ -193,7 +193,7 @@ class HomeController extends Controller
     {
         $userId = Auth::id();
         $classes = Course::query()
-            ->whereHas('userCourses', function (BelongsTo $query) use ($userId) {
+            ->whereHas('userCourses', function (Builder $query) use ($userId) {
                 $query->where('user_id', $userId);
             })
             ->paginate(8);
