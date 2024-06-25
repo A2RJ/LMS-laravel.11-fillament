@@ -15,6 +15,10 @@ class ListUserCourses extends ListRecords
     protected function getTableQuery(): Builder
     {
         return parent::getTableQuery()
-            ->select('*', DB::raw('COUNT(user_id) as user_count'))->groupBy('course_id');
+            ->whereHas('course', function ($query) {
+                $query->whereHas('sessions');
+            })
+            ->select('*', DB::raw('COUNT(user_id) as user_count'))
+            ->groupBy('course_id');
     }
 }

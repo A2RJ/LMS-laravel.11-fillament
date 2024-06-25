@@ -84,6 +84,16 @@ class Test extends Model
         return $this->hasMany(Session::class, 'post_test_id');
     }
 
+    public function preTestResult()
+    {
+        return $this->hasMany(TestResult::class, 'pre_test_id');
+    }
+
+    public function postTestResult()
+    {
+        return $this->hasMany(TestResult::class, 'post_test_id');
+    }
+
     public function result()
     {
         return $this->hasMany(TestResult::class);

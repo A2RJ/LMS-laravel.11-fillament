@@ -31,113 +31,91 @@
            background-repeat: no-repeat;">
         </div>
     </div>
-    <!-- <p>Course Title: {{ $this->record->title }}</p>
-    <p>Total User: {{ $this->record->userCourses->count() }}</p> -->
 
-    @foreach ($this->record->userCourses as $course)
-    <div class="overflow-x-auto rounded-lg border border-gray-200 mb-4">
-        <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-            <thead class="ltr:text-left rtl:text-right">
-                <tr>
-                    <th colspan="4" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User: {{ $course->user->name }}</th>
-                </tr>
-                <tr>
-                    <th colspan="4" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Course: {{ $course->course->title }}</th>
-                </tr>
-                <tr>
-                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Type</th>
-                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Title</th>
-                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Attendance</th>
-                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Score</th>
-                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Action</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-                @php
-                $totalScore = 0;
-                $totalSessions = 0;
-                @endphp
-                @foreach ($course->course->sessions as $session)
-                @php
-                $sessionScore = $session->score ?? 0;
-                $preTestScore = $session->preTest?->score ?? 0;
-                $postTestScore = $session->postTest?->score ?? 0;
-
-                $totalScore += $sessionScore + $preTestScore + $postTestScore;
-                $totalSessions++;
-                @endphp
-                <tr>
-                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Session</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session->title }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session->attendance }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $sessionScore }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                        <a class="inline-flex items-center gap-2 rounded border border-indigo-600 bg-indigo-600 px-2 py-1 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500" href="#">
-                            <span class="text-sm font-medium"> Detail </span>
-
-                            <svg class="size-3 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Pre Test</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session->preTest?->title ?? 'N/A' }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session->preTest?->attendance ?? 'N/A' }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $preTestScore }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                        <a class="inline-flex items-center gap-2 rounded border border-indigo-600 px-2 py-1 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500" href="#">
-                            <span class="text-sm font-medium"> Detail </span>
-
-                            <svg class="size-3 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Post Test</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session->postTest?->title ?? 'N/A' }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session->postTest?->attendance ?? 'N/A' }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $postTestScore }}</td>
-                    <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                        <a class="inline-flex items-center gap-2 rounded border border-indigo-600 px-2 py-1 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500" href="#">
-                            <span class="text-sm font-medium"> Detail </span>
-
-                            <svg class="size-3 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg>
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-                @php
-                $averageScore = $totalSessions ? $totalScore / $totalSessions : 0;
-                $grade = 'N/A'; // Logic to determine grade based on $averageScore
-                if ($averageScore >= 90) {
-                $grade = 'A';
-                } elseif ($averageScore >= 80) {
-                $grade = 'B';
-                } elseif ($averageScore >= 70) {
-                $grade = 'C';
-                } elseif ($averageScore >= 60) {
-                $grade = 'D';
-                } else {
-                $grade = 'F';
-                }
-                @endphp
-                <tr class="border-t border-gray-400">
-                    <td colspan="3" class="text-right px-4 py-2 font-bold text-gray-900">Total Score</td>
-                    <td class="px-4 py-2 font-bold text-gray-700">{{ $totalScore }}</td>
-                </tr>
-                <tr class="border-b border-gray-400">
-                    <td colspan="3" class="text-right px-4 py-2 font-bold text-gray-900">Grade</td>
-                    <td class="px-4 py-2 font-bold text-gray-700">{{ $grade }}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @foreach ($this->report as $course)
+            <div class="overflow-x-auto rounded-lg border border-gray-200 mb-4">
+                <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+                    <thead class="ltr:text-left rtl:text-right">
+                        <tr>
+                            <th colspan="4" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">User: {{ $course['user'] }}</th>
+                        </tr>
+                        <tr>
+                            <th colspan="4" class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Course: {{ $course['course']->title }}</th>
+                        </tr>
+                        <tr>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Type</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Title</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Attendance</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Score</th>
+                            <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        @foreach ($course['session'] as $session)
+                        <tr>
+                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Session</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session['title'] }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                @if ($session['attendance'])
+                                <input type="checkbox" class="h-5 w-5 text-green-600 border-gray-300 rounded" checked disabled>
+                                @else
+                                <input type="checkbox" class="h-5 w-5 text-green-600 border-gray-300 rounded" disabled>
+                                @endif
+                            </td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700"></td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                <a href="#" class="inline-flex items-center gap-2 rounded border border-indigo-600 bg-indigo-600 px-2 py-1 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">
+                                    <span class="text-sm font-medium"> Detail </span>
+                                    <svg class="size-3 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Pre Test</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session['pre_test'] }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session['pre_test_result'] ? 'Passed' : 'N/A' }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session['pre_test_total_score'] }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                <a href="#" class="inline-flex items-center gap-2 rounded border px-2 py-1 text-indigo-600 hover:bg-transparen focus:outline-none focus:ring active:bg-indigo-500">
+                                    <span class="text-sm font-medium"> Detail </span>
+                                    <svg class="size-3 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">Post Test</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session['post_test'] }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session['post_test_result'] ? 'Passed' : 'N/A' }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">{{ $session['post_test_total_score'] }}</td>
+                            <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                <a href="#" class="inline-flex items-center gap-2 rounded border px-2 py-1 text-indigo-600 hover:bg-transparen focus:outline-none focus:ring active:bg-indigo-500">
+                                    <span class="text-sm font-medium"> Detail </span>
+                                    <svg class="size-3 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        <tr class="border-t border-gray-400">
+                            <td colspan="3" class="text-right px-4 py-2 font-bold text-gray-900">Total Score</td>
+                            <td class="px-4 py-2 font-bold text-gray-700">{{ $course['total_score'] }}</td>
+                        </tr>
+                        <tr class="border-b border-gray-400">
+                            <td colspan="3" class="text-right px-4 py-2 font-bold text-gray-900">Grade</td>
+                            <td class="px-4 py-2 font-bold text-gray-700">{{ $course['grade'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            @endforeach
+        </div>
     </div>
-    @endforeach
 
 </x-filament-panels::page>

@@ -60,6 +60,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereCourseId($value)
  * @mixin \Eloquent
+ * @property int $course_id
  */
 	class Attendance extends \Eloquent {}
 }
@@ -253,6 +254,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Session withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Session withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \App\Models\Attendance|null $attendance
  */
 	class Session extends \Eloquent {}
 }
@@ -320,6 +322,10 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $result
  * @property-read int|null $result_count
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $postTestResult
+ * @property-read int|null $post_test_result_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $preTestResult
+ * @property-read int|null $pre_test_result_count
  */
 	class Test extends \Eloquent {}
 }

@@ -93,4 +93,9 @@ class Session extends Model
     {
         return $this->hasMany(Attendance::class);
     }
+
+    public function attendance()
+    {
+        return $this->hasOne(Attendance::class);
+    }
 }
