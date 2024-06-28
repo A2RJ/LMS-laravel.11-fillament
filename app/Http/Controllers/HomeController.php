@@ -126,10 +126,9 @@ class HomeController extends Controller
     public function session(Course $course)
     {
         $userId = Auth::id();
-        $course->load(['sessions.preTest', 'sessions.postTest']);
         $perPage = 1;
-        $session = request('page', 1);
-        $current = request('current', 1);
+        $page = request('page', 1);
+        $current = request('current', $page);
         $session_list = Session::query()
             ->whereCourseId($course->id)
             ->with([
@@ -170,19 +169,23 @@ class HomeController extends Controller
             }
         });
 
-        $currentItems = array_slice($session_list->toArray(), ($session - 1) * $perPage, $perPage);
+        $paginateItems = array_slice($session_list->toArray(), ($page - 1) * $perPage, $perPage);
         $sessions = new LengthAwarePaginator(
-            $currentItems,
+            $paginateItems,
             count($session_list),
             $perPage,
-            $session,
+            $page,
             ['path' => request()->url(), 'query' => request()->query()]
         );
         $data = $session_list->where('id', $sessions->getCollection()->first()['id'])->first();
-        $current = $session_list[$current - 1];
-        $is_pre_post_done = $current->preTestDone && $current->postTestDone;
-        if (!$is_pre_post_done) {
-            return redirect()->back()->with('failed', 'Anda harus menyelesaikan pre-test dan post-test sebelum melanjutkan.');
+
+        // Tentukan sesi saat ini berdasarkan halaman
+        $currentSession = $session_list[$page - 1]; // Sesi saat ini berdasarkan page
+        // Periksa apakah pengguna mengklik "Next" dan apakah pre-test dan post-test selesai
+        if ($page > $current) { // Next
+            if (!$currentSession->preTestDone || !$currentSession->postTestDone) {
+                return redirect()->back()->with('failed', 'Anda harus menyelesaikan pre-test dan post-test sebelum melanjutkan.');
+            }
         }
 
         return view('session', compact('course', 'data', 'sessions', 'session_list'));

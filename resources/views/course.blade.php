@@ -116,6 +116,21 @@
 
         <div class="col-span-3 pl-1">
             <div class="sticky top-[70px] max-h-screen overflow-y-scroll p-2 pb-24 border border-transparent rounded-lg space-y-2 bg-white w-full mt-2">
+                @if (session('failed'))
+                <div role="alert" class="mb-4 rounded border-s-4 border-red-500 bg-red-50 p-4">
+                    <div class="flex items-center gap-2 text-red-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                            <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+                        </svg>
+
+                        <strong class="block font-medium"> Ops! </strong>
+                    </div>
+
+                    <p class="mt-2 text-sm text-red-700">
+                        {{ session('failed') }}.
+                    </p>
+                </div>
+                @endif
 
                 @if (session('success'))
                 <div role="alert" class="mb-4 rounded border-s-4 border-green-500 bg-green-50 p-4">
@@ -197,27 +212,16 @@
                 <ol class="space-y-2">
                     <li class="">
                         <a href="{{ route('course.id', ['course' => $course->id]) }}">
-                            <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400">
+                            <div class="w-full p-3 text-blue-700 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400">
                                 <div class="flex items-center justify-between">
                                     <h3 class="font-medium text-sm">1. Introduction</h3>
-                                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
-                                    </svg>
+                                    <h3 class="font-medium text-sm">Now</h3>
                                 </div>
                             </div>
                         </a>
                     </li>
                     @foreach ($session_list as $index => $session)
-                    @if (request('page') == $index + 1)
-                    <li>
-                        <div class="w-full p-3 text-blue-700 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400" role="alert">
-                            <div class="flex items-center justify-between">
-                                <h3 class="font-medium text-sm">{{ $index + 2 }}. {{ substr($session->title, 0, 25) }}...</h3>
-                                <h3 class="font-medium text-sm">Now</h3>
-                            </div>
-                        </div>
-                    </li>
-                    @elseif ($session->attendance)
+                    @if ($session->attendance)
                     <li class="">
                         <a href="{{ route('session.id', ['course' => $course->id, 'page' => $index + 1]) }}">
                             <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400">
