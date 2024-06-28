@@ -71,15 +71,15 @@ class TestResult extends Model
         'is_checked'
     ];
 
-    public function author()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function user()
-    {
-        return $this->hasManyThrough(User::class, UserCourse::class);
-    }
+    // public function user()
+    // {
+    //     return $this->hasManyThrough(User::class, UserCourse::class);
+    // }
 
     public function course()
     {

@@ -17,11 +17,9 @@ use Ramsey\Uuid\Uuid;
 
 class TestController extends Controller
 {
-    public function test(Course $class, Session $session)
+    public function test(Course $course, Session $session)
     {
-        if ($session->course_id != $class->id) {
-            return abort(500);
-        }
+        if ($session->course_id != $course->id) return abort(500);
         $type = request('test', null);
 
         $relation = $type == 'pre' ? 'preTest' : 'postTest';
@@ -39,14 +37,15 @@ class TestController extends Controller
 
         $session->test = $session->$relation;
         $session->questions = $session->$relation->questions;
+        unset($session->$relation);
 
-        return view('test', compact('class', 'session'));
+        return view('test', compact('course', 'session'));
     }
 
-    public function storeTest(Request $request, Course $class, Session $session, Test $test_type_id, $test_type)
+    public function storeTest(Request $request, Course $course, Session $session, Test $test_type_id, $test_type)
     {
         try {
-            $test_number = DB::transaction(function () use ($request, $class, $session, $test_type_id, $test_type) {
+            $test_number = DB::transaction(function () use ($request, $course, $session, $test_type_id, $test_type) {
                 $user_id = Auth::id();
                 $data = $request->all();
                 unset($data['_token']);
@@ -66,7 +65,7 @@ class TestController extends Controller
                     $form = [
                         'test_number' => $test_number,
                         'user_id' => (int) $user_id,
-                        'course_id' => (int) $class->id,
+                        'course_id' => (int) $course->id,
                         'session_id' => (int) $session->id,
                         $preOrPostId => (int) $test_type_id->id,
                         'question_id' => (int) $key,
@@ -119,7 +118,7 @@ class TestController extends Controller
             ->get();
         $class = $tests->first();
 
-        $answered_correctly = $tests->filter(fn($item) => $item->answered)->filter(fn($item) => $item->answered->is_true)->count();
+        $answered_correctly = $tests->filter(fn ($item) => $item->answered)->filter(fn ($item) => $item->answered->is_true)->count();
 
         return view('result', compact('class', 'tests', 'answered_correctly'));
     }

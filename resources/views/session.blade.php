@@ -61,15 +61,15 @@
             $hasAttendance = $session->attendance !== null;
             @endphp
             @if ($isActiveSession)
-            <a href="{{ route('course.id', ['course' => $course->id, 'session' => $session->id]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
+            <a href="{{ route('course.id', ['course' => $course->id, 'session' => $session->id, 'current' => request('page')]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-white bg-blue-500 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
                 Session {{ $index + 1 }}
             </a>
             @elseif ($hasAttendance)
-            <a href="{{ route('course.id', ['course' => $course->id, 'session' => $session->id]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-green-700 bg-green-50 border border-green-300 transition-all duration-200 ease-in-out hover:bg-green-500 hover:text-white">
+            <a href="{{ route('course.id', ['course' => $course->id, 'session' => $session->id, 'current' => request('page')]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-green-700 bg-green-50 border border-green-300 transition-all duration-200 ease-in-out hover:bg-green-500 hover:text-white">
                 Session {{ $index + 1 }}
             </a>
             @else
-            <a href="{{ route('course.id', ['course' => $course->id, 'session' => $session->id]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 bg-slate-100 border border-slate-300 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
+            <a href="{{ route('course.id', ['course' => $course->id, 'session' => $session->id, 'current' => request('page')]) }}" class="whitespace-nowrap inline-flex rounded-lg py-2 px-3 text-sm font-medium text-slate-600 bg-slate-100 border border-slate-300 transition-all duration-200 ease-in-out hover:bg-blue-500 hover:text-white">
                 Session {{ $index + 1 }}
             </a>
             @endif
@@ -77,7 +77,7 @@
         </div>
 
         <div class="min-h-[50vh]">
-            <x-tinyview :data="$data['content']"></x-tinyview>
+            <x-tinyview :data="$data->content"></x-tinyview>
         </div>
 
         @if ($sessions->total() > 0)
@@ -135,7 +135,23 @@
 
     <div class="col-span-3 pl-1">
         <div class="sticky top-[70px] max-h-screen overflow-y-scroll p-2 pb-24 border border-transparent rounded-lg space-y-2 bg-white w-full mt-2">
-            @if($is_already_attendance == true)
+            @if (session('failed'))
+            <div role="alert" class="mb-4 rounded border-s-4 border-red-500 bg-red-50 p-4">
+                <div class="flex items-center gap-2 text-red-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                        <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+                    </svg>
+
+                    <strong class="block font-medium"> Ops! </strong>
+                </div>
+
+                <p class="mt-2 text-sm text-red-700">
+                    {{ session('failed') }}.
+                </p>
+            </div>
+            @endif
+
+            @if ($data->attendance)
             <div role="alert" class="mb-4 rounded border-s-4 border-green-500 bg-green-50 p-4">
                 <div class="flex items-center gap-2 text-green-800">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" width="32" height="32" viewBox="0 0 24 24">
@@ -194,17 +210,21 @@
                 <li>
                     <div class="w-full p-3 text-blue-700 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400" role="alert">
                         <div class="flex items-center justify-between">
-                            <h3 class="font-medium text-sm">{{ $index + 2 }}. {{ substr($session->title, 0, 25) }}...</h3>
+                            <h3 class="font-medium text-sm">{{ $index + 2 }}.
+                                {{ substr($session->title, 0, 25) }}...
+                            </h3>
                             <h3 class="font-medium text-sm">Now</h3>
                         </div>
                     </div>
                 </li>
                 @elseif ($session->attendance)
                 <li class="">
-                    <a href="{{ route('session.id', ['course' => $course->id, 'page' => $index + 1]) }}">
+                    <a href="{{ route('session.id', ['course' => $course->id, 'page' => $index + 1, 'current' => request('page')]) }}">
                         <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400">
                             <div class="flex items-center justify-between line-clamp-1">
-                                <h3 class="font-medium text-sm">{{ $index + 2 }}. {{ substr($session->title, 0, 25) }}...</h3>
+                                <h3 class="font-medium text-sm">{{ $index + 2 }}.
+                                    {{ substr($session->title, 0, 25) }}...
+                                </h3>
                                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
                                 </svg>
@@ -216,7 +236,9 @@
                 <li>
                     <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" role="alert">
                         <div class="flex items-center justify-between">
-                            <h3 class="font-medium text-sm">{{ $index + 2 }}. {{ substr($session->title, 0, 25) }}...</h3>
+                            <h3 class="font-medium text-sm">{{ $index + 2 }}.
+                                {{ substr($session->title, 0, 25) }}...
+                            </h3>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800 group-hover:text-white transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
                                 <path fill="currentColor" d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
                             </svg>
@@ -227,12 +249,13 @@
                 @endforeach
             </ol>
 
-            @if ((!empty($data) && !empty($data['pre_test'])) || (!empty($data) && !empty($data['post_test'])))
+            @if ($data)
+            @if (!empty($data->preTest) || !empty($data->postTest))
             <p class="text-base font-bold text-slate-900 dark:text-white">Test list:</p>
 
-            @if (!empty($data['pre_test']))
+            @if ($data->preTest && $data->preTestDone)
             <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400" role="alert">
-                <a href="{{ route('test.id', [$course->id, $data['id']]) }}?test=pre">
+                <a href="{{ route('test.result', ['result' => $data->preTestNumber]) }}">
                     <div class="flex items-center justify-between">
                         <h3 class="font-medium text-sm">Pre Test</h3>
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
@@ -241,9 +264,42 @@
                     </div>
                 </a>
             </div>
+            @else
+            <div class="w-full p-3 text-blue-700 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400" role="alert">
+                <a href="{{ route('test.id', [$course->id, $data['id']]) }}?test=pre">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-medium text-sm">Pre Test</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-800 group-hover:text-white transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="m12.2 13l-.9.9q-.275.275-.275.7t.275.7t.7.275t.7-.275l2.6-2.6q.3-.3.3-.7t-.3-.7l-2.6-2.6q-.275-.275-.7-.275t-.7.275t-.275.7t.275.7l.9.9H9q-.425 0-.712.288T8 12t.288.713T9 13zm-.2 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
             @endif
 
-            @if (!empty($data['post_test']))
+            @if ($data->postTest && $data->postTestDone)
+            <div class="w-full p-3 text-green-700 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:border-green-800 dark:text-green-400" role="alert">
+                <a href="{{ route('test.result', ['result' => $data->postTestNumber]) }}">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-medium text-sm">Post Test</h3>
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            @elseif ($data->preTest && $data->preTestDone)
+            <div class="w-full p-3 text-blue-700 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:border-blue-800 dark:text-blue-400" role="alert">
+                <a href="{{ route('test.id', [$course->id, $data['id']]) }}?test=post">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-medium text-sm">Post Test</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-800 group-hover:text-white transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="m12.2 13l-.9.9q-.275.275-.275.7t.275.7t.7.275t.7-.275l2.6-2.6q.3-.3.3-.7t-.3-.7l-2.6-2.6q-.275-.275-.7-.275t-.7.275t-.275.7t.275.7l.9.9H9q-.425 0-.712.288T8 12t.288.713T9 13zm-.2 9q-2.075 0-3.9-.788t-3.175-2.137T2.788 15.9T2 12t.788-3.9t2.137-3.175T8.1 2.788T12 2t3.9.788t3.175 2.137T21.213 8.1T22 12t-.788 3.9t-2.137 3.175t-3.175 2.138T12 22m0-2q3.35 0 5.675-2.325T20 12t-2.325-5.675T12 4T6.325 6.325T4 12t2.325 5.675T12 20m0-8" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            @else
             <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" role="alert">
                 <a href="{{ route('test.id', [$course->id, $data['id']]) }}?test=post">
                     <div class="flex items-center justify-between">
@@ -254,6 +310,7 @@
                     </div>
                 </a>
             </div>
+            @endif
             @endif
             @endif
         </div>

@@ -84,7 +84,7 @@ class HomeController extends Controller
         $session_list = Session::query()
             ->whereCourseId($course->id)
             ->with(['attendances' => function (HasMany $query) use ($userId) {
-                $query->where('user_id', $userId)->limit(1);
+                $query->where('user_id', $userId)->first();
             }])
             ->get();
         $session_list->each(function ($session) {
@@ -98,7 +98,11 @@ class HomeController extends Controller
 
         $totalSessions = count($session_list);
         $attendedSessions = count(array_filter($session_list->toArray(), fn ($session) => $session['attendance']));
-        $progressPercentage = ($attendedSessions / $totalSessions) * 100;
+        if ($totalSessions == 0) {
+            $progressPercentage = 0;
+        } else {
+            $progressPercentage = number_format(($attendedSessions / $totalSessions) * 100);
+        }
         $progressPercentageStyle = "style='width: " . $progressPercentage . "%'";
 
         $totalPreTests = $course->sessions->whereNotNull('pre_test_id')->count();
@@ -114,18 +118,27 @@ class HomeController extends Controller
         return view('course', compact('course', 'totalTest', 'exists', 'session_list', 'progressPercentage', 'progressPercentageStyle'));
     }
 
+    // - rubah tampilan test
+    // - rubah tampilan test result
+    // TODO: 
+    // - periksa sudah dikerjakan pre post test jika pre dan post test ada
+    // - tidak bisa next jika belum selesai pre post test dan redirect ke halaman sebelumnya
     public function session(Course $course)
     {
         $userId = Auth::id();
         $course->load(['sessions.preTest', 'sessions.postTest']);
         $perPage = 1;
-        $currentPage = request('page', 1);
+        $session = request('page', 1);
+        $current = request('current', 1);
         $session_list = Session::query()
             ->whereCourseId($course->id)
-            ->with(['attendances' => function (HasMany $query) use ($userId) {
-                $query->where('user_id', $userId)->limit(1);
-            }])
+            ->with([
+                'preTest', 'preTest.preTestResult', 'postTest', 'postTest.postTestResult', 'attendances' => function (HasMany $query) use ($userId) {
+                    $query->where('user_id', $userId)->first();
+                }
+            ])
             ->get();
+
         $session_list->each(function ($session) {
             if ($session->attendances->isNotEmpty()) {
                 $session->attendance = true;
@@ -133,25 +146,46 @@ class HomeController extends Controller
                 $session->attendance = null;
             }
             unset($session->attendances);
+
+            if ($session->preTest) {
+                if ($session->preTest->preTestResult->isNotEmpty()) {
+                    $session->preTestDone = true;
+                    $session->preTestNumber = $session->preTest->preTestResult->first()->test_number;
+                } else {
+                    $session->preTestDone = false;
+                }
+            } else {
+                $session->preTestDone = true;
+            }
+
+            if ($session->postTest) {
+                if ($session->postTest->postTestResult->isNotEmpty()) {
+                    $session->postTestDone = true;
+                    $session->postTestNumber = $session->postTest->postTestResult->first()->test_number;
+                } else {
+                    $session->postTestDone = false;
+                }
+            } else {
+                $session->postTestDone = true;
+            }
         });
 
-        $currentItems = array_slice($session_list->toArray(), ($currentPage - 1) * $perPage, $perPage);
+        $currentItems = array_slice($session_list->toArray(), ($session - 1) * $perPage, $perPage);
         $sessions = new LengthAwarePaginator(
             $currentItems,
             count($session_list),
             $perPage,
-            $currentPage,
+            $session,
             ['path' => request()->url(), 'query' => request()->query()]
         );
-        $data = $sessions->getCollection()->first();
+        $data = $session_list->where('id', $sessions->getCollection()->first()['id'])->first();
+        $current = $session_list[$current - 1];
+        $is_pre_post_done = $current->preTestDone && $current->postTestDone;
+        if (!$is_pre_post_done) {
+            return redirect()->back()->with('failed', 'Anda harus menyelesaikan pre-test dan post-test sebelum melanjutkan.');
+        }
 
-        $is_already_attendance = Attendance::query()
-            ->whereSessionId($data['id'])
-            ->whereCourseId($course->id)
-            ->whereUserId(Auth::id())
-            ->exists();
-
-        return view('session', compact('course', 'data', 'sessions', 'session_list', 'is_already_attendance'));
+        return view('session', compact('course', 'data', 'sessions', 'session_list'));
     }
 
     public function course()

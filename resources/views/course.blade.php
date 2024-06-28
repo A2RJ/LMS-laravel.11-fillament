@@ -156,6 +156,7 @@
                         </span>
                     </div>
 
+                    @if ($progressPercentage == 100)
                     <a href="#" class="flex justify-center items-center gap-2 bg-blue-700 rounded-lg mt-2 shadow-sm text-sm text-white font-semibold py-2 px-4 transition-all duration-500 hover:bg-blue-500">
                         Download Certificate
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" width="32" height="32" viewBox="0 0 24 24">
@@ -165,6 +166,7 @@
                             </g>
                         </svg>
                     </a>
+                    @endif
 
                     <div class="mt-2">
                         <a href="#" class="text-blue-500 underline ">
