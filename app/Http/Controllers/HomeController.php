@@ -128,7 +128,6 @@ class HomeController extends Controller
         $userId = Auth::id();
         $perPage = 1;
         $page = request('page', 1);
-        $current = request('current', $page);
         $session_list = Session::query()
             ->whereCourseId($course->id)
             ->with([
@@ -178,15 +177,9 @@ class HomeController extends Controller
             ['path' => request()->url(), 'query' => request()->query()]
         );
         $data = $session_list->where('id', $sessions->getCollection()->first()['id'])->first();
-
-        // Tentukan sesi saat ini berdasarkan halaman
-        $currentSession = $session_list[$page - 1]; // Sesi saat ini berdasarkan page
-        // Periksa apakah pengguna mengklik "Next" dan apakah pre-test dan post-test selesai
-        if ($page > $current) { // Next
-            if (!$currentSession->preTestDone || !$currentSession->postTestDone) {
-                return redirect()->back()->with('failed', 'Anda harus menyelesaikan pre-test dan post-test sebelum melanjutkan.');
-            }
-        }
+        // if ($data->attendance !== true) {
+        //     return back()->with('failed', 'Please note that you have not marked your attendance.');
+        // }
 
         return view('session', compact('course', 'data', 'sessions', 'session_list'));
     }

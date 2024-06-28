@@ -109,7 +109,7 @@
 
             <!-- Next Page Link -->
             @if ($sessions->hasMorePages())
-            <a href="{{ $sessions->nextPageUrl() }}" @if ($data->preTestDone == false || $data->postTestDone == false)
+            <a href="{{ $sessions->nextPageUrl() }}" @if ($data->preTestDone == false || $data->postTestDone == false || !$data->attendance)
                 onclick="return false;"
                 id="save"
                 @endif>
@@ -335,7 +335,15 @@
                         <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                             <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Ops!</h3>
                             <div class="mt-2">
-                                <p class="text-sm text-gray-500">You must complete the <span class="font-bold">pre-test and post-test</span> before proceeding to the next session.</p>
+                                <p class="text-sm text-gray-500">
+                                    You must
+                                    <span class="font-bold">mark attendance</span>
+                                    or complete the
+                                    <span class="font-bold"> pre-test</span>
+                                    and
+                                    <span class="font-bold">post-test</span>
+                                    before proceeding to the next session.
+                                </p>
                             </div>
                         </div>
                     </div>
