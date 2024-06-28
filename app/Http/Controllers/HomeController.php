@@ -118,11 +118,6 @@ class HomeController extends Controller
         return view('course', compact('course', 'totalTest', 'exists', 'session_list', 'progressPercentage', 'progressPercentageStyle'));
     }
 
-    // - rubah tampilan test
-    // - rubah tampilan test result
-    // TODO: 
-    // - periksa sudah dikerjakan pre post test jika pre dan post test ada
-    // - tidak bisa next jika belum selesai pre post test dan redirect ke halaman sebelumnya
     public function session(Course $course)
     {
         $userId = Auth::id();
@@ -177,9 +172,6 @@ class HomeController extends Controller
             ['path' => request()->url(), 'query' => request()->query()]
         );
         $data = $session_list->where('id', $sessions->getCollection()->first()['id'])->first();
-        // if ($data->attendance !== true) {
-        //     return back()->with('failed', 'Please note that you have not marked your attendance.');
-        // }
 
         return view('session', compact('course', 'data', 'sessions', 'session_list'));
     }
