@@ -316,6 +316,16 @@
             @endif
             @endif
             @endif
+            <div class="w-full p-3 text-slate-800 bg-slate-100 border border-slate-300 rounded-lg dark:bg-slate-800 dark:border-slate-700 dark:text-slate-400" role="alert">
+                <a href="{{ route('test.id', [$course->id, $data['id']]) }}?test=post">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-medium text-sm">Post Test</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800 group-hover:text-white transition-colors duration-150" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>

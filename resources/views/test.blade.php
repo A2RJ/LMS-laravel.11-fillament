@@ -4,7 +4,7 @@
 <script src="/js/tinymce_5.10.7/tinymce.min.js"></script>
 
 <!-- Breadcrumb -->
-<nav class="max-w-screen-lg mx-auto flex py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700" aria-label="Breadcrumb">
+<nav class="max-w-screen-xl mx-auto flex py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700" aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li class="inline-flex items-center">
             <a href="#" class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-blue-600 dark:text-slate-400 dark:hover:text-white">
@@ -42,31 +42,39 @@
     </ol>
 </nav>
 
-<div class="max-w-screen-lg min-h-[60vh] mx-auto mb-10 ">
-    <div class="flex justify-between items-center gap-2 mt-2 mb-6 bg-white rounded-lg p-4">
-        <div class="flex justify-start space-x-2">
+<div class="max-w-screen-xl min-h-[60vh] mx-auto mb-10 ">
+    <div class="grid grid-cols-12 gap-2 mt-2 mb-6 text-white rounded-lg">
+        <div class="col-span-10 flex justify-start space-x-2 p-4 rounded-lg bg-[#0292B7]" style="background-image: url('/circle-dot3-2.png'); background-repeat: no-repeat; background-position: right; ">
             <div>
                 <a href="{{ url()->previous() }}" class="group flex justify-between space-x-2 items-center bg-transparent p-2 rounded-md transition-colors duration-150 border border-transparent hover:bg-blue-500 hover:cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white" width="32" height="32" viewBox="0 0 24 24" class="relative z-10 h-5 w-5 transition-colors duration-300 text-blue-500 group-hover:text-white">
                         <path fill="currentColor" d="m7.85 13l2.85 2.85q.3.3.288.7t-.288.7q-.3.3-.712.313t-.713-.288L4.7 12.7q-.3-.3-.3-.7t.3-.7l4.575-4.575q.3-.3.713-.287t.712.312q.275.3.288.7t-.288.7L7.85 11H19q.425 0 .713.288T20 12t-.288.713T19 13z" />
                     </svg>
                 </a>
             </div>
             <div>
                 <h1 class="text-2xl font-bold">{{ $course->title }}</h1>
-                <small class="text-sm font-medium text-slate-500">
+                <small class="text-sm font-medium">
                     {{ request('test') == 'pre' ? 'Pre Test ' : 'Post Test ' }} {{ $session->title }} -
                     {{ $session->test->title }}</small>
             </div>
         </div>
-        <div>
+        <div class="col-span-2 flex justify-center items-center space-x-2 p-4 rounded-lg bg-[#0292B7]" style="background-image: url('/circle-dot3-1.png'); background-repeat: no-repeat; background-position: right; background-size: cover;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M13 12.6V9q0-.425-.288-.712T12 8t-.712.288T11 9v3.975q0 .2.075.388t.225.337l2.8 2.8q.275.275.7.275t.7-.275t.275-.7t-.275-.7zM12 22q-1.875 0-3.512-.712t-2.85-1.925t-1.925-2.85T3 13t.713-3.512t1.924-2.85t2.85-1.925T12 4t3.513.713t2.85 1.925t1.925 2.85T21 13t-.712 3.513t-1.925 2.85t-2.85 1.925T12 22M2.05 7.3q-.275-.275-.275-.7t.275-.7L4.9 3.05q.275-.275.7-.275t.7.275t.275.7t-.275.7L3.45 7.3q-.275.275-.7.275t-.7-.275m19.9 0q-.275.275-.7.275t-.7-.275L17.7 4.45q-.275-.275-.275-.7t.275-.7t.7-.275t.7.275l2.85 2.85q.275.275.275.7t-.275.7M12 20q2.925 0 4.963-2.037T19 13t-2.037-4.962T12 6T7.038 8.038T5 13t2.038 4.963T12 20" />
+            </svg>
             <h1 class="text-3xl font-bold" id="countdown">01:00</h1>
         </div>
     </div>
 
-    <div class="grid grid-cols-12 gap-4">
+    <div class="grid grid-cols-12 gap-4 min-h-[50vh]">
         <div class="col-span-4 bg-white p-4 rounded-lg">
-            <h2 class="text-xl text-center font-semibold mb-4">Question List</h2>
+            <div class="flex justify-center items-center gap-2 mb-4 bg-[#0292B7] text-white rounded-md p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-white" width="32" height="32" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M7 5h14v2H7zm0 8v-2h14v2zM4 4.5A1.5 1.5 0 0 1 5.5 6A1.5 1.5 0 0 1 4 7.5A1.5 1.5 0 0 1 2.5 6A1.5 1.5 0 0 1 4 4.5m0 6A1.5 1.5 0 0 1 5.5 12A1.5 1.5 0 0 1 4 13.5A1.5 1.5 0 0 1 2.5 12A1.5 1.5 0 0 1 4 10.5M7 19v-2h14v2zm-3-2.5A1.5 1.5 0 0 1 5.5 18A1.5 1.5 0 0 1 4 19.5A1.5 1.5 0 0 1 2.5 18A1.5 1.5 0 0 1 4 16.5" />
+                </svg>
+                <h2 class="text-xl text-center font-semibold">Question List</h2>
+            </div>
             <nav class="grid grid-cols-6 gap-4" aria-label="Pagination">
                 @foreach ($session->questions as $index => $question)
                 <div class="pagination-btn text-center rounded-lg bg-white border border-slate-300 text-slate-500 p-1" data-index="{{ $index }}">
@@ -81,7 +89,7 @@
                 @csrf
                 @foreach (collect($session->questions)->shuffle() as $index => $question)
                 <div class="question" data-index="{{ $index }}" style="display: none;">
-                    <h2 class="text-xl text-center font-semibold mb-4">Question number {{ $index + 1 }}</h2>
+                    <h2 class="text-xl text-center font-semibold mb-4 text-[#0292B7]">Question number {{ $index + 1 }}</h2>
                     <p class="mb-4 font-semibold">{!! $question->question !!}</p>
                     <div class="mb-4">
                         @if ($question->answer_type == 'selected')
@@ -92,7 +100,10 @@
                         </label>
                         @endforeach
                         @else
-                        <textarea id="editor{{ $question->id }}" name="{{ $question->id }}"></textarea>
+                        <div class="mt-4">
+                            <textarea id="editor{{ $question->id }}" name="{{ $question->id }}"></textarea>
+                            <small class="text-orange-500">NOTE: Type your answer inside the box</small>
+                        </div>
                         @endif
                     </div>
                 </div>
