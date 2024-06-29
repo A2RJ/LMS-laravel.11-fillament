@@ -2,6 +2,10 @@
 
 Pelestarian bahasa daerah sumbawa (bahasa samawa) melalui pemanfaatan e-learning dalam inovasi pembelajaran bagi anak usia remaja
 
+## TODO
+
+-   handle redirect saat tambah pertanyaan
+
 ## NOTE
 
 -   UI/UX tidak boleh kaku pelajari psycology warna, layout dll

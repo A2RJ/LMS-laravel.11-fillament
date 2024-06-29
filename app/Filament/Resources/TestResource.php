@@ -36,15 +36,13 @@ class TestResource extends Resource
                             ->label('Quiz Name')
                             ->required()
                             ->columnSpanFull(),
+                        Forms\Components\Select::make('duration')
+                            ->options(self::generateTimeRangeOptions())
+                            ->searchable()
+                            ->columnSpanFull(),
                         TinyFileManager::make('content')
                             ->label('Description')
                             ->columnSpanFull(),
-                        Forms\Components\DateTimePicker::make('start')
-                            ->required()
-                            ->label('Start Time'),
-                        Forms\Components\DateTimePicker::make('end')
-                            ->required()
-                            ->label('End Time'),
                     ])->columns()
             ]);
     }
@@ -58,13 +56,8 @@ class TestResource extends Resource
                     ->searchable()
                     ->wrap()
                     ->lineClamp(1),
-                Tables\Columns\TextColumn::make('start')
-                    ->label('Start Time')
-                    ->dateTime()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('end')
-                    ->label('End Time')
-                    ->dateTime()
+                Tables\Columns\TextColumn::make('duration')
+                    ->formatStateUsing(fn (string $state) => self::formatTime($state))
                     ->sortable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime()
@@ -133,8 +126,42 @@ class TestResource extends Resource
                     ->label('')
                     ->html()
                     ->columnSpanFull(),
-                Infolists\Components\TextEntry::make('start'),
-                Infolists\Components\TextEntry::make('end'),
+                Infolists\Components\TextEntry::make('duration'),
             ]);
+    }
+
+    public static function generateTimeRangeOptions()
+    {
+        $options = [];
+        $start = strtotime('00:30');
+        $end = strtotime('24:00');
+
+        while ($start <= $end) {
+            $time = date('H:i', $start);
+            $hours = date('H', $start);
+            $minutes = date('i', $start);
+            $options[$time] = "$hours Hour $minutes Minutes";
+            $start = strtotime('+30 minutes', $start);
+        }
+
+        $options['24:00'] = '24 Hour 00 Minutes';
+        $filteredOptions = array_filter($options, function ($value) {
+            return $value !== '00 Hour 00 Minutes';
+        });
+
+        return $filteredOptions;
+    }
+
+    public static function formatTime($timeString)
+    {
+        $timeParts = explode(':', $timeString);
+
+        if (count($timeParts) == 2) {
+            $hours = intval($timeParts[0]);
+            $minutes = intval($timeParts[1]);
+            return "$hours Hour $minutes Minutes";
+        } else {
+            return "Format waktu tidak valid";
+        }
     }
 }

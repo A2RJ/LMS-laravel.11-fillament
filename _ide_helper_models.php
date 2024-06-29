@@ -322,10 +322,12 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $result
  * @property-read int|null $result_count
  * @mixin \Eloquent
+ * @property string $duration
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $postTestResult
  * @property-read int|null $post_test_result_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\TestResult> $preTestResult
  * @property-read int|null $pre_test_result_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Test whereDuration($value)
  */
 	class Test extends \Eloquent {}
 }

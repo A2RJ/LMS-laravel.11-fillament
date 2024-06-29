@@ -53,8 +53,7 @@ class Test extends Model
         'user_id',
         'title',
         'content',
-        'start',
-        'end'
+        'duration',
     ];
 
     protected function content(): Attribute

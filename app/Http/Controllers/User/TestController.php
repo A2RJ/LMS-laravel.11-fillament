@@ -17,6 +17,7 @@ use Ramsey\Uuid\Uuid;
 
 class TestController extends Controller
 {
+    // TODO: saat mulai test simpan waktu ke session, ambil durasi dari test misal 00:30 (30 menit), jadi bagaimana hitung (countdown = now() - DURASI)  
     public function test(Course $course, Session $session)
     {
         if ($session->course_id != $course->id) return abort(500);

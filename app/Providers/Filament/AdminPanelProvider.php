@@ -64,6 +64,6 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Poppins')
             ->topNavigation(false)
-            ->spa(false);
+            ->spa(true);
     }
 }

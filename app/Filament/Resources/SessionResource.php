@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SessionResource\Pages;
-use App\Filament\Resources\SessionResource\RelationManagers;
 use App\Forms\Components\TinyFileManager;
 use App\Models\Course;
 use App\Models\Session;
@@ -13,8 +12,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\Pages\Page;
 
 class SessionResource extends Resource
@@ -38,7 +35,7 @@ class SessionResource extends Resource
                             ->label('Class')
                             ->searchPrompt('Search test by title')
                             ->options(Course::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
+                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
                             ->required()
                             ->searchable()
                             ->optionsLimit(20),
@@ -57,16 +54,18 @@ class SessionResource extends Resource
                             ->nullable()
                             ->label('Pre Test')
                             ->searchPrompt('Search test by title')
-                            ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
+                            ->options(Test::query()->pluck('title', 'id'))
+                            // ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
+                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
                             ->searchable()
                             ->optionsLimit(20),
                         Forms\Components\Select::make('post_test_id')
                             ->nullable()
                             ->label('Pre Test')
                             ->searchPrompt('Search test by title')
-                            ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
+                            ->options(Test::query()->pluck('title', 'id'))
+                            // ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
+                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
                             ->searchable()
                             ->optionsLimit(20)
                     ])

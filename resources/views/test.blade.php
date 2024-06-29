@@ -89,7 +89,12 @@
                 @csrf
                 @foreach (collect($session->questions)->shuffle() as $index => $question)
                 <div class="question" data-index="{{ $index }}" style="display: none;">
-                    <h2 class="text-xl text-center font-semibold mb-4 text-[#0292B7]">Question number {{ $index + 1 }}</h2>
+                    <div class="flex justify-start items-center space-x-2 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-[#0292B7] size-5" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M20 2H4c-.53 0-1.04.21-1.41.59C2.21 2.96 2 3.47 2 4v12c0 .53.21 1.04.59 1.41c.37.38.88.59 1.41.59h4l4 4l4-4h4c.53 0 1.04-.21 1.41-.59S22 16.53 22 16V4c0-.53-.21-1.04-.59-1.41C21.04 2.21 20.53 2 20 2m-9.95 4.04c.54-.36 1.25-.54 2.14-.54c.94 0 1.69.21 2.23.62q.81.63.81 1.68c0 .44-.15.83-.44 1.2c-.29.36-.67.64-1.13.85c-.26.15-.43.3-.52.47c-.09.18-.14.4-.14.68h-2c0-.5.1-.84.29-1.08c.21-.24.55-.52 1.07-.84c.26-.14.47-.32.64-.54c.14-.21.22-.46.22-.74c0-.3-.09-.52-.27-.69c-.18-.18-.45-.26-.76-.26c-.27 0-.49.07-.69.21c-.16.14-.26.35-.26.63H9.27c-.05-.69.23-1.29.78-1.65M11 14v-2h2v2Z" />
+                        </svg>
+                        <h2 class="text-xl text-center font-semibold text-[#0292B7]">Question number {{ $index + 1 }}</h2>
+                    </div>
                     <p class="mb-4 font-semibold">{!! $question->question !!}</p>
                     <div class="mb-4">
                         @if ($question->answer_type == 'selected')
