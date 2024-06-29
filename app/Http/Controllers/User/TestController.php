@@ -17,10 +17,10 @@ use Ramsey\Uuid\Uuid;
 
 class TestController extends Controller
 {
-    // TODO: saat mulai test simpan waktu ke session, ambil durasi dari test misal 00:30 (30 menit), jadi bagaimana hitung (countdown = now() - DURASI)  
     public function test(Course $course, Session $session)
     {
-        if ($session->course_id != $course->id) return abort(500);
+        if ($session->course_id != $course->id)
+            return abort(500);
         $type = request('test', null);
 
         $relation = $type == 'pre' ? 'preTest' : 'postTest';
@@ -40,7 +40,55 @@ class TestController extends Controller
         $session->questions = $session->$relation->questions;
         unset($session->$relation);
 
-        return view('test', compact('course', 'session'));
+        $duration = $session->test->duration;
+        $testId = $session->test->id;
+
+        $startTimeKey = "test_start_time_$testId";
+        $endTimeKey = "test_end_time_$testId";
+        $currentTestIdKey = 'current_test_id';
+
+        if ($testId != session($currentTestIdKey)) {
+            session()->forget([$startTimeKey, $endTimeKey, $currentTestIdKey]);
+            session([$currentTestIdKey => $testId]);
+        }
+
+        if (!session()->has($startTimeKey) || !session()->has($endTimeKey)) {
+            $startTime = now();
+            session([$startTimeKey => $startTime]);
+
+            $hours = (int) substr($duration, 0, 2);
+            $minutes = (int) substr($duration, 3, 2);
+            $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
+            session([$endTimeKey => $endTime]);
+        } else {
+            $startTime = session($startTimeKey);
+            $endTime = session($endTimeKey);
+        }
+
+        $now = now();
+        if ($now->lt($endTime)) {
+            $remainingTime = $endTime->diff($now)->format('%H:%I:%S');
+        } else {
+            $remainingTime = '00:00:00';
+        }
+
+        // return response()->json([
+        //     'start_time' => session($startTimeKey),
+        //     'end_time' => session($endTimeKey),
+        //     'current_test_id' => session($currentTestIdKey),
+        //     'remaining_time' => $remainingTime,
+        // ]);
+
+        return view('test', compact('course', 'session', 'remainingTime'));
+    }
+
+    public function saveToSession(Request $request)
+    {
+        $key = $request->input('key');
+        $value = $request->input('value');
+        session([$key => $value]);
+
+        return response()->json(['message' => 'Data saved to session successfully!', $key => $value]);
     }
 
     public function storeTest(Request $request, Course $course, Session $session, Test $test_type_id, $test_type)
@@ -119,7 +167,7 @@ class TestController extends Controller
             ->get();
         $class = $tests->first();
 
-        $answered_correctly = $tests->filter(fn ($item) => $item->answered)->filter(fn ($item) => $item->answered->is_true)->count();
+        $answered_correctly = $tests->filter(fn($item) => $item->answered)->filter(fn($item) => $item->answered->is_true)->count();
 
         return view('result', compact('class', 'tests', 'answered_correctly'));
     }

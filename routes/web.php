@@ -33,6 +33,7 @@ Route::prefix('/')->group(function () {
         Route::post('test/{course}/{session}/{test_type_id}/{test_type}', 'storeTest')->name('post.test.id');
         Route::get('result/{result}', 'result')->name('test.result');
         Route::post('result/{test_number}', 'postResult')->name('post.test.result');
+        Route::post('/save-to-session', 'saveToSession')->name('saveToSession');
     });
 });
 
