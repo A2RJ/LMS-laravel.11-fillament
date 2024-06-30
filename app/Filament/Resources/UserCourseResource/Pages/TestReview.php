@@ -53,14 +53,14 @@ class TestReview extends Page
                 $preTestResults = [];
                 $preTestResultNumber = null;
 
-                if (!empty($preTest?->preTestResult)) {
+                if (!empty($preTest->preTestResult)) {
                     $preTestResults = $preTest->preTestResult
                         ->where('user_id', $user->id)
                         ->where('course_id', $session->course_id)
                         ->where('session_id', $session->id)
                         ->toArray();
 
-                    $preTestResultNumber = $preTestResults[0]->test_number ?? null;
+                    $preTestResultNumber = $preTestResults[0]['test_number'] ?? null;
                 } else {
                     $preTestResults = false;
                 }
@@ -70,14 +70,14 @@ class TestReview extends Page
                 $postTestResults = [];
                 $postTestResultNumber = null;
 
-                if (!empty($postTest?->postTestResult)) {
+                if (!empty($postTest->postTestResult)) {
                     $postTestResults = $postTest->postTestResult
                         ->where('user_id', $user->id)
                         ->where('course_id', $session->course_id)
                         ->where('session_id', $session->id)
                         ->toArray(); // Use values() to reindex the collection
 
-                    $postTestResultNumber = $postTestResults[0]->test_number ?? null;
+                    $postTestResultNumber = $postTestResults[0]['test_number'] ?? null;
                 } else {
                     $postTestResults = false;
                 }
