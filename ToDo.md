@@ -3,8 +3,8 @@
 Pelestarian bahasa daerah sumbawa (bahasa samawa) melalui pemanfaatan e-learning dalam inovasi pembelajaran bagi anak usia remaja
 
 ## TODO
-
--   handle redirect saat tambah pertanyaan
+- [ ] CTA halaman course timeline dengan tampilan tabel untuk centang hijau pada setiap section dan test
+- [ ] handle redirect saat tambah pertanyaan
 
 ## NOTE
 

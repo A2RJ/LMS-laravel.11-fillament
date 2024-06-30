@@ -74,9 +74,7 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 ## DONE
 - quiz view ubah opsi jawaban menjadi {!!  !!} dan gunakan grid untuk menjaga svg tetap di kanan 
 
-## TODO
 ### Student
-- [ ] Test untuk tipe soal isian
 - home
 - dashboard
 - course
@@ -88,8 +86,6 @@ right bar berisi sesi jika pada hal. sesi dan kelas pada hal. kelas, pengumuman 
 - my certificate
 
 ### Teacher
-- [ ] tambah tabel review tugas sehingga bisa dinilai oleh guru
-- [ ] tambah final test pada class
 
 ## NOTES
 - php artisan filament:clear-cached-components
