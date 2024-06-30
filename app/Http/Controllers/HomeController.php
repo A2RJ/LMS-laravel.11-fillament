@@ -83,9 +83,7 @@ class HomeController extends Controller
             ->first();
         $session_list = Session::query()
             ->whereCourseId($course->id)
-            ->with(['attendances' => function (HasMany $query) use ($userId) {
-                $query->where('user_id', $userId)->first();
-            }])
+            ->with(['attendance'])
             ->get();
         $session_list->each(function ($session) {
             if ($session->attendances->isNotEmpty()) {
@@ -97,7 +95,7 @@ class HomeController extends Controller
         });
 
         $totalSessions = count($session_list);
-        $attendedSessions = count(array_filter($session_list->toArray(), fn ($session) => $session['attendance']));
+        $attendedSessions = count(array_filter($session_list->toArray(), fn($session) => $session['attendance']));
         if ($totalSessions == 0) {
             $progressPercentage = 0;
         } else {
@@ -126,20 +124,15 @@ class HomeController extends Controller
         $session_list = Session::query()
             ->whereCourseId($course->id)
             ->with([
-                'preTest', 'preTest.preTestResult', 'postTest', 'postTest.postTestResult', 'attendances' => function (HasMany $query) use ($userId) {
-                    $query->where('user_id', $userId)->first();
-                }
+                'preTest',
+                'preTest.preTestResult',
+                'postTest',
+                'postTest.postTestResult',
+                'attendance'
             ])
             ->get();
 
-        $session_list->each(function ($session) {
-            if ($session->attendances->isNotEmpty()) {
-                $session->attendance = true;
-            } else {
-                $session->attendance = null;
-            }
-            unset($session->attendances);
-
+        $session_list->each(function ($session) use ($userId) {
             if ($session->preTest) {
                 if ($session->preTest->preTestResult->isNotEmpty()) {
                     $session->preTestDone = true;
@@ -189,7 +182,7 @@ class HomeController extends Controller
             })
             ->paginate(8);
 
-        return view('course', compact('courses'));
+        return view('courses', compact('courses'));
     }
 
     public function joinCourse(Course $course)
@@ -232,7 +225,7 @@ class HomeController extends Controller
             ->exists();
 
         if ($exists) {
-            return back()->with('error', 'You have already marked your attendance for this session.');
+            return back()->with('failed', 'You have already marked your attendance for this session.');
         }
 
         Attendance::create([

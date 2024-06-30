@@ -5,7 +5,9 @@ namespace App\Filament\Resources\UserCourseResource\Pages;
 use App\Filament\Resources\UserCourseResource;
 use App\Models\Course;
 use App\Models\UserCourse;
+use DB;
 use Filament\Resources\Pages\Page;
+use Illuminate\Database\Eloquent\Builder;
 
 class TestReview extends Page
 {
@@ -19,10 +21,16 @@ class TestReview extends Page
         return '';
     }
 
-    public function mount(int | string $record): void
+    public function mount(int|string $record): void
     {
         $this->record = Course::query()
             ->whereId($record)
+            ->withCount([
+                'users as total_students' => function (Builder $query) {
+                    $query->select(DB::raw('count(distinct users.id)'));
+                }
+            ])
+            ->withCount('users')
             ->first();
 
         $data = collect([]);
@@ -40,34 +48,52 @@ class TestReview extends Page
             foreach ($userCourse->course->sessions as $session) {
                 $preTest = $session->preTest;
                 $postTest = $session->postTest;
-                $attendance = $session->attendances->where('user_id', $user->id)->toArray();
+                $attendance = $session->attendance;
 
-                $preTestResults = $preTest?->preTestResult
-                    ? $preTest->preTestResult
-                    ->where('user_id', $user->id)
-                    ->where('course_id', $session->course_id)
-                    ->where('session_id', $session->id)
-                    ->toArray()
-                    : false;
+                $preTestResults = [];
+                $preTestResultNumber = null;
+
+                if (!empty($preTest?->preTestResult)) {
+                    $preTestResults = $preTest->preTestResult
+                        ->where('user_id', $user->id)
+                        ->where('course_id', $session->course_id)
+                        ->where('session_id', $session->id)
+                        ->toArray();
+
+                    $preTestResultNumber = $preTestResults[0]->test_number ?? null;
+                } else {
+                    $preTestResults = false;
+                }
+
                 $preTestTotalScore = $this->calculateTotalScore($preTestResults);
 
-                $postTestResults = $postTest?->postTestResult
-                    ? $postTest->postTestResult
-                    ->where('user_id', $user->id)
-                    ->where('course_id', $session->course_id)
-                    ->where('session_id', $session->id)
-                    ->toArray()
-                    : false;
+                $postTestResults = [];
+                $postTestResultNumber = null;
+
+                if (!empty($postTest?->postTestResult)) {
+                    $postTestResults = $postTest->postTestResult
+                        ->where('user_id', $user->id)
+                        ->where('course_id', $session->course_id)
+                        ->where('session_id', $session->id)
+                        ->toArray(); // Use values() to reindex the collection
+
+                    $postTestResultNumber = $postTestResults[0]->test_number ?? null;
+                } else {
+                    $postTestResults = false;
+                }
+
                 $postTestTotalScore = $this->calculateTotalScore($postTestResults);
 
                 $courseData['session'][] = [
                     'title' => $session->title,
-                    'attendance' => count($attendance) > 0 ? true : false,
+                    'attendance' => $attendance ? true : false,
                     'pre_test' => $preTest->title ?? 'N/A',
                     'pre_test_result' => $preTestResults ? true : false, //attendance
+                    'pre_test_result_number' => $preTestResultNumber ?? 'N/A', //attendance
                     'pre_test_total_score' => $preTestTotalScore,
                     'post_test' => $postTest->title ?? 'N/A',
                     'post_test_result' => $postTestResults ? true : false, //attendance
+                    'post_test_result_number' => $postTestResultNumber ?? 'N/A', //attendance
                     'post_test_total_score' => $postTestTotalScore,
                 ];
 

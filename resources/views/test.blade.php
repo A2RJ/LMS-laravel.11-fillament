@@ -4,7 +4,7 @@
 <script src="/js/tinymce_5.10.7/tinymce.min.js"></script>
 
 <!-- Breadcrumb -->
-<nav class="max-w-screen-xl mx-auto flex py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700"
+<nav class="max-w-screen-lg mx-auto flex py-3 text-slate-700 rounded-lg dark:bg-slate-800 dark:border-slate-700"
     aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li class="inline-flex items-center">
@@ -53,9 +53,9 @@
     </ol>
 </nav>
 
-<div class="max-w-screen-xl min-h-[60vh] mx-auto mb-10 ">
+<div class="max-w-screen-lg min-h-[60vh] mx-auto mb-10 ">
     <div class="grid grid-cols-12 gap-2 mt-2 mb-6 text-white rounded-lg">
-        <div class="col-span-10 flex justify-start space-x-2 p-4 rounded-lg bg-[#0292B7]"
+        <div class="col-span-10 flex justify-start space-x-2 p-4 rounded-lg bg-cyan-500"
             style="background-image: url('/circle-dot3-2.png'); background-repeat: no-repeat; background-position: right; ">
             <div>
                 <a href="{{ url()->previous() }}"
@@ -75,7 +75,7 @@
                     {{ $session->test->title }}</small>
             </div>
         </div>
-        <div class="col-span-2 flex justify-center items-center space-x-2 p-4 rounded-lg bg-[#0292B7]"
+        <div class="col-span-2 flex justify-center items-center space-x-2 p-4 rounded-lg bg-cyan-500"
             style="background-image: url('/circle-dot3-1.png'); background-repeat: no-repeat; background-position: right; background-size: cover;">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                 <path fill="currentColor"
@@ -86,8 +86,8 @@
     </div>
 
     <div class="grid grid-cols-12 gap-4 min-h-[50vh]">
-        <div class="col-span-4 bg-white p-4 rounded-lg">
-            <div class="flex justify-center items-center gap-2 mb-4 bg-[#0292B7] text-white rounded-md p-1">
+        <div class="col-span-4 bg-white p-4 rounded-lg border border-slate-300">
+            <div class="flex justify-center items-center gap-2 mb-4 bg-cyan-500 text-white rounded-md p-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-white" width="32" height="32"
                     viewBox="0 0 24 24">
                     <path fill="currentColor"
@@ -105,7 +105,7 @@
             </nav>
         </div>
 
-        <div class="col-span-8 bg-white p-4 rounded-lg">
+        <div class="col-span-8 bg-white p-4 rounded-lg border border-slate-300">
             <form id="form"
                 action="{{ route('post.test.id', ['course' => $course->id, 'session' => $session->id, 'test_type_id' => $session->test->id, 'test_type' => request('test')]) }}"
                 method="post">
@@ -113,12 +113,12 @@
                 @foreach (collect($session->questions)->shuffle() as $index => $question)
                     <div class="question" data-index="{{ $index }}" style="display: none;">
                         <div class="flex justify-start items-center space-x-2 mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="text-[#0292B7] size-5" width="32" height="32"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="text-cyan-500 size-5" width="32" height="32"
                                 viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M20 2H4c-.53 0-1.04.21-1.41.59C2.21 2.96 2 3.47 2 4v12c0 .53.21 1.04.59 1.41c.37.38.88.59 1.41.59h4l4 4l4-4h4c.53 0 1.04-.21 1.41-.59S22 16.53 22 16V4c0-.53-.21-1.04-.59-1.41C21.04 2.21 20.53 2 20 2m-9.95 4.04c.54-.36 1.25-.54 2.14-.54c.94 0 1.69.21 2.23.62q.81.63.81 1.68c0 .44-.15.83-.44 1.2c-.29.36-.67.64-1.13.85c-.26.15-.43.3-.52.47c-.09.18-.14.4-.14.68h-2c0-.5.1-.84.29-1.08c.21-.24.55-.52 1.07-.84c.26-.14.47-.32.64-.54c.14-.21.22-.46.22-.74c0-.3-.09-.52-.27-.69c-.18-.18-.45-.26-.76-.26c-.27 0-.49.07-.69.21c-.16.14-.26.35-.26.63H9.27c-.05-.69.23-1.29.78-1.65M11 14v-2h2v2Z" />
                             </svg>
-                            <h2 class="text-xl text-center font-semibold text-[#0292B7]">Question number {{ $index + 1 }}
+                            <h2 class="text-xl text-center font-semibold text-cyan-500">Question number {{ $index + 1 }}
                             </h2>
                         </div>
                         <p class="mb-4 font-semibold">{!! $question->question !!}</p>
@@ -215,7 +215,7 @@
                     </div>
                     <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                         <button type="button"
-                            class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                            class="inline-flex w-full justify-center rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 sm:ml-3 sm:w-auto"
                             id="save">Save</button>
                         <button type="button"
                             class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
@@ -270,8 +270,8 @@
                 if (--timer < 0) {
                     clearInterval(interval);
                     display.textContent = "00:00";
-                    const form = document.getElementById('form');
-                    form.submit();
+                    // const form = document.getElementById('form');
+                    // form.submit();
                 }
             }, 1000);
         }
@@ -285,8 +285,8 @@
             var remainingTimeInSeconds = (+timeParts[0]) * 60 * 60 + (+timeParts[1]) * 60 + (+timeParts[2]);
 
             if (remainingTimeInSeconds <= 0) {
-                const form = document.getElementById('form');
-                form.submit();
+                // const form = document.getElementById('form');
+                // form.submit();
             } else {
                 startCountdown(remainingTimeInSeconds, countdownElement);
             }
@@ -379,8 +379,8 @@
             };
 
             const saveAction = () => {
-                const form = document.getElementById('form');
-                form.submit();
+                // const form = document.getElementById('form');
+                // form.submit();
             };
             save.addEventListener('click', saveAction);
             const cancelModalSave = () => {

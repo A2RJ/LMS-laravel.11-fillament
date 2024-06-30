@@ -41,51 +41,53 @@
         </div>
 
         <div class="mb-8">
-            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                <div class="rounded-lg bg-gray-200 lg:col-span-2">
+            <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 text-white">
+                <div class="rounded-lg lg:col-span-2 bg-cyan-500"
+                    style="background-image: url('/circle-dot3-2.png');  background-repeat: no-repeat; background-position: right; background-size: contain; ">
                     <div class="flow-root rounded-lg border border-slate-300 py-3 shadow-sm">
-                        <dl class="-my-3 divide-y divide-slate-100 text-sm">
+                        <dl class="-my-3 text-sm">
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-slate-900">Name</dt>
-                                <dd class="text-slate-700 sm:col-span-2">{{ $this->session->user->name }}</dd>
+                                <dt class="font-medium text-900">Name</dt>
+                                <dd class=" sm:col-span-2">{{ $this->session->user->name }}</dd>
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-slate-900">Email</dt>
-                                <dd class="text-slate-700 sm:col-span-2">{{ $this->session->user->email }}</dd>
+                                <dt class="font-medium ">Email</dt>
+                                <dd class=" sm:col-span-2">{{ $this->session->user->email }}</dd>
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-slate-900">Class Name</dt>
-                                <dd class="text-slate-700 sm:col-span-2">{{ $this->session->course->title }}
+                                <dt class="font-medium ">Class Name</dt>
+                                <dd class=" sm:col-span-2">{{ $this->session->course->title }}
                                     ({{ $this->session->session->title }})</dd>
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-slate-900">Test Date</dt>
-                                <dd class="text-slate-700 sm:col-span-2">{{ $this->session->created_at }}</dd>
+                                <dt class="font-medium ">Test Date</dt>
+                                <dd class=" sm:col-span-2">{{ $this->session->created_at }}</dd>
                             </div>
                         </dl>
                     </div>
                 </div>
-                <div class="rounded-lg bg-gray-200">
-                    <div class="flow-root rounded-lg border border-slate-300 py-3 shadow-sm">
-                        <dl class="-my-3 divide-y divide-slate-100 text-sm">
+                <div class="rounded-lg bg-cyan-500 border border-slate-300 py-3 shadow-sm"
+                    style="background-image: url('/circle-dot3-1.png'); background-repeat: no-repeat; background-position: left; background-size: contain;">
+                    <div class="flow-root rounded-lg ">
+                        <dl class="-my-3 text-sm">
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-slate-900">Test</dt>
-                                <dd class="text-slate-700 sm:col-span-2">
+                                <dt class="font-medium ">Test</dt>
+                                <dd class=" sm:col-span-2">
                                     {{ isset($this->session->preTest) ? 'Pre Test' : 'Post Test' }}
                                 </dd>
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-slate-900">Total Question</dt>
-                                <dd class="text-slate-700 sm:col-span-2">{{ count($this->tests) }}</dd>
+                                <dt class="font-medium ">Total Question</dt>
+                                <dd class=" sm:col-span-2">{{ count($this->tests) }}</dd>
                             </div>
 
                             <div class="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                                <dt class="font-medium text-slate-900">Score</dt>
-                                <dd class="text-slate-700 sm:col-span-2"></dd>
+                                <dt class="font-medium ">Score</dt>
+                                <dd class=" sm:col-span-2"></dd>
                             </div>
                         </dl>
                     </div>
@@ -120,8 +122,8 @@
                                     <div class="m-0 p-0">
                                         @if ($test->answered->id == $option->id)
                                             @if ($option->is_true)
-                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                    y="0px" width="100" height="100" viewBox="0 0 48 48">
+                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                                    height="100" viewBox="0 0 48 48">
                                                     <path fill="#c8e6c9"
                                                         d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z">
                                                     </path>
@@ -130,8 +132,8 @@
                                                     </path>
                                                 </svg>
                                             @else
-                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                    y="0px" width="100" height="100" viewBox="0 0 48 48">
+                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                                    height="100" viewBox="0 0 48 48">
                                                     <path fill="#f44336"
                                                         d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z">
                                                     </path>
@@ -145,8 +147,8 @@
                                             @endif
                                         @else
                                             @if ($option->is_true)
-                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                    y="0px" width="100" height="100" viewBox="0 0 48 48">
+                                                <svg class="w-6 h-6 mt-4" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100"
+                                                    height="100" viewBox="0 0 48 48">
                                                     <path fill="#c8e6c9"
                                                         d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z">
                                                     </path>
@@ -156,8 +158,7 @@
                                                 </svg>
                                             @else
                                                 <input type="radio" name="" value=""
-                                                    class="form-radio h-5 w-5 checked:bg-slate-500 text-slate-500 p-1 mt-5"
-                                                    disabled>
+                                                    class="form-radio h-5 w-5 checked:bg-slate-500 text-slate-500 p-1 mt-5" disabled>
                                             @endif
                                         @endif
                                     </div>

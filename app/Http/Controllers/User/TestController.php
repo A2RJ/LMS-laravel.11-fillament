@@ -42,7 +42,15 @@ class TestController extends Controller
 
         $duration = $session->test->duration;
         $testId = $session->test->id;
+        $this->initializeTestSession($testId, $duration);
 
+        $remainingTime = $this->calculateRemainingTime($testId, $duration);
+
+        return view('test', compact('course', 'session', 'remainingTime'));
+    }
+
+    private function initializeTestSession($testId, $duration)
+    {
         $startTimeKey = "test_start_time_$testId";
         $endTimeKey = "test_end_time_$testId";
         $currentTestIdKey = 'current_test_id';
@@ -53,33 +61,37 @@ class TestController extends Controller
         }
 
         if (!session()->has($startTimeKey) || !session()->has($endTimeKey)) {
-            $startTime = now();
-            session([$startTimeKey => $startTime]);
-
-            $hours = (int) substr($duration, 0, 2);
-            $minutes = (int) substr($duration, 3, 2);
-            $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
-            session([$endTimeKey => $endTime]);
-        } else {
-            $startTime = session($startTimeKey);
-            $endTime = session($endTimeKey);
+            $this->setTestTimes($startTimeKey, $endTimeKey, $duration);
         }
+    }
 
+    private function calculateRemainingTime($testId, $duration)
+    {
+        $startTimeKey = "test_start_time_$testId";
+        $endTimeKey = "test_end_time_$testId";
+
+        $startTime = session($startTimeKey);
+        $endTime = session($endTimeKey);
         $now = now();
+
         if ($now->lt($endTime)) {
-            $remainingTime = $endTime->diff($now)->format('%H:%I:%S');
+            return $endTime->diff($now)->format('%H:%I:%S');
         } else {
-            $remainingTime = '00:00:00';
+            // Reset the test time
+            $this->setTestTimes($startTimeKey, $endTimeKey, $duration);
+            $endTime = session($endTimeKey);
+
+            return $endTime->diff(now())->format('%H:%I:%S');
         }
+    }
 
-        // return response()->json([
-        //     'start_time' => session($startTimeKey),
-        //     'end_time' => session($endTimeKey),
-        //     'current_test_id' => session($currentTestIdKey),
-        //     'remaining_time' => $remainingTime,
-        // ]);
-
-        return view('test', compact('course', 'session', 'remainingTime'));
+    private function setTestTimes($startTimeKey, $endTimeKey, $duration)
+    {
+        $startTime = now();
+        $hours = (int) substr($duration, 0, 2);
+        $minutes = (int) substr($duration, 3, 2);
+        $endTime = $startTime->copy()->addHours($hours)->addMinutes($minutes);
+        session([$startTimeKey => $startTime, $endTimeKey => $endTime]);
     }
 
     public function saveToSession(Request $request)
@@ -172,7 +184,7 @@ class TestController extends Controller
         return view('result', compact('class', 'tests', 'answered_correctly'));
     }
 
-    public function postResult($test_number)
+    public function postReview($test_number)
     {
         if (empty($test_number)) {
             return back()->with('error', 'Invalid test number.');
