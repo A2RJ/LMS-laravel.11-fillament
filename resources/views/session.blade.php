@@ -72,8 +72,8 @@
             </a>
             @foreach ($course->sessions as $index => $session)
                         @php
-                            $isActiveSession = request('page') == $index + 1;
-                            $hasAttendance = $session->attendance !== null;
+    $isActiveSession = request('page') == $index + 1;
+    $hasAttendance = $session->attendance !== null;
                         @endphp
                         @if ($isActiveSession)
                             <a href="{{ route('course.id', ['course' => $course->id, 'session' => $session->id, 'current' => request('page')]) }}"
@@ -94,8 +94,23 @@
             @endforeach
         </div>
 
-        <div class="min-h-[50vh]">
-            <x-tinyview :data="$data->content"></x-tinyview>
+        <div class="min-h-[80vh]">
+            @if ($data->preTest && !$data->preTestDone)
+                <div class="relative max-h-screen overflow-y-hidden">
+                    <x-tinyview :data="$data->content"></x-tinyview>
+                    <div class="absolute inset-0 bg-slate-400 bg-opacity-85 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-white" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M4 22V8h3V6q0-2.075 1.463-3.537T12 1t3.538 1.463T17 6v2h3v14zm8-5q.825 0 1.413-.587T14 15t-.587-1.412T12 13t-1.412.588T10 15t.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3t-2.125.875T9 6z" />
+                        </svg>
+                        <span class="text-white text-xl font-bold">
+                            Complete the pre-test first
+                        </span>
+                    </div>
+                </div>
+            @else
+            <x-tinyview :data="$data->content"></x-tinyview>    
+            @endif
         </div>
 
         @if ($sessions->total() > 0)
@@ -136,7 +151,7 @@
                 <!-- Next Page Link -->
                 @if ($sessions->hasMorePages())
                         @php
-                            $disableLink = !$data->preTestDone || !$data->postTestDone || !$data->attendance;
+        $disableLink = !$data->preTestDone || !$data->postTestDone || !$data->attendance;
                         @endphp
                         <a href="{{ $sessions->nextPageUrl() }}" @if ($disableLink) onclick="return false;" id="save" @endif>
                             <button
@@ -240,7 +255,7 @@
             @endif
 
             <div class="text-base font-bold text-slate-900 dark:text-white">Course Session</div>
-            <ol class="space-y-2">
+            <ol class="space-y-2 list-none -ml-5">
                 <li class="">
                     <a href="{{ route('course.id', ['course' => $course->id]) }}">
                         <div

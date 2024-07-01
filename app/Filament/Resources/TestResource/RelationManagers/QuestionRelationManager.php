@@ -2,23 +2,18 @@
 
 namespace App\Filament\Resources\TestResource\RelationManagers;
 
-use App\Filament\Resources\QuestionRelationManagerResource\RelationManagers\AnswersRelationManager;
 use App\Filament\Resources\QuestionResource;
 use App\Filament\Resources\TestResource;
 use App\Forms\Components\TinyFileManager;
 use App\Models\Question;
 use Filament\Forms;
-use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class QuestionRelationManager extends RelationManager
 {
@@ -88,15 +83,15 @@ class QuestionRelationManager extends RelationManager
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make()
-                    ->url(fn ($livewire) => QuestionResource::getUrl('create', ['ownerRecord' => $livewire->ownerRecord->getKey()]))
-                    ->successRedirectUrl(fn ($livewire) => TestResource::getUrl('edit', ['record' => $livewire->ownerRecord->getKey()])),
+                    ->url(fn($livewire) => QuestionResource::getUrl('create', ['ownerRecord' => $livewire->ownerRecord->getKey()]), true)
+                    ->successRedirectUrl(fn($livewire) => TestResource::getUrl('edit', ['record' => $livewire->ownerRecord->getKey()])),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                    ->url(fn (Question $question) => QuestionResource::getUrl('view', ['record' => $question->id])),
+                    ->url(fn(Question $question) => QuestionResource::getUrl('view', ['record' => $question->id]), true),
                 Tables\Actions\EditAction::make()
-                    ->url(fn (Question $question) => QuestionResource::getUrl('edit', ['record' => $question->id]))
-                    ->successRedirectUrl(fn ($livewire) => TestResource::getUrl('edit', ['record' => $livewire->ownerRecord->getKey()])),
+                    ->url(fn(Question $question) => QuestionResource::getUrl('edit', ['record' => $question->id]), true)
+                    ->successRedirectUrl(fn($livewire) => TestResource::getUrl('edit', ['record' => $livewire->ownerRecord->getKey()])),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

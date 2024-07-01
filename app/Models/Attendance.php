@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Attendance whereCourseId($value)
+ * @property int $course_id
  * @mixin \Eloquent
  */
 class Attendance extends Model

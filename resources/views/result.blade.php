@@ -94,7 +94,7 @@
                                 @endphp
                                 <span
                                     class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium {{ $className }} ">
-                                    {{ $tests[0]->score ? 'Score: ' . $tests[0]->score : 'We are currently reviewing your test' }}
+                                    {{ $checkReview == 0 ? 'Your test has been reviewed' : 'We are currently reviewing your test' }}
                                 </span>
                             </dd>
                         </div>

@@ -33,9 +33,10 @@ class SessionResource extends Resource
                     ->schema([
                         Forms\Components\Select::make('course_id')
                             ->label('Class')
-                            ->searchPrompt('Search test by title')
-                            ->options(Course::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
+                            ->searchPrompt('Search course by title')
+                            ->options(Course::query()->pluck('title', 'id')->toArray())
+                            // ->options(Course::query()->where('user_id', auth()->id())->pluck('id', 'title'))
+                            // ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                             ->required()
                             ->searchable()
                             ->optionsLimit(20),
@@ -56,7 +57,7 @@ class SessionResource extends Resource
                             ->searchPrompt('Search test by title')
                             ->options(Test::query()->pluck('title', 'id'))
                             // ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
+                            ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                             ->searchable()
                             ->optionsLimit(20),
                         Forms\Components\Select::make('post_test_id')
@@ -65,7 +66,7 @@ class SessionResource extends Resource
                             ->searchPrompt('Search test by title')
                             ->options(Test::query()->pluck('title', 'id'))
                             // ->options(Test::query()->where('user_id', auth()->id())->pluck('title', 'id'))
-                            ->formatStateUsing(fn (?string $state) => substr($state, 0, 20))
+                            ->formatStateUsing(fn(?string $state) => substr($state, 0, 20))
                             ->searchable()
                             ->optionsLimit(20)
                     ])
@@ -76,6 +77,8 @@ class SessionResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('course.title')
                     ->searchable()
                     ->sortable(),
@@ -87,8 +90,6 @@ class SessionResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('start')
                     ->dateTime()
                     ->sortable()

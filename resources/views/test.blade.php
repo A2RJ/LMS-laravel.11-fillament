@@ -379,8 +379,8 @@
             };
 
             const saveAction = () => {
-                // const form = document.getElementById('form');
-                // form.submit();
+                const form = document.getElementById('form');
+                form.submit();
             };
             save.addEventListener('click', saveAction);
             const cancelModalSave = () => {

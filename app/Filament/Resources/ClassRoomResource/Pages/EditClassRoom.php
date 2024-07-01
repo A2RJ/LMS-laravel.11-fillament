@@ -61,4 +61,9 @@ class EditClassRoom extends EditRecord
 
         return $record;
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('edit', ['record' => $this->getRecord()]);
+    }
 }

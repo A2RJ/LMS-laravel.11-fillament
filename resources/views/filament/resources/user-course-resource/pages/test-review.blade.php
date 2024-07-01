@@ -1,6 +1,6 @@
 <x-filament-panels::page>
-    <div class="grid grid-cols-2 min-h-[30vh] bg-white rounded-lg shadow-sm bg-gradient-to-r from-cyan-500 to-blue-500">
-        <div class="p-10 pl-20 pt-14">
+    <div class="grid grid-cols-2 bg-white rounded-lg shadow-sm bg-gradient-to-r from-cyan-500 to-blue-500">
+        <div class="p-10">
             <a href="#" class="mb-3 block text-xl font-bold text-white">{{ $this->record->title }}</a>
 
             <div class="flex flex-row space-x-4">
@@ -41,6 +41,15 @@
 
     <div class="">
         <div class="w-full mx-auto">
+            <div class="flex justify-start pl-8 items-center gap-2 mb-4 bg-cyan-500 text-white rounded-md p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-5 text-white" width="32" height="32"
+                    viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M7 5h14v2H7zm0 8v-2h14v2zM4 4.5A1.5 1.5 0 0 1 5.5 6A1.5 1.5 0 0 1 4 7.5A1.5 1.5 0 0 1 2.5 6A1.5 1.5 0 0 1 4 4.5m0 6A1.5 1.5 0 0 1 5.5 12A1.5 1.5 0 0 1 4 13.5A1.5 1.5 0 0 1 2.5 12A1.5 1.5 0 0 1 4 10.5M7 19v-2h14v2zm-3-2.5A1.5 1.5 0 0 1 5.5 18A1.5 1.5 0 0 1 4 19.5A1.5 1.5 0 0 1 2.5 18A1.5 1.5 0 0 1 4 16.5" />
+                </svg>
+                <h2 class="text-xl text-left font-semibold">User List</h2>
+            </div>
+
             @foreach ($this->report as $course)
                 <div class="overflow-x-auto rounded-lg border border-gray-200 mb-4">
                     <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">

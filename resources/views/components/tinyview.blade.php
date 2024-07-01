@@ -52,6 +52,26 @@
             color: #0077cc;
             /* Ganti dengan warna yang diinginkan */
         }
+
+        ol {
+            list-style-type: decimal;
+            /* Mengatur tipe list ke decimal */
+            padding-left: 1.25rem;
+            /* Setara dengan pl-5 di Tailwind */
+            margin-top: 0.5rem;
+            /* Jarak antar elemen, setara dengan space-y-2 di Tailwind */
+        }
+
+        ol li {
+            color: #4a5568;
+            /* Setara dengan text-gray-700 di Tailwind */
+            margin-bottom: 0.5rem;
+            /* Jarak antar item */
+        }
+
+        ol li span {
+            display: block;
+        }
     </style>
     <div class="custom-tiny">
         @php
@@ -87,7 +107,7 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const videos = document.querySelectorAll('video');
             videos.forEach(video => {
                 video.removeAttribute('autoplay');

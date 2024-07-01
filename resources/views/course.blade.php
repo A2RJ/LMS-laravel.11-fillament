@@ -260,7 +260,7 @@
 
 
                 <div class="text-base font-bold text-slate-900 dark:text-white">Course Session</div>
-                <ol class="space-y-2">
+                <ol class="space-y-2 list-none -ml-5">
                     <li class="">
                         <a href="{{ route('course.id', ['course' => $course->id]) }}">
                             <div

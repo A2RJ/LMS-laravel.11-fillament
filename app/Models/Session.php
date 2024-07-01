@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Session whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Session withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Session withoutTrashed()
+ * @property-read \App\Models\Attendance|null $attendance
  * @mixin \Eloquent
  */
 class Session extends Model

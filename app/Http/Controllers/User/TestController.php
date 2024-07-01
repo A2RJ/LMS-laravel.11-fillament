@@ -143,6 +143,15 @@ class TestController extends Controller
                     }
                 }
 
+                TestResult::query()
+                    ->where([
+                        'user_id' => (int) $user_id,
+                        'course_id' => (int) $course->id,
+                        'session_id' => (int) $session->id,
+                        $preOrPostId => (int) $test_type_id->id,
+                    ])
+                    ->delete();
+
                 if (!empty($selectedData)) {
                     TestResult::query()
                         ->insert($selectedData);

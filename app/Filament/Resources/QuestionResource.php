@@ -44,7 +44,7 @@ class QuestionResource extends Resource
                             ->columnSpanFull()
                             ->relationship('answers')
                             ->live()
-                            ->visible(fn (Forms\Get $get): bool => $get('answer_type') === 'selected')
+                            ->visible(fn(Forms\Get $get): bool => $get('answer_type') === 'selected')
                             ->schema([
                                 RichEditor::make('answer')
                                     ->required()
@@ -57,9 +57,10 @@ class QuestionResource extends Resource
                                             ->label('Is Correct')
                                             ->required()
                                             ->options([
-                                                'true' => 'True',
-                                                'false' => 'False',
-                                            ]),
+                                                true => 'True',
+                                                false => 'False',
+                                            ])
+                                            ->default(false),
                                         Forms\Components\TextInput::make('score')
                                             ->numeric()
                                             ->label('Score')
@@ -71,6 +72,8 @@ class QuestionResource extends Resource
                                         return $data;
                                     })
                             ])
+                            ->addActionLabel('Add more answer')
+                            ->defaultItems(4)
                     ])
             ]);
     }

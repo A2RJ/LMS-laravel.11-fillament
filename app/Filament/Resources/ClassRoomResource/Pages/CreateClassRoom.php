@@ -17,4 +17,9 @@ class CreateClassRoom extends CreateRecord
         $data['progress'] = 0;
         return $data;
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
